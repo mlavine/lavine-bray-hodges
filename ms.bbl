@@ -1,0 +1,68 @@
+\begin{thebibliography}{}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem[Browne et~al.(2001)Browne, Goldstein, and Rasbash]{browne_etal:2001}
+Browne, W., Goldstein, H., and Rasbash, J. (2001), \enquote{Multiple Membership
+  Multiple Classification (MMMC) Models,} \emph{Statistical Modeling}, 1,
+  103--124.
+
+\bibitem[Bryk and Raudenbush(1992)Bryk and Raudenbush]{bryk_raudenbush:1992}
+Bryk, A.~S. and Raudenbush, S.~W. (1992), \emph{Hierarchical Linear Models:
+  Applications and Data Analysis Methods}, Sage, Newbury Park.
+
+\bibitem[Henn and Hodges(2014)Henn and Hodges]{henn&hodges:2014}
+Henn, L. and Hodges, J.~S. (2014), \enquote{Multiple Local Maxima in Restricted
+  Likelihoods and Posterior Distributions for Mixed Linear Models,}
+  \emph{International Statistical Review}, 82, 90--105.
+
+\bibitem[Hodges(1998)Hodges]{hodges:98}
+Hodges, J.~H. (1998), \enquote{Some Algebra and Geometry for Hierarchical
+  Models Applied to Diagnostics,} \emph{JRSS B}, 60, 497--536.
+
+\bibitem[Hodges(2013)Hodges]{hodges:2013}
+Hodges, J.~S. (2013), \emph{Richly Parameterized Linear Models: additive, time
+  series, and spatial models using random effects}, CRC Press.
+
+\bibitem[Houtman and Speed(1983)Houtman and Speed]{houtman_speed:1983}
+Houtman, A. and Speed, T. (1983), \enquote{Balance in designed experiments with
+  orthogonal block structure,} \emph{Annals of Statistics}, 11, 1069--1085.
+
+\bibitem[McCaffrey et~al.(2004)McCaffrey, Lockwood, Koretz, Louis, and
+  Hamilton]{mccaffrey_etal:2004}
+McCaffrey, D., Lockwood, J., Koretz, D., Louis, T., and Hamilton, L. (2004),
+  \enquote{Models for value-added modeling of teacher effects,} \emph{Journal
+  of Behavioral and Educational Statistics}, 29, 67--101.
+
+\bibitem[Mullen(2014)Mullen]{mullen:2014}
+Mullen, K.~M. (2014), \enquote{Continuous Global Optimization in R,}
+  \emph{Journal of Statistical Software}, 60.
+
+\bibitem[Reich and Hodges(2008)Reich and Hodges]{reich_hodges:2008}
+Reich, B. and Hodges, J. (2008), \enquote{Identification of the variance
+  components in the general two-variance linear model,} \emph{JSPI}, 138,
+  1592--1604.
+
+\bibitem[Ruppert et~al.(2003)Ruppert, Wand, and Carroll]{ruppert_etal:2003}
+Ruppert, D., Wand, M.~P., and Carroll, R.~J. (2003), \emph{Semiparametric
+  Regression}, Cambridge University Press, Cambridge.
+
+\bibitem[Verbeke and Molenberghs(2000)Verbeke and
+  Molenberghs]{verbeke&molenberghs:2000}
+Verbeke, G. and Molenberghs, G. (2000), \emph{Linear Mixed Models for
+  Longitudinal Data}, Springer, first edn.
+
+\bibitem[Wakefield(1998)Wakefield]{wakefield:1998}
+Wakefield, J. (1998), \enquote{Comment on \emph{Some Algebra and Geometry for
+  Hierarchical Models Applied to Diagnostics},} \emph{Journal of the Royal
+  Statistical Society (Series B)}, 60, 497--536.
+
+\bibitem[Welham and Thompson(2009)Welham and Thompson]{welham_thompson:2009}
+Welham, S. and Thompson, R. (2009), \enquote{A Note on bimodality in the
+  log-likelihood function for penalized spline mixed models,}
+  \emph{Computational Statistics and Data Analysis}, 53, 920--931.
+
+\bibitem[West et~al.(2014)West, Welch, and Galecki]{west&welch&galecki:2014}
+West, B.~T., Welch, Kathleen, B., and Galecki, A.~T. (2014), \emph{Linear Mixed
+  Models: A Practical Guide Using Statistical Software}, CRC Press, second edn.
+
+\end{thebibliography}
