@@ -10,7 +10,8 @@
 \usepackage{fullpage}
 %\usepackage{mathtools}
 \usepackage{natbib}
-\usepackage{paralist}
+\usepackage{enumitem}
+%\usepackage{appendix}
 %\usepackage{setspace}
 
 \renewcommand\thesection{\arabic{section}}
@@ -50,9 +51,11 @@
 
 \title{Approximately Exact Calculations for Linear Mixed Models}
 \author[1]{Michael Lavine}
-\author[2]{James Hodges}
+\author[1,2]{Andrew Bray}
+\author[3]{James Hodges}
 \affil[1]{Department of Mathematics and Statistics, University of Massachusetts, Amherst, MA 01003 USA}
-\affil[2]{Division of Biostatistics, University of Minnesota, Minneapolis, MN 55455 USA}
+\affil[2]{Mount Holyoke College}
+\affil[3]{Division of Biostatistics, University of Minnesota, Minneapolis, MN 55455 USA}
 
 \maketitle
 
@@ -95,7 +98,17 @@ where $\Sigma_e$ and $\Sigma_s$ are known matrices, often the identity, of the a
   \logRLssorig = B - \frac{n_e}{2}\log(\sigesq) - \frac{y^t \Gamma_c \Gamma^t_c y}{2\sigesq} 
     - \frac{1}{2} \sum_{j=1}^{s_z} \left[ \log(\ass) + \frac{\hat v_j^2}{\ass}\right]
 \end{equation}
-where $B$ is an unimportant known constant; $n_e$ is $n$ minus the dimension of the space spanned by the columns of $[X|Z]$; $\Gamma_c$ is $n \times n_e$ and spans the space orthogonal to $[X|Z]$ (so $y^t \Gamma_c \Gamma^t_c y$ is the residual sum of squares); $s_z$ is the dimension of the space spanned by the columns of $Z$ not already in the span of the columns of $X$; and the $\{a_j\}$ and $\{\hat v_j\}$ are known constants with all $a_j>0$.  Thus the only unknowns are $(\sigma^2_s, \sigma^2_e)$ and $\logRLssorig$ is a function of just those two arguments.  Specifically, $\logRLssorig$ is a linear combination of logs and inverses of linear functions $\abss$ of the two unknowns.
+where
+\begin{enumerate}[label=(\arabic*)]
+  \item $B$ is an unimportant known constant;
+  \item $n_e$ is $n$ minus the dimension of the space spanned by the columns of $[X|Z]$;
+  \item $\Gamma_c$ is $n \times n_e$ and spans the space orthogonal to $[X|Z]$
+    (so $y^t \Gamma_c \Gamma^t_c y$ is the residual sum of squares);
+  \item $s_z$ is the dimension of the space spanned by the columns of $Z$ not already
+    in the span of the columns of $X$; and
+  \item the $\{a_j\}$ and $\{\hat v_j\}$ are known constants whose derivation is in the Appendix.  All $a_j>0$.
+\end{enumerate}
+Thus the only unknowns are $(\sigma^2_s, \sigma^2_e)$ and $\logRLssorig$ is a function of just those two arguments.  Specifically, $\logRLssorig$ is a linear combination of logs and inverses of linear functions $\abss$ of the two unknowns.
 
 As \cite{hodges:2013} further observes, if $\beta$ is given an improper flat prior and $\sigesq$ and $\sigssq$ are given conjugate priors --- say $\sigesq \sim \IG(\alpha_e,\beta_e)$ and $\sigssq \sim \IG(\alpha_s,\beta_s)$ --- then \begin{equation*}
   -(\alpha_e+1) \log\sigesq - \beta_e/\sigesq -(\alpha_s+1) \log\sigssq - \beta_s/\sigssq
@@ -240,7 +253,7 @@ Because $\logRL$ is continuous, $U^b - L^b \rightarrow 0$ as $b$ shrinks in both
 With \textbf{D1} and \textbf{D2} the following  algorithm will evaluate $\logRL$ to arbitrary accuracy everywhere within a box $B$.
 \begin{enumerate}
 \item Specify constants \maxit, $M$, $\epsilon$, $\delta_e$, and $\delta_s$.
-	\begin{enumerate}[(a)]
+	\begin{enumerate}[label=(\alph*)]
 	\item \maxit\ is the maximum number (could be $\infty$) of iterations of
 		the algorithm's loop.
 	\item We will not carefully analyze regions of the plane where
@@ -594,7 +607,7 @@ This paper has explained and illustrated an algorithm, for linear mixed models w
 Another is to see whether the algorithm can be used to advantage even in non-reexpressible models.  If a model has, say, three variances and is now analyzed by, say, MCMC, we can create an MCMC chain that alternates between draws of $(\sigesq,\sigssq)$ and draws of the other variance.  With the aid of our algorithm we may be able to draw more accurately from $[\sigesq,\sigssq\g \sigma^2_\text{other}]$.  More generally, the conditional distribution of $(\sigesq,\sigssq)$ given other parameters can now be analyzed more accurately than in the past.  We have yet to explore how to exploit that accuracy.  A third direction is the posterior $\pi(\sigesq,\sigssq\g y)$.  We can identify a region $B^c$ where the posterior density is low relative to its maximum and it would be of at least mild interest to find an upper bound for the posterior mass of $B^c$.
 
 As written, our algorithm moves a box $b$ to the inactive list if
-\begin{enumerate}[(a)]
+\begin{enumerate}[label=(\alph*)]
 \item $U^b < L-M$ or
 \item $U^b - L^b < \epsilon$ or
 \item either the vertical or horizontal extent of $b$ is sufficiently small.
@@ -602,6 +615,45 @@ As written, our algorithm moves a box $b$ to the inactive list if
 But one could construct more elaborate rules.  One appealing example is to apply criteria (a) and (c) if $U^b \le L-\epsilon_2$ and apply criterion (b) if $U^b > L-\epsilon_2$.  Other rules are possible, too.  We don't elaborate here in order to concentrate on the main ideas.
 
 In this paper we have taken the point of view that it is important to find all regions where $\log f$ is large without necessarily identifying all local maxima or even the global maximum, even though that point of view is at odds with common statistical estimators that maximize the likelihood, the restricted likelihood, or the posterior density.  If two local maxima are close in height it hardly matters which is slightly higher than the other.  And, as we said earlier, if there is a high plateau it hardly matters whether there are little bumps on that plateau.
+
+\section{Appendix}
+\paragraph{Derivation of $\{a_j\}$ and $\{\hat v_j\}$ in \eqref{eq:reexpress}}  Our derivation follows \cite{hodges:2013},
+which contains more details.  There are three steps.
+\begin{enumerate}
+  \item \textbf{Make the covariance matrices proportional to the identity.}  If $\Sigma_e$ is not the identity matrix,
+    transform the data to $\Sigma_e^{-.5}y$.  The transformed data, which we shall still call $y$, has covariance
+    proportional to the identity.  Similarly, if $\Sigma_s$ is not the identity matrix, re-parameterize the random
+    effects to $\Sigma_s^{-.5}u$.  The re-parameterized random effects, which we shall still call $u$, have
+    covariance proportional to the identity.
+  \item \textbf{If the column spaces of $X$ and $Z$ have a non-trivial intersection, transform them.}
+    Let $s_X=\text{rank}(X)$  and $s_Z=\text{rank}(X|Z) - s_X$.  Let $\Gamma_X$ be an $n \times s_X$ matrix whose
+    columns are an orthonormal basis for the column space of $X$.  Let $\Gamma_Z$ be an $n \times s_Z$ matrix
+    such that the columns of $\left[\Gamma_X | \Gamma_Z \right]$ are an orthonormal basis for the column space
+    of $\left[X|Z\right]$.  Let $\Gamma_c$ be an $n \times n-s_X-s_Z$ matrix such that the columns of
+    $\left[\Gamma_X | \Gamma_Z | \Gamma_c\right]$ are an orthonormal basis for $\mathbb{R}^n$.  Define the matrix
+    \begin{equation*}
+      M = \begin{bmatrix}
+               M_{XX} & M_{XZ}\\
+               0 & M_{ZZ}
+             \end{bmatrix}
+    \end{equation*}
+    by $[X|Z] = [\Gamma_X|\Gamma_Z]M$ where $M_{XX}$ is $s_X \times p$ and $M_{XZ}$ is $s_Z \times q$.
+    $\Gamma_X$ and $\Gamma_Z$ are transformed versions of $X$ and $Z$ that have non-overlapping
+    column spaces.
+  \item \textbf{Re-parameterize and diagonalize.}  Let $M_{ZZ}$ have the singular value decomposition
+    $PA^{.5}L^t$.  Now the linear mixed model \eqref{eq:lmm} can be written as
+    \begin{equation*}
+      \begin{split}
+        y &= \begin{bmatrix} X Z \end{bmatrix} \begin{bmatrix} \beta \\ u \end{bmatrix} + \epsilon\\
+        &= \begin{bmatrix} \Gamma_X  \Gamma_Z \end{bmatrix} M \begin{bmatrix} \beta \\ u \end{bmatrix} + \epsilon\\
+        &= \begin{bmatrix} \Gamma_X \Gamma_ZP \end{bmatrix} \begin{bmatrix} \beta^* \\ v \end{bmatrix} + \epsilon
+      \end{split}
+    \end{equation*}
+    where $\beta^* = M_{XX}\beta + M_{XZ}u$ and $v = A^{.5}L^t u$.  $\beta^*$ contains the re-parametrized
+    fixed effects while $v$ contains the re-parametrized random effects.  The corresponding design matrices
+    $\Gamma_X$ and $\Gamma_Z P$ are orthogonal to each other.
+\end{enumerate}
+Finally, the $\{a_j\}$ in \eqref{eq:reexpress} are the diagonal elements of $A$, all of which are strictly positive, and the $\{\hat v_j\}$ in \eqref{eq:reexpress} are given by $\hat v = (\hat v_1, \dots, \hat v_{s_Z})^t = P^t \Gamma_Z^t y$.
 
 \bibliographystyle{jasa}
 \bibliography{paper}
