@@ -122,12 +122,51 @@ the log posterior
   B - \frac{n_e + 2\alpha_e + 2}{2}\log(\sigesq) -
     \frac{y^t \Gamma_c \Gamma^t_c y + 2\beta_e}{2\sigesq}\\
     &\qquad\qquad - \frac{2\alpha_s + 2} {2}\log(\sigssq) - \frac{2\beta_s}{2\sigssq}
-    - \frac{1}{2} \sum_{j=1}^{s_z} \left[ \log(\ass) + \frac{\hat v_j^2}{\ass}\right]\\
-    &= B - \frac{1}{2}\sum_j\left[ c_j \log(\abss) + \frac{d_j}{\abss}\right]
+    - \frac{1}{2} \sum_{j=1}^{s_z} \left[ \log(\ass) + \frac{\hat v_j^2}{\ass}\right].
   \end{split}
 \end{equation}
-for known nonnegative constants $\{a_j, b_j, c_j, d_j\}$ ---
-still a linear combination of logs and inverses of linear functions $\abss$.  Our derivation will proceed from \eqref{eq:logpost}, though it applies also to \eqref{eq:reexpress} and other linear combinations of logs and inverses of linear functions $\abss$.  We use $f$ to denote such functions generically.  
+Equations~\eqref{eq:reexpress} and~\eqref{eq:logpost} can both be written as in \eqref{eq:sum}: a summation of multiples of logs and inverses of linear combinations $\abss$, where the summands with $j=s_Z+1$ and $j=s_Z+2$ are for the terms involving only $\sigesq$ and $\sigssq$, respectively.
+\begin{equation}
+\label{eq:sum}
+  -\frac{1}{2} \sum_{j=1}^{s_Z+2}\left[ c_j \log(\abss) + \frac{d_j}{\abss}\right]
+\end{equation}
+where
+\begin{itemize}[label=---]
+\item for $j = 1, \dots, s_Z$,
+  \begin{align*}
+    a_j &> 0\ \text{and is derived in the Appendix}\\
+    b_j &=1\\
+    c_j &=1\\
+    d_j &= \hat v_j^2\ \text{and is derived in the Appendix}
+  \end{align*}
+\item for $j = s_Z +1$,
+  \begin{align*}
+    a_j &= 0\\
+    b_j &= 1\\
+    c_j &= \begin{cases}
+                 n_e & \text{for $\logRLorig$ in \eqref{eq:reexpress}}\\
+                 n_e + 2\alpha_e + 2 & \text{for the $\log$ posterior in \eqref{eq:logpost}}
+              \end{cases}\\
+    d_j &= \begin{cases}
+                 \frac{y^t \Gamma_c \Gamma^t_c y}{\sigesq} & \text{for $\logRLorig$ in \eqref{eq:reexpress}}\\
+                 \frac{y^t \Gamma_c \Gamma^t_c y + 2\beta_e}{\sigesq} & \text{for the $\log$ posterior in \eqref{eq:logpost}}
+              \end{cases}
+  \end{align*}
+\item for $j = s_Z+2$,
+  \begin{align*}
+    a_j &= 1\\
+    b_j &= 0\\
+    c_j &= \begin{cases}
+      0 & \text{for $\logRLorig$ in \eqref{eq:reexpress}}\\
+      2 \alpha_s + 2 & \text{for the $\log$ posterior in \eqref{eq:logpost}}
+    \end{cases}\\
+    d_j &= \begin{cases}
+      0 & \text{for $\logRLorig$ in \eqref{eq:reexpress}}\\
+      2 \beta_s & \text{for the $\log$ posterior in \eqref{eq:logpost}}.
+    \end{cases}
+  \end{align*}
+\end{itemize}
+Our derivation proceeds from \eqref{eq:sum}.  We use $f$ to denote the target function generically, either~\eqref{eq:reexpress} or~\eqref{eq:logpost}.  
 
 It is known (e.g.\ \citealt{henn&hodges:2014}) that $\logRLss$\  
 can have multiple maxima and that existing general purpose algorithms for linear mixed models may fail to find all of them, as shown by examples in \cite{hodges:2013}, \cite{henn&hodges:2014}, and elsewhere.
