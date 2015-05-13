@@ -34,18 +34,18 @@ mlrebox <- with(lines,
 boxes <- fitlmm(lines = lines, mlrebox, eps = 1, delE = 10, delS = 10, M = 5, maxit = 10)
 p <- showboxes(boxes)
 
-pdf("manuscript/figs/hmoboxes.pdf")
+pdf("figs/hmoboxes.pdf")
 p + theme_bw()
 dev.off()
-jpeg("manuscript/figs/hmoboxes.jpg")
+jpeg("figs/hmoboxes.jpg")
 p + theme_bw()
 dev.off()
 
 p <- showfunc(boxes)
-pdf("manuscript/figs/hmorll.pdf")
+pdf("figs/hmorll.pdf")
 p + scale_x_log10 () + scale_y_log10 () + theme_bw()
 dev.off()
-jpeg("manuscript/figs/hmorll.jpg")
+jpeg("figs/hmorll.jpg")
 p + scale_x_log10 () + scale_y_log10 () + theme_bw()
 dev.off()
 
@@ -62,18 +62,18 @@ boxes2 <- fitlmm(lines = lines, box2, eps = .5, delE = 0, delS = 0, ratio = TRUE
 mrle <- which.max(boxes2$rll.lower)
 
 p <- showboxes(boxes2)
-pdf("manuscript/figs/hmoboxes2.pdf")
+pdf("figs/hmoboxes2.pdf")
 p + theme_bw()# + scale_x_log10 () + scale_y_log10 ()
 dev.off()
-jpeg("manuscript/figs/hmoboxes2.jpeg")
+jpeg("figs/hmoboxes2.jpeg")
 p + theme_bw()# + scale_x_log10 () + scale_y_log10 ()
 dev.off()
 
 p <- showfunc(boxes2)
-pdf("manuscript/figs/hmorll2.pdf")
+pdf("figs/hmorll2.pdf")
 p + scale_x_log10 () + scale_y_log10 () + theme_bw()
 dev.off()
-jpeg("manuscript/figs/hmorll2.jpeg")
+jpeg("figs/hmorll2.jpeg")
 p + scale_x_log10 () + scale_y_log10 () + theme_bw()
 dev.off()
 
@@ -108,7 +108,7 @@ summary(mod)
 
 lines <- findlines(x, z, y, SigE, SigS)
 
-pdf("manuscript/figs/hmolines.HH11.pdf")
+pdf("figs/hmolines.HH11.pdf")
 showlines(lines)
 dev.off()
 
@@ -123,14 +123,14 @@ boxes.HH11 <- fitlmm(lines = lines, mlrebox, eps = 5,
                      M = 5, maxit = 10)
 
 p <- showboxes(boxes.HH11)
-pdf("manuscript/figs/hmo.HH11.boxes.pdf")
+pdf("figs/hmo.HH11.boxes.pdf")
 p + scale_x_continuous(name = expression(sigma[e]^2)) +
     scale_y_continuous(name = expression(sigma[s]^2)) +
     theme_bw()
 dev.off()
 
 p <- showfunc(boxes.HH11)
-pdf("manuscript/figs/hmo.HH11.rll.pdf")
+pdf("figs/hmo.HH11.rll.pdf")
 p + scale_x_log10(name = expression(sigma[e]^2),
                   breaks = c(100,300,1000,3000,10000)) +
     scale_y_log10(name = expression(sigma[s]^2),
@@ -149,14 +149,14 @@ box2 <- with(lines,
 boxes.HH11 <- fitlmm(lines = lines, box2, eps = 1, M = 10, maxit = 15)
 
 p <- showboxes(boxes.HH11)
-pdf("manuscript/figs/hmo.HH11.boxes2.pdf")
+pdf("figs/hmo.HH11.boxes2.pdf")
 p + scale_x_continuous(name = expression(sigma[e]^2), limits = c(300, 1000)) +
     scale_y_continuous(name = expression(sigma[s]^2)) +
     theme_bw()
 dev.off()
 
 p <- showfunc(boxes.HH11)
-pdf("manuscript/figs/hmo.HH11.rll2.pdf")
+pdf("figs/hmo.HH11.rll2.pdf")
 p + scale_x_log10(name = expression(sigma[e]^2),
                   breaks = c (300,500,1000)) +
     scale_y_log10(name = expression(sigma[s]^2),
@@ -166,21 +166,21 @@ dev.off()
 
 # Bayesian analysis using Hodges 1998 prior
 lines <- addprior(lines, a.E = 1, b.E = 0, a.S = 1.1, b.S = .1)
-pdf("manuscript/figs/hmolines.HH11.Bayes.pdf")
+pdf("figs/hmolines.HH11.Bayes.pdf")
 showlines(lines)
 dev.off()
 
 boxes.HH11Bayes <- fitlmm(lines = lines, box2, eps = 1, M = 10, maxit = 20)
 
 p <- showboxes(boxes.HH11Bayes)
-jpeg("manuscript/figs/hmo_HH11Bayes_boxes.jpg")
+jpeg("figs/hmo_HH11Bayes_boxes.jpg")
 p + scale_x_continuous(name = expression(sigma[e]^2), limits = c(300, 1000)) +
     scale_y_continuous(name = expression(sigma[s]^2)) +
     theme_bw()
 dev.off()
 
 p <- showfunc(boxes.HH11Bayes)
-jpeg("manuscript/figs/hmo_HH11Bayes_rll.jpg")
+jpeg("figs/hmo_HH11Bayes_rll.jpg")
 p + scale_x_log10(name = expression(sigma[e]^2),
                   breaks = c(300, 500, 1000)) +
     scale_y_log10(name = expression(sigma[s]^2),

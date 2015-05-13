@@ -85,7 +85,7 @@ SigS <- diag(length(knots))
 lines <- findlines(x, z, y, SigE, SigS)
 
 # plot the lines
-pdf("gmst-lines.pdf")
+pdf("figs/gmst-lines.pdf")
 showlines(lines)
 dev.off()
 
@@ -95,7 +95,7 @@ dev.off()
 boxes <- fitlmm(lines = lines, eps = 10, delE = 1, delS = 1, M = 10, maxit = 15) # first try
 
 # view the boxes
-pdf("gmst-boxes1.pdf")
+pdf("figs/gmst-boxes1.pdf")
 p <- showboxes(boxes)
 p + scale_x_continuous(name = expression(sigma[e]^2)) +
     scale_y_continuous(name = expression(sigma[s]^2)) +
@@ -103,7 +103,7 @@ p + scale_x_continuous(name = expression(sigma[e]^2)) +
 dev.off()
 
 p <- showfunc(boxes)
-pdf("gmst-rll1.pdf")
+pdf("figs/gmst-rll1.pdf")
 p + scale_x_log10(name = expression(sigma[e]^2),
                   breaks = c(30, 300, 3000)) +
     scale_y_log10(name = expression(sigma[s]^2),
@@ -121,14 +121,14 @@ boxes <- fitlmm(lines = lines, startbox = startbox, eps = 2, M = 10, maxit = 20,
                 delE = 0, delS = 0)
 
 # view the boxes
-jpeg("gmst-boxes2.jpg")
+jpeg("figs/gmst-boxes2.jpg")
 p <- showboxes(boxes)
 p + scale_x_continuous(name = expression(sigma[e]^2)) +
     scale_y_continuous(name = expression(sigma[s]^2)) +
     theme_bw()
 dev.off()
 
-jpeg("gmst-rll2.jpg")
+jpeg("figs/gmst-rll2.jpg")
 p <- showfunc(boxes)
 p + scale_x_log10(name = expression(sigma[e]^2),
                   breaks = c(30, 100, 300)) +
