@@ -9,7 +9,7 @@ data(gmst)
 y <- gmst$temp.dev
 
 # plot the data
-pdf("gmst-scatter.pdf")
+pdf("figs/gmst-scatter.pdf")
 p <- ggplot(data = gmst, aes(x = Year, y = temp.dev)) + geom_point()
 p + ylab("temperature deviation") + theme_bw()
 dev.off()
