@@ -11,6 +11,7 @@
 %\usepackage{mathtools}
 \usepackage{natbib}
 \usepackage{enumitem}
+\usepackage{subdepth}
 %\usepackage{appendix}
 %\usepackage{setspace}
 
@@ -108,7 +109,7 @@ where
     in the span of the columns of $X$; and
   \item the $\{a_j\}$ and $\{\hat v_j\}$ are known constants whose derivation is in the Appendix.  All $a_j>0$.
 \end{enumerate}
-Thus the only unknowns are $(\sigma^2_s, \sigma^2_e)$ and $\logRLssorig$ is a function of just those two arguments.  Specifically, $\logRLssorig$ is a linear combination of logs and inverses of linear functions $\abss$ of the two unknowns.
+Thus the only unknowns are $(\sigma^2_s, \sigma^2_e)$ and $\logRLssorig$ is a function of just those two arguments.  Specifically, $\logRLssorig$ is a linear combination of logs and inverses of linear functions $\ass$ of the two unknowns.
 
 As \cite{hodges:2013} further observes, if $\beta$ is given an improper flat prior and $\sigesq$ and $\sigssq$ are given conjugate priors --- say $\sigesq \sim \IG(\alpha_e,\beta_e)$ and $\sigssq \sim \IG(\alpha_s,\beta_s)$ --- then \begin{equation*}
   -(\alpha_e+1) \log\sigesq - \beta_e/\sigesq -(\alpha_s+1) \log\sigssq - \beta_s/\sigssq
@@ -148,8 +149,8 @@ where
                  n_e + 2\alpha_e + 2 & \text{for the $\log$ posterior in \eqref{eq:logpost}}
               \end{cases}\\
     d_j &= \begin{cases}
-                 \frac{y^t \Gamma_c \Gamma^t_c y}{\sigesq} & \text{for $\logRLorig$ in \eqref{eq:reexpress}}\\
-                 \frac{y^t \Gamma_c \Gamma^t_c y + 2\beta_e}{\sigesq} & \text{for the $\log$ posterior in \eqref{eq:logpost}}
+                 y^t \Gamma_c \Gamma^t_c y & \text{for $\logRLorig$ in \eqref{eq:reexpress}}\\
+                 y^t \Gamma_c \Gamma^t_c y + 2\beta_e & \text{for the $\log$ posterior in \eqref{eq:logpost}}
               \end{cases}
   \end{align*}
 \item for $j = s_Z+2$,
