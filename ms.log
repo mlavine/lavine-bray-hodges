@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  17 MAY 2015 12:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  18 MAY 2015 20:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -272,20 +272,16 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] [1]
- [2]
-<figs/oneline.pdf, id=30, 361.35pt x 361.35pt>
+ [2] [3]
+<figs/oneline.pdf, id=34, 361.35pt x 361.35pt>
 File: figs/oneline.pdf Graphic file (type pdf)
  <use figs/oneline.pdf>
 Package pdftex.def Info: figs/oneline.pdf used on input line 221.
 (pdftex.def)             Requested size: 234.8775pt x 234.88023pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3] <figs/boundingbox.pdf, id=35, 505.89pt x 505.89pt>
+<figs/boundingbox.pdf, id=35, 505.89pt x 505.89pt>
 File: figs/boundingbox.pdf Graphic file (type pdf)
-
-<use figs/boundingbox.pdf>
+ <use figs/boundingbox.pdf>
 Package pdftex.def Info: figs/boundingbox.pdf used on input line 237.
 (pdftex.def)             Requested size: 187.90271pt x 187.90196pt.
 
@@ -403,16 +399,16 @@ File: figs/gmst-lines.pdf Graphic file (type pdf)
 <use figs/gmst-lines.pdf>
 Package pdftex.def Info: figs/gmst-lines.pdf used on input line 611.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
- [14 <./figs/gmst-scatter.pdf>]
-<figs/gmst-boxes1.pdf, id=170, 505.89pt x 505.89pt>
+ <figs/gmst-boxes1.pdf, id=161, 505.89pt x 505.89pt>
 File: figs/gmst-boxes1.pdf Graphic file (type pdf)
- <use figs/gmst-boxes1.pdf>
+
+<use figs/gmst-boxes1.pdf>
 Package pdftex.def Info: figs/gmst-boxes1.pdf used on input line 626.
 (pdftex.def)             Requested size: 187.90271pt x 187.90196pt.
-
-<figs/gmst-rll1.pdf, id=171, 505.89pt x 505.89pt>
+ <figs/gmst-rll1.pdf, id=162, 505.89pt x 505.89pt>
 File: figs/gmst-rll1.pdf Graphic file (type pdf)
- <use figs/gmst-rll1.pdf>
+
+<use figs/gmst-rll1.pdf>
 Package pdftex.def Info: figs/gmst-rll1.pdf used on input line 632.
 (pdftex.def)             Requested size: 187.90271pt x 187.90196pt.
 
@@ -420,13 +416,13 @@ Overfull \hbox (2.2222pt too wide) in paragraph at lines 624--640
 []$[]$ $[]$ 
  []
 
-<figs/gmst-boxes2.jpg, id=172, 481.8pt x 481.8pt>
+<figs/gmst-boxes2.jpg, id=163, 481.8pt x 481.8pt>
 File: figs/gmst-boxes2.jpg Graphic file (type jpg)
  <use figs/gmst-boxes2.jpg>
 Package pdftex.def Info: figs/gmst-boxes2.jpg used on input line 654.
 (pdftex.def)             Requested size: 187.90271pt x 187.90123pt.
 
-<figs/gmst-rll2.jpg, id=173, 481.8pt x 481.8pt>
+<figs/gmst-rll2.jpg, id=164, 481.8pt x 481.8pt>
 File: figs/gmst-rll2.jpg Graphic file (type jpg)
  <use figs/gmst-rll2.jpg>
 Package pdftex.def Info: figs/gmst-rll2.jpg used on input line 660.
@@ -436,19 +432,19 @@ Overfull \hbox (2.2222pt too wide) in paragraph at lines 652--668
 []$[]$ $[]$ 
  []
 
-[15 <./figs/gmst-lines.pdf>] [16 <./figs/gmst-boxes1.pdf> <./figs/gmst-rll1.pdf
-> <./figs/gmst-boxes2.jpg> <./figs/gmst-rll2.jpg>] [17] (./ms.bbl [18])
-[19
+[14 <./figs/gmst-scatter.pdf>] [15 <./figs/gmst-lines.pdf> <./figs/gmst-boxes1.
+pdf> <./figs/gmst-rll1.pdf>] [16 <./figs/gmst-boxes2.jpg> <./figs/gmst-rll2.jpg
+>] (./ms.bbl [17]) [18
 
 ] (./ms.aux) ) 
 Here is how much of TeX's memory you used:
  4318 strings out of 493117
  65293 string characters out of 6135433
- 140351 words of memory out of 5000000
+ 139351 words of memory out of 5000000
  7692 multiletter control sequences out of 15000+600000
  16144 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,21n,38p,1724b,483s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,21n,38p,1767b,483s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/
@@ -473,10 +469,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf
 -dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ms.pdf (21 pages, 1364367 bytes).
+Output written on ms.pdf (20 pages, 1363414 bytes).
 PDF statistics:
- 288 PDF objects out of 1000 (max. 8388607)
- 201 compressed objects within 3 object streams
+ 284 PDF objects out of 1000 (max. 8388607)
+ 199 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
