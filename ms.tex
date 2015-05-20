@@ -187,7 +187,7 @@ Our point of view is that it is important to find regions where $f$ or $\log f$ 
 \end{equation}
 In practice we will take $M$ to be large enough to interpret (\ref{eq:boundingbox}) as meaning that we can restrict attention to $B$ because values of $(\sigesq, \sigssq) \in B^c$ have $\logRLss$ too low to be of further interest.
 
-\item[D2] For any box $b$ we can quickly compute lower and upper bounds $(L^b,U^b)$ satisfying
+\item[D2] For any other box $b$ with sides parallel to the axes we can quickly compute lower and upper bounds $(L^b,U^b)$ satisfying
 \begin{equation*}
   L^b \le \inf_{(\sigesq, \sigssq) \in b}\logRLss \qquad\text{and}\qquad
   U^b \ge \sup_{(\sigesq, \sigssq) \in b}\logRLss
@@ -256,7 +256,7 @@ Figure~(\ref{fig:bigboundingbox}) shows five lines --- realistic data sets may h
   \label{fig:boundingbox}
 \end{figure}
 
-To find $B$, choose an arbitrary constant $M>0$ and an arbitrary point inside $B_1$, say $p$, as illustrated in Figure~(\ref{fig:boundingbox2}) and define $L \equiv \logRL(p)$.  We will find a box $B\supset B_1$, as shown in Figure~(\ref{fig:boundingbox2}), outside of which $\logRLss \le L-M$, thus satisfying \textbf{D1}.
+To find $B$, choose an arbitrary constant $M>0$ and an arbitrary point inside $B_1$, say $p$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$.  We will find a box $B\supset B_1$, as shown in Figure~(\ref{fig:boundingbox2}), outside of which $\logRLss \le L-M$, thus satisfying \textbf{D1}.
 
 $B$ is determined by its intercepts $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ on the $\sigesq$ and $\sigssq$ axes respectively.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$ be the intercept of $B$ and the $\sigssq$ axis and let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$. Points such as $q_1$ which satisfy $\sigesq \le \sigma_e^{2*}$ and $\sigssq \ge \widetilde{\sigma_s^2}$ --- above $B$ and to the left of the $s_z+1$ line --- are in a region where the partial derivatives (\ref{eq:drlds}, \ref{eq:drlde}) are negative for $j \in \{1, \dots, s_z, s_z+2\}$ but nonnegative for $j=s_z+1$.  Let $\logRL_j(\cdot)$ denote the $j$'th term of \eqref{eq:sum} evaluated at $(\cdot)$.  
 \begin{equation}
