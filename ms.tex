@@ -197,6 +197,7 @@ and such that $U^b-L^b \rightarrow 0$ as $b$ shrinks.  Therefore, partitioning t
 
 \section{Satisfying the Desiderata}
 \subsection{Partial Derivatives Determine Lines}
+\label{subsec:lines}
 The partial derivatives of $\logRLss$ can be calculated from (\ref{eq:sum}):
 \begin{subequations}
 \label{eq:partials}
@@ -317,13 +318,14 @@ Next we consider the relationship between the $\logRL_j$'s and boxes as depicted
 For any box $b$ let $L^b_j = \inf_{p\in b} \logRL_j(p)$ and $U^b_j = \sup_{p\in b} \logRL_j(p)$.  We have just shown that $L^b_j$ and $U^b_j$ are easily computable by evaluating $\logRL_j$ at either two points (two corners for lines like $j=2,3$) or three points (two corners and one on the line for lines like $j=1$).
 Armed with the $L^b_j$'s and $U^b_j$'s we can compute bounds on $\logRLss$ within $b$:
 \begin{equation}
+\label{eq:bounds}
 	L^b \equiv \sum_j L^b_j \le \inf_{(\sigssq,\sigesq)\in b} \logRLss \le
 	\sup_{(\sigssq,\sigesq)\in b} \logRLss \le \sum_j U^b_j \equiv U^b.
-\label{eq:bounds}
 \end{equation}
 Because $\logRL$ is continuous, $U^b - L^b \rightarrow 0$ as $b$ shrinks in both directions, thus satisfying desideratum \textbf{D2}.
 
 \section{An Algorithm}
+\label{sec:algorithm}
 Section~\ref{sec:boundingbox} shows how to determine a box $B_1$ containing all local maxima of $\logRLss$; and it shows that we can find a bigger box $B\supseteq B_1$ satisfying \textbf{D1}.  We are about to present an algorithm that uses Section~\ref{sec:boundsinboxes} to show that any bounded box $B^0$ can be partitioned into finitely many smaller boxes $B^0_1, \dots B^0_p$  such that, for each $B^0_i$ in the partition we know, for pre-specified constants $M, \epsilon >0$, either
 \begin{enumerate*}[label=(\alph*)]
 \item $\sup_{B^0_i} \logRL < \sup_{B_0} \logRL -M$ or
@@ -331,15 +333,20 @@ Section~\ref{sec:boundingbox} shows how to determine a box $B_1$ containing all 
 \end{enumerate*}
 If $B^0$ satisfies \textbf{D1} and $B^0\supseteq B_1$ then we have accomplished our goal of dividing the plane into one region where we know $\logRL$ to be low and another where we know $\logRL$ to within $\epsilon$.  One strategy would be to find $B$ as outlined in Section~\ref{sec:boundingbox} and set $B^0 \equiv B$.  However, we have found that $B_1$ satisfies \textbf{D1} in all the examples we have tried and we therefore follow a different strategy.  We set $B^0 \equiv B_1$ and run the following algorithm, during which we learn whether $B_1$ satisfies \textbf{D1}.  If it does, we're done.  If it doesn't, then we would expand $B_1$ by a factor of 2 in both dimensions; set $B^0$ to be the expanded box; rerun the algorithm; and continue to expand and rerun until we find a $B^0$ that does satisfy \textbf{D1}.  Section~\ref{sec:boundingbox} shows that such a bounded $B^0$ exists, and thus we are sure to find it in finite time.
 
-With \textbf{D1} and \textbf{D2} the following  algorithm will evaluate $\logRL$ to arbitrary accuracy everywhere within a box $B$.
+With \textbf{D1} and \textbf{D2} the \textcompute{R} function \textcompute{findf}, sketched below, will evaluate, within a box $B^0$, $\logRL$ to arbitrary accuracy everywhere $\logRL$ is large.  These notes explain some parts of the function.
 \begin{enumerate}
-\item Specify constants \maxit, $M$, $\epsilon$, $\delta_e$, and $\delta_s$.
+\item A dataframe \textcompute{lines} is an input to \textcompute{findf}.  \textcompute{lines} contains the slopes
+  and the intercepts on both axes of the $s_z+2$ lines discussed in Section~\ref{subsec:lines}.
+  Details for computing them from $y$, $X$, $Z$, $\Sigma_e$, and $\Sigma_s$ are in the Appendix.
+\item \textcompute{startbox}, or $B^0$, is an input to \textcompute{findf}.  As explained at the beginning of
+  Section~\ref{sec:algorithm}, \textcompute{startbox} could be $B_1$, $B$, or any other box the user chooses.
+\item Constants \maxit, $M$, $\epsilon$, $\delta_e$, and $\delta_s$ are inputs to \textcompute{findf}.
 	\begin{enumerate}[label=(\alph*)]
 	\item \maxit\ is the maximum number (could be $\infty$) of iterations of
-		the algorithm's loop.
-	\item We will not carefully analyze regions of the plane where
+		\textcompute{findf}'s loop.
+	\item We will not further analyze regions of the plane where
 		$\logRLss < \logRL(\sshat) - M$.  ($M$ could be $\infty$.)
-	\item We will evaluate $\logRL$ to within an accuracy of $\epsilon$ (could be 0) inside $B$
+	\item We will evaluate $\logRL$ to within an accuracy of $\epsilon$ (could be 0) inside $B^0$
 	         unless evaluation is stopped by one of the other criteria.
 	\item We will not distinguish values of $\sigesq$ separated by less
 		than $\delta_e$ (could be 0) nor values of $\sigssq$ separated by
@@ -348,37 +355,116 @@ With \textbf{D1} and \textbf{D2} the following  algorithm will evaluate $\logRL$
 		in $\sigesq$ or $\log\sigesq$ (or $\sigssq$ or $\log\sigssq$) from one
 		side of the box to the other.)
 	\end{enumerate}
-	\maxit, $M$, $\epsilon$, $\delta_e$, and $\delta_s$ are constants that
-	control the running of the algorithm.  Their meaning may become more
-	clear as we explain the algorithm.
-\item With $y$, $X$, $Z$, $\Sigma_e$, and $\Sigma_s$ --- see \eqref{eq:lmm}
-	and \eqref{eq:rll} for definitions and the Appendix for details --- compute $\{a_j, b_j, c_j, d_j\}$ for $j=1,
-	\dots, s_z+2$.
-\item Create two lists of boxes: active and inactive.  Both lists are initially empty.
-\item Specify a box $B$ as the sole entry of the active list.  $B$ could be,
-	but doesn't have to be, a box satisfying desideratum \textbf{D1}.
-\item Either set $L = -\infty$ or evaluate $\logRL(p_i)$ at a few points
-	$p_1, \dots p_k$ and set $L = \max_i\logRL(p_i)$.  $L$ is our current
-	lower bound on $\logRL(\sshat)$.
-\item While the active list is not empty or we have not reached \maxit\
-	iterations
-	\begin{enumerate}
-	\item For each active box $b$:
-		\begin{enumerate}
-		\item if $U^b < L-M$ move $b$ to the inactive list.
-		\item if $U^b - L^b < \epsilon$ move $b$ to the inactive list
-		\item if the horizontal extent of $b$ is less than $\delta_e$,
-			move $b$ to the inactive list
-		\item if the vertical extent of $b$ is less than $\delta_s$,
-			move $b$ to the inactive list
-		\item otherwise, $b$ is still active.  Divide $b$ into four subboxes.
-			Remove $b$ and add the subboxes to the active list.
-		\end{enumerate}
-	\item Set $L = \max ( L, \max_{b\in \text{active list}}L^b )$.  $L$ is our new
-		lower bound on $\logRL(\sshat)$.
-	\end{enumerate}
-\item Return the active and inactive lists.
+\item A \textcompute{box} is a list consisting of
+	 \begin{itemize}
+	 \item upper and lower limits on $\sigesq$,
+	 \item upper and lower limits on $\sigssq$,
+	 \item upper and lower bounds on $\logRL$, $U^b$ and $L^b$ from \eqref{eq:bounds},
+	 \item indicators for whether this box lies above (or to the right of), below (or to the left of),
+	   or straddles each of the $s_z+2$ lines.
+	 \end{itemize}
+\item \textcompute{killfunc} is a function, shown below \textcompute{findf}, that determines whether
+	a box $b$ should be divided more finely.
+\item \textcompute{splitbox} is a function that takes a box $b =
+	[\sigesq{}_\text{low}, \sigesq{}_\text{high}] \times [\sigssq{}_\text{low}, \sigssq{}_\text{high}]$ as input 
+	and returns the four boxes created by dividing each side of $b$ at its midpoint.
+%\item With $y$, $X$, $Z$, $\Sigma_e$, and $\Sigma_s$ --- see \eqref{eq:lmm}
+%	and \eqref{eq:rll} for definitions and the Appendix for details --- compute $\{a_j, b_j, c_j, d_j\}$ for $j=1,
+%	\dots, s_z+2$.
+%\item Create two lists of boxes: active and inactive.  Both lists are initially empty.
+%\item Specify a box $B$ as the sole entry of the active list.  $B$ could be,
+%	but doesn't have to be, a box satisfying desideratum \textbf{D1}.
+%\item Either set $L = -\infty$ or evaluate $\logRL(p_i)$ at a few points
+%	$p_1, \dots p_k$ and set $L = \max_i\logRL(p_i)$.  $L$ is our current
+%	lower bound on $\logRL(\sshat)$.
+%\item While the active list is not empty or we have not reached \maxit\
+%	iterations
+%	\begin{enumerate}
+%	\item For each active box $b$:
+%		\begin{enumerate}
+%		\item if $U^b < L-M$ move $b$ to the inactive list.
+%		\item if $U^b - L^b < \epsilon$ move $b$ to the inactive list
+%		\item if the horizontal extent of $b$ is less than $\delta_e$,
+%			move $b$ to the inactive list
+%		\item if the vertical extent of $b$ is less than $\delta_s$,
+%			move $b$ to the inactive list
+%		\item otherwise, $b$ is still active.  Divide $b$ into four subboxes.
+%			Remove $b$ and add the subboxes to the active list.
+%		\end{enumerate}
+%	\item Set $L = \max ( L, \max_{b\in \text{active list}}L^b )$.  $L$ is our new
+%		lower bound on $\logRL(\sshat)$.
+%	\end{enumerate}
+%\item Return the active and inactive lists.
 \end{enumerate}
+\begin{verbatim}
+findf <- function(lines, startbox, eps = 0, delE = 0, delS = 0, M = Inf, maxit = 10,
+                  ratio = FALSE, lognote = "summary") {
+
+
+    inactive <- list()  # a list of inactive boxes
+    ninact <- 0  # the number of inactive boxes
+    
+    active <- list(startbox)  # a list of active boxes
+    nact <- 0  # the number of active boxes
+
+    lowbound <- -Inf  # lowerbound on max(log(f))
+    iter <- 0  # iteration number
+
+    while (nact > 0 && iter < maxit) {
+        # Find the lower bound of each box and the maximum of the lower bounds.  For
+        # each active box, either make it inactive or divide it.
+        low.act <- max(vapply(X = active, FUN = function(box) {
+            box$bounds[1]
+        }, FUN.VALUE = 0.1))
+        lowbound <- max(lowbound, low.act)
+        kill <- vapply(X = active, FUN = killfunc, FUN.VALUE = TRUE, lb = lowbound,
+            M = M, eps = eps, delE - delE, delS = delS, ratio = ratio)
+            # which boxes become inactive?
+        nkill <- sum(kill)
+        if (nkill > 0) {
+            inactive[(ninact + 1):(ninact + nkill)] <- active[kill] 
+            # add those boxes to the inactive list
+        }
+        ninact <- length(inactive)
+        kids <- list()  # subdivisions of active boxes
+        nkids <- 0
+        for (i in which(!kill)) {  # split active boxes into 4 parts
+            kids[(nkids + 1):(nkids + 4)] <- splitbox(active[[i]], lines)
+            nkids <- nkids + 4
+        }
+        active <- kids
+        nact <- length(active)
+
+        iter <- iter + 1
+        write(c("iteration", iter, "nact", nact, "ninact", ninact, "lowbound",
+            lowbound), file = "log.out", ncolumns = 8, append = TRUE)
+    }
+
+
+    tmp <- t(vapply(X = c(active, inactive), FUN = function(box) {
+        c(box$lims.sigsqs, box$lims.sigsqe, box$bounds)
+    }, FUN.VALUE = c(sigsqs.lo = 0.1, sigsqs.hi = 0.1, sigsqe.lo = 0.1, sigsqe.hi = 0.1,
+        rll.lower = 0.1, rll.upper = 0.1)))
+    end_time <- Sys.time()
+    write(paste(lognote, "runtime: ", round(end_time - start_time, digits = 3)),
+          file = "log.out", ncolumns = 1, append = TRUE)
+    return(data.frame(tmp))
+}
+
+# conditions under which a box becomes inactive
+killfunc <- function(box, lb, M, eps, delE, delS, ratio) {
+    # lb is a global (within startbox) lower bound on max(log(f));
+    #      it changes at each iteration.
+    #  M, eps, delE, delS stay constant throughout the iterations.
+    cond.low <- box$bounds[2] < lb - M
+    cond.eps <- diff(box$bounds) < eps
+    cond.E <- ifelse(ratio, diff(log(box$lims.sigsqe)) < delE,
+                            diff(box$lims.sigsqe) < delE)
+    cond.S <- ifelse(ratio, diff(log(box$lims.sigsqs)) < delS,
+                            diff(box$lims.sigsqs) < delS)
+    return(cond.low || cond.eps || cond.E || cond.S)  # stop dividing this box?
+}
+\end{verbatim}
 
 \section{Examples}
 
