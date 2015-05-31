@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  31 MAY 2015 11:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  31 MAY 2015 11:35
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -445,7 +445,7 @@ Overfull \hbox (2.2222pt too wide) in paragraph at lines 823--839
 
 [16 <./figs/gmst-scatter.pdf>] [17 <./figs/gmst-lines.pdf> <./figs/gmst-boxes1.
 pdf> <./figs/gmst-rll1.pdf>] [18 <./figs/gmst-boxes2.jpg> <./figs/gmst-rll2.jpg
->] (./ms.bbl [19]) [20
+>] (./ms.bbl [19] [20]) [21
 
 ] (./ms.aux)
 
@@ -485,10 +485,10 @@ ts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
 ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ms.pdf (22 pages, 1064120 bytes).
+Output written on ms.pdf (23 pages, 1065133 bytes).
 PDF statistics:
- 278 PDF objects out of 1000 (max. 8388607)
- 195 compressed objects within 2 object streams
+ 281 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  86 words of extra memory for PDF output out of 10000 (max. 10000000)
 
