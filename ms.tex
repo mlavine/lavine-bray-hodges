@@ -784,66 +784,95 @@ The column space of $Z$ shares no dimensions with the column space of $X$ so $s_
 	              global mean surface temperatures.}
 	\label{fig:gmst-lines}
 \end{figure}
-Our first run of the algorithm used the box determined by the largest intercepts of the 31 lines on the $\sigesq$ and $\sigssq$ axes and the control constants 
+As usual, we use $B^0 = B_1$, the box determined by the largest intercepts of the 31 lines on the $\sigesq$ and $\sigssq$ axes and the control constants 
 \begin{equation*}
-	\maxit=15; \hspace{1cm} \epsilon=10; \hspace{1cm}
-	\delta_e=1; \hspace{1cm} \delta_s=1; \hspace{1cm} M=10.
+	\maxit=\infty; \hspace{1cm} \epsilon=1; \hspace{1cm}
+	\delta_e= \delta_s=0; \hspace{1cm} M=7.
 \end{equation*}
-After 15 iterations there were 3740 boxes still in the active list and 52,973 in the inactive list; they are displayed in Figure~\ref{fig:gmst1}.
+After 25 iterations and about 35 minutes of computing time, all boxes became inactive.  Output is in Table~\ref{table:gmst_output}; boxes are displayed in Figure~\ref{fig:gmst1}.
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Iteration & $n$ active boxes & $n$ inactive boxes & $L$\\
+1 & 4 & 0 & $-\infty$\\
+2 & 16 & 0 & -560.82\\
+3 & 48 & 4 & -519.98\\
+4 & 84 & 31 & -480.58\\
+5 & 152 & 77 & -446.67\\
+6 & 184 & 183 & -419.47\\
+7 & 176 & 323 & -406.31\\
+8 & 164 & 458 & -395.36\\
+9 & 284 & 551 & -390.24\\
+10 & 496 & 711 & -385.84\\
+11 & 984 & 961 & -382.45\\
+12 & 1792 & 1497 & -379.65\\
+13 & 2880 & 2569 & -377.36\\
+14 & 4668 & 4282 & -375.37\\
+15 & 7312 & 7122 & -373.66\\
+16 & 10336 & 11850 & -372.29\\
+17 & 10108 & 19659 & -371.21\\
+18 & 18596 & 25118 & -370.82\\
+19 & 62488 & 28092 & -370.82\\
+20 & 124240 & 59520 & -370.70\\
+21 & 287596 & 111861 & -370.70\\
+22 & 494292 & 275884 & -370.70\\
+23 & 646808 & 608474 & -370.70\\
+24 & 291944 & 1182296 & -370.70\\
+25 & 0 & 1474240 & -370.70\\
+\hline
+\end{tabular}
+\caption{The state of the algorithm after each of 25 iterations for the GMST data.}
+\label{table:gmst_output}
+\end{table}
+
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=.8\linewidth]{figs/gmst-boxes1.pdf}
+    \includegraphics[width=.8\linewidth]{figs/gmst-boxes1.jpg}
     \caption{Locations of boxes}
     \label{fig:gmst-boxes1}
   \end{subfigure}
   \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=.8\linewidth]{figs/gmst-rll1.pdf}
+    \includegraphics[width=.8\linewidth]{figs/gmst-rll1.jpg}
     \caption{Grayscale shows $L^b$ in each box.
                   Red dot shows $b^* \equiv\argmax L^b$.
 	          Boxes outlined in blue have $U^b \ge L^{b^*}$.
 	          Axes are logarithmic.}
     \label{fig:gmstrll1}
   \end{subfigure}
-  \caption{The 56,713 boxes from the first, coarse, analysis of global
-                mean surface temperature.}
+  \caption{The 1,474,240 boxes from the analysis of global mean surface temperature.}
 \label{fig:gmst1}
 \end{figure}
+The figure shows that the algorithm needed to divide boxes near the axes more finely than boxes away from the axes and that high $\logRLorig$ is found near $(200, 1000)$.  The figure agrees with Figure~15.3 in \cite{hodges:2013}.
 
-The figure shows that the algorithm needed to divide boxes near the axes more finely than boxes away from the axes and that high $\logRLorig$ is found in only a small region of the plot and therefore suggests rerunning the algorithm with a smaller initial box while imposing more stringent algorithmic parameters.  We limited the starting box to $\sigesq\in(50,500)$, $\sigssq\in(0,10^6)$ and set the control constants to 
-\begin{equation*}
-	\maxit=20; \hspace{1cm} \epsilon=2; \hspace{1cm}
-	\delta_e=0; \hspace{1cm} \delta_s=0; \hspace{1cm} M=10.
-\end{equation*}
-After 20 iterations there were 1,986,000 active and 1,619,095 inactive boxes.  Results are in Figure~\ref{fig:gmst2}.  The figure agrees with Figure~15.3 in \cite{hodges:2013} and is detailed enough so no further iterations are needed.
-
-\begin{figure}
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[width=.8\linewidth]{figs/gmst-boxes2.jpg}
-    \caption{Locations of boxes}
-    \label{fig:gmst-boxes2}
-  \end{subfigure}
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[width=.8\linewidth]{figs/gmst-rll2.jpg}
-    \caption{Grayscale shows $L^b$ in each box.
-                  Red dot shows $b^* \equiv\argmax L^b$.
-	          Boxes outlined in blue have $U^b \ge L^{b^*}$.
-	          Axes are logarithmic.}
-    \label{fig:gmstrll2}
-  \end{subfigure}
-  \caption{The 3,605,095 boxes from the second analysis of global
-                mean surface temperature.}
-\label{fig:gmst2}
-\end{figure}
+%\begin{figure}
+%  \begin{subfigure}{.5\textwidth}
+%    \centering
+%    \includegraphics[width=.8\linewidth]{figs/gmst-boxes2.jpg}
+%    \caption{Locations of boxes}
+%    \label{fig:gmst-boxes2}
+%  \end{subfigure}
+%  \begin{subfigure}{.5\textwidth}
+%    \centering
+%    \includegraphics[width=.8\linewidth]{figs/gmst-rll2.jpg}
+%    \caption{Grayscale shows $L^b$ in each box.
+%                  Red dot shows $b^* \equiv\argmax L^b$.
+%	          Boxes outlined in blue have $U^b \ge L^{b^*}$.
+%	          Axes are logarithmic.}
+%    \label{fig:gmstrll2}
+%  \end{subfigure}
+%  \caption{The 3,605,095 boxes from the second analysis of global
+%                mean surface temperature.}
+%\label{fig:gmst2}
+%\end{figure}
 
 \section{Discussion}
-This paper has explained and illustrated an algorithm for linear mixed models with two variances, to find all regions where either the restricted likelihood function or the joint posterior density of the variances is high, and to evaluate the function there to arbitrary accuracy.  A natural question to ask is \emph{What about linear mixed models with more than two variances?}  A partial answer is given by \cite{hodges:2013} who shows that some models with more than two variances can be reexpressed similarly to \eqref{eq:reexpress} but others can't.  More complex models that can be reexpressed this way include, but are probably not limited to, models displaying general balance that are also orthogonal designs \citep[all balanced ANOVAs plus other models;][]{houtman_speed:1983}, models that are separable in a specific sense \citep[Section 17.1.5]{hodges:2013}, and miscellaneous other models \citep[Section 17.1.5]{hodges:2013}, e.g., a spatial model including random effects for heterogeneity and spatial clustering (an improper conditional autoregressive effect). We have not explored whether the reexpressible models can be analyzed by our algorithm; that's one direction for future work.  
+This paper explains and illustrates an algorithm for linear mixed models with two variances, to find all regions where either the restricted likelihood function or the joint posterior density of the variances is high, and to evaluate the function there to arbitrary accuracy.  A natural question to ask is \emph{What about linear mixed models with more than two variances?}  A partial answer is given by \cite{hodges:2013} who shows that some models with more than two variances can be re-expressed similarly to \eqref{eq:reexpress} but others can't.  More complex models that can be re-expressed this way include, but are probably not limited to, models displaying general balance that are also orthogonal designs \citep[all balanced ANOVAs plus other models;][]{houtman_speed:1983}, models that are separable in a specific sense \citep[Section 17.1.5]{hodges:2013}, and miscellaneous other models \citep[Section 17.1.5]{hodges:2013}, e.g., a spatial model including random effects for heterogeneity and spatial clustering (an improper conditional autoregressive effect). We have not explored whether the re-expressible models can be analyzed by our algorithm; that's one direction for future work.  
 
-Another is to see whether the algorithm can be used to advantage even in non-reexpressible models.  If a model has, say, three variances and is now analyzed by, say, MCMC, we can create an MCMC chain that alternates between draws of $(\sigesq,\sigssq)$ and draws of the other variance.  With the aid of our algorithm we may be able to draw more accurately from $[\sigesq,\sigssq\g \sigma^2_\text{other}]$.  More generally, the conditional distribution of $(\sigesq,\sigssq)$ given other parameters can now be analyzed more accurately than in the past.  We have yet to explore how to exploit that accuracy.  A third direction is the posterior $\pi(\sigesq,\sigssq\g y)$.  We can identify a region $B^c$ where the posterior density is low relative to its maximum and it would be of at least mild interest to find an upper bound for the posterior mass of $B^c$.
+Another is to see whether the algorithm can be used to advantage even in non-re-expressible models.  If a model has, say, three variances and is now analyzed by, say, MCMC, we can create an MCMC chain that alternates between draws of $(\sigesq,\sigssq)$ and draws of the other variance.  With the aid of our algorithm we may be able to draw more accurately from $[\sigesq,\sigssq\g \sigma^2_\text{other}]$.  More generally, the conditional distribution of $(\sigesq,\sigssq)$ given other parameters can now be analyzed more accurately than in the past.  We have yet to explore how to exploit that accuracy.  A third direction is the posterior $\pi(\sigesq,\sigssq\g y)$.  We can identify a region $B^c$ where the posterior density is low relative to its maximum and it would be of at least mild interest to find an upper bound for the posterior mass of $B^c$.
 
 As written, our algorithm moves a box $b$ to the inactive list if
 \begin{enumerate}[label=(\alph*)]
