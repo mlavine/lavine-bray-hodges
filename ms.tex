@@ -596,28 +596,7 @@ Running the algorithm on the box $B_1$ determined by the lines' maximum intercep
 	\maxit=\infty; \hspace{1cm} \epsilon=1; \hspace{1cm}
 	\delta_e=0; \hspace{1cm} \delta_s=0; \hspace{1cm} M=7
 \end{equation*}
-results in the the output displayed in Table~\ref{table:hmo_HH11_run}, which shows the state of the algorithm after iterations 1 through 15: the numbers of active and inactive boxes and the current value of the lower bound $L$ on $\max\log f$.  We see that boxes are steadily transferred from the active to the inactive list and that $L$ increases monotonically.  After 15 iterations there is a total of 895 boxes, which are displayed in Figure~\ref{fig:hmo1}.
-
-%\begin{table}[h]
-%\centering
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%Iteration & $n$ active boxes & $n$ inactive boxes & $L$\\
-%1 & 4 & 0 & $-\infty$\\
-%2 & 8 & 2 & -1618.84\\
-%3 & 16 & 6 & -1509.24\\
-%4 & 32 & 14 & -1408.12\\
-%5 & 44 & 35 & -1325.99\\
-%6 & 56 & 65 & -1265.01\\
-%7 & 104 & 95 & -1256.35\\
-%8 & 184 & 153 & -1243.51\\
-%9 & 224 & 281 & -1240.60\\
-%10 & 180 & 460 & -1239.49\\
-%\hline
-%\end{tabular}
-%\caption{The state of the algorithm after each of 10 iterations for the HMO data.}
-%\label{table:hmo_HH11_run}
-%\end{table}
+results in the the output displayed in Table~\ref{table:hmo_HH11_run}, which shows the state of the algorithm after iterations 1 through 15: the numbers of active and inactive boxes and the current value of the lower bound $L$ on $\max\log f$.  We see that boxes are steadily transferred from the active to the inactive list and that $L$ increases monotonically.  After 15 iterations there is a total of 9490 boxes, which are displayed in Figure~\ref{fig:hmo1}.
 
 \begin{table}[h]
 \centering
@@ -625,20 +604,20 @@ results in the the output displayed in Table~\ref{table:hmo_HH11_run}, which sho
 \hline
 Iteration & $n$ active boxes & $n$ inactive boxes & $L$\\
 1 & 4 & 0 & $-\infty$\\
-2 & 8 & 2 & -1618.84\\
-3 & 12 & 7 & -1509.24\\
-4 & 12 & 16 & -1408.12\\
-5 & 12 & 25 & -1325.99\\
-6 & 16 & 33 & -1265.01\\
-7 & 20 & 44 & -1256.35\\
-8 & 28 & 57 & -1243.51\\
-9 & 48 & 73 & -1240.60\\
-10 & 76 & 102 & -1239.49\\
-11 & 132 & 145 & -1239.40\\
-12 & 232 & 219 & -1239.40\\
-13 & 420 & 346 & -1239.40\\
-14 & 172 & 723 & -1239.40\\
-15 & 0 & 895 & -1239.40\\
+2 & 16 & 0 & -1618.84\\
+3 & 40 & 6 & -1509.24\\
+4 & 72 & 28 & -1408.12\\
+5 & 144 & 64 & -1325.99\\
+6 & 68 & 191 & -1265.01\\
+7 & 116 & 230 & -1256.35\\
+8 & 144 & 310 & -1243.51\\
+9 & 340 & 369 & -1240.05\\
+10 & 920 & 479 & -1237.87\\
+11 & 2540 & 764 & -1236.79\\
+12 & 4380 & 2209 & -1236.20\\
+13 & 3524 & 5708 & -1235.90\\
+14 & 344 & 9146 & -1235.90\\
+15 & 0 & 9490 & -1235.90\\
 \hline
 \end{tabular}
 \caption{The state of the algorithm after each of 15 iterations for the HMO data.}
@@ -667,13 +646,13 @@ Iteration & $n$ active boxes & $n$ inactive boxes & $L$\\
 	Boxes outlined in blue have $U^b \ge L^{b^*}$.  Axes are logarithmic.}
 	\label{fig:hmorll}
   \end{subfigure}
-  \caption{The 640 boxes produced in the first run  for the
-	$\logRLorig$ analysis of the HMO data. $\maxit=10; \epsilon=5;
-	\delta_e=\log(10); \delta_s=\log(10); \text{and\ } M=5$.}
+  \caption{The 9490 boxes produced in the
+	$\logRLorig$ analysis of the HMO data. $\maxit=\infty; \epsilon=1;
+	\delta_e= \delta_s= 0; \text{and\ } M=7$.}
   \label{fig:hmo1}
 \end{figure}
 
-Figure~\ref{fig:hmoboxes} shows the outlines of the 895 boxes.  The algorithm did not need to divide the boxes with large $\sigesq$ or $\sigssq$ as finely as those with small $\sigesq$ and $\sigssq$ because they more readily satisfy either $U^b < L-M$ or $U^b - L^b < \epsilon$, so become inactive.  Figure~\ref{fig:hmorll} shows the same boxes, shaded by $L^b$ in each box.  The red dot is the lower left corner of the box that maximizes $L^b$.  Boxes with $U^b \ge L \equiv \max L^b$ are outlined in blue; $(\sshat)$ must lie within the blue region.  
+Figure~\ref{fig:hmoboxes} shows the outlines of the 9490 boxes.  The algorithm did not need to divide the boxes with large $\sigesq$ or $\sigssq$ as finely as those with small $\sigesq$ and $\sigssq$ because they more readily satisfy either $U^b < L-M$ or $U^b - L^b < \epsilon$, so become inactive.  Figure~\ref{fig:hmorll} shows the same boxes, shaded by $L^b$ in each box.  The red dot is the lower left corner of the box that maximizes $L^b$.  Boxes with $U^b \ge L \equiv \max L^b$ are outlined in blue; $(\sshat)$ must lie within the blue region.  
 %Figure~\ref{fig:hmorll}  suggests that we can restrict attention to a box determined by $\sigesq\in(300,1000)$ and $\sigssq\in(0,1000)$.  So we rerun the algorithm on that box and with more stringent control parameters:
 %\begin{equation*}
 %	\maxit=15; \hspace{1cm} \epsilon=1; \hspace{1cm}
@@ -682,51 +661,7 @@ Figure~\ref{fig:hmoboxes} shows the outlines of the 895 boxes.  The algorithm di
 %Table~\ref{table:hmo_HH11_run2} shows the output.  The algorithm needed 12 iterations to move all boxes to the inactive list.  The resulting 37,516 boxes are shown in Figure~\ref{fig:hmo2}.
 For comparison, the standard REML analysis using \R's \textcompute{lme} function yields $\sshat \approx (495, 99)$ with 95\% confidence intervals of $(421, 582)$ and $(39, 248)$.
 
-%\begin{table}[h]
-%\centering
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%Iteration & $n$ active boxes & $n$ inactive boxes & $L$\\
-%1 & 4 & 0 & $-1320.51$\\
-%2 & 16 & 0 & -1276.23\\
-%3 & 64 & 0 & -1252.18\\
-%4 & 256 & 0 & -1243.52\\
-%5 & 1024 & 0 & -1239.61\\
-%6 & 4020 & 19 & -1237.78\\
-%7 & 13128 & 757 & -1236.70\\
-%8 & 14092 & 10362 & -1236.16\\
-%9 & 9444 & 22093 & -1235.88\\
-%10 & 5716 & 30108 & -1235.88\\
-%11 & 2256 & 35260 & -1235.88\\
-%12 & 0 & 37516 & -1235.88\\
-%\hline
-%\end{tabular}
-%\caption{The state of the algorithm after each of 12 iterations for the HMO data.}
-%\label{table:hmo_HH11_run2}
-%\end{table}
-
-%\begin{figure}
-%  \begin{subfigure}{.5\textwidth}
-%	\centering
-%	\includegraphics[width=.8\linewidth]{figs/hmo_HH11_boxes2.pdf}
-%	\caption{Locations of the boxes.}
-%	\label{fig:hmoboxes2}
-%  \end{subfigure}
-%  \begin{subfigure}{.5\textwidth}
-%	\centering
-%	\includegraphics[width=.8\linewidth]{figs/hmo_HH11_rll2.pdf}
-%	\caption{Grayscale shows $L^b$ in each box.  Red dot shows $b^* \equiv\argmax L^b$.
-%	Boxes outlined in blue have $U^b \ge L^{b^*}$.  Axes are logarithmic.}
-%	\label{fig:hmorll2}
-%  \end{subfigure}
-%  \caption{The 37,516 boxes produced in the second run of the algorithm for the
-%	$\logRLorig$ analysis of the HMO data. $\maxit=15; \epsilon=1;
-%	\delta_e=0; \delta_s=0; \text{and\ } M=10$.}
-%  \label{fig:hmo2}
-%\end{figure}
-
-%Figure~\ref{fig:hmorll2} is sufficiently refined that we needn't run the algorithm further.
-Figure~\ref{fig:hmorll} depicts the same $\logRLorig$ as \cite{henn&hodges:2014}'s Figures~2a (MCMC draws) and~2b ($\logRLorig$ contours), but their Figure~2a was produced by MCMC whereas our Figure~\ref{fig:hmorll} was produced by direct calculation.  Their Figure~2a shows that the MCMC sampler did not sample any values of $\sigssq$ less than about 10, whereas our Figure~\ref{fig:hmorll} and their Figure~2b shows that there is a region of high $\logRLorig$ extending down to $\sigssq=0$.  In fact, $\logRLorig(500,0) \approx -1241.5$, only about 6 log units below $\logRLorig(\sshat) \approx -1235.5$.  Further, about their Figure~2a, Henn and Hodges say, ``No change in contour shape indicative of a local maximum could be found in the \dots region of $(500, 600) \times (10^{-3}, 1)$, regardless of contour resolution."  I.e., they cannot be sure there are no undiscovered points with large $\logRLorig$.  In contrast, our algorithm guarantees there are no undiscovered points where $\logRLorig$ is more than $\epsilon$ above $L$.
+Figure~\ref{fig:hmorll} depicts the same $\logRLorig$ as \cite{henn&hodges:2014}'s Figures~2a (MCMC draws) and~2b ($\logRLorig$ contours), but their Figure~2a was produced by MCMC whereas our Figure~\ref{fig:hmorll} was produced by direct calculation in under 10 seconds.  Their Figure~2a shows that the MCMC sampler did not sample any values of $\sigssq$ less than about 10, whereas our Figure~\ref{fig:hmorll} and their Figure~2b shows a region of high $\logRLorig$ extending down to $\sigssq=0$.  In fact, $\logRLorig(500,0) \approx -1241.5$, only about 6 log units below $\logRLorig(\sshat) \approx -1235.7$.  Further, about their Figure~2a, Henn and Hodges say, ``No change in contour shape indicative of a local maximum could be found in the \dots region of $(500, 600) \times (10^{-3}, 1)$, regardless of contour resolution."  I.e., they cannot be sure there are no undiscovered points with large $\logRLorig$.  In contrast, our algorithm guarantees there are no undiscovered points where $\logRLorig$ is more than $\epsilon$ above $L$.
 
 %The HMO $\logRLorig$ analysis illustrates a typical workflow: start with a crudely determined box and coarse settings of the control parameters, then refine the box and the settings as suggested by the output of the first run.  Repeat as needed.
 
@@ -779,7 +714,7 @@ Iteration & $n$ active boxes & $n$ inactive boxes & $L$\\
 \caption{The state of the algorithm after each of 22 iterations for the Bayesian analysis of the HMO data.}
 \label{table:hmo_HH11Bayes}
 \end{table}
-Figure~\ref{fig:hmoBayes} is similar to Figure~\ref{fig:hmo2} except for the addition of the outlined blue boxes near $\sigssq = 0.04$.  In fact, those boxes all have lower boundaries $\sigssq = 0.04673004$, upper boundaries $\sigssq = 0.04768372$, $L^b \in (-1270.00, -1266.09)$, $U^b \in (-1252.877, -1248.524)$, and $U^b-L^b \in (17.12299, 18.01643)$, whereas the red dot shows where $\max L^b = -1261.705$ occurs.  The blue boxes near $\sigssq = 0.04$ are introduced by the $\IG(1.1,0.1)$ prior, which has a mean of 1, an infinite variance, and a peak at 0.04761905.  The usual analyses of the posterior density are carried out either by MCMC --- in which case one hopes that one's Markov chain happens to sample all regions of high density --- or by evaluating the posterior on a grid --- in which case one hopes one's grid is fine enough to capture all regions of high density.  With our analysis there is no need to hope; the algorithm is certain to find all regions of high density.
+The Bayesian analysis in Figure~\ref{fig:hmoBayes} can be compared to the $\logRLorig$ analysis in Figure~\ref{fig:hmo1}.  The peak of the log posterior is near $(600, .05)$, very far from $(\sshat)$.  The posterior peak is due to the $\IG(1.1,0.1)$ prior for $\sigssq$, which has a mean of 1, an infinite variance, and a peak at 0.04761905.  The region near $(\sshat)$, though having a lower posterior density, is a nearly flat plateau covering a large area, and has significant posterior mass, as shown by the MCMC draws in \cite{henn&hodges:2014} Figure~2c.  Usual analyses of the posterior density are carried out either by MCMC, in which case one hopes that one's Markov chain happens to sample all regions of high enough posterior density to matter, or by evaluating the posterior on a grid --- in which case one hopes one's grid is fine enough.  With our analysis there is no need to hope; the algorithm is certain to find all regions of high density.
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
