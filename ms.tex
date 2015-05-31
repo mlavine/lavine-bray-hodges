@@ -676,7 +676,7 @@ For a Bayesian analysis there are 44 lines, as shown in Figure~\ref{fig:hmoBayes
 	              Lines 43 and 44 are dashed.}
 	\label{fig:hmoBayeslines}
 \end{figure}
-Because the $\logRLorig$ analysis in Figure~\ref{fig:hmorll} shows low values for $\sigesq, \sigssq > 1000$, we run the Bayesian analysis on the box $B^0 = (0,1000) \times (0,1000)$, again with the control parameters
+Because the $\logRLorig$ analysis in Figure~\ref{fig:hmorll} shows low values for $\sigesq, \sigssq > 1000$, we run the Bayesian analysis on the box $B^0 = (0,1000) \times (0,1000)$, again with control parameters
 \begin{equation*}
 	\maxit=\infty; \hspace{1cm} \epsilon=1; \hspace{1cm}
 	\delta_e=0; \hspace{1cm} \delta_s=0; \hspace{1cm} M=7.
@@ -714,7 +714,8 @@ Iteration & $n$ active boxes & $n$ inactive boxes & $L$\\
 \caption{The state of the algorithm after each of 22 iterations for the Bayesian analysis of the HMO data.}
 \label{table:hmo_HH11Bayes}
 \end{table}
-The Bayesian analysis in Figure~\ref{fig:hmoBayes} can be compared to the $\logRLorig$ analysis in Figure~\ref{fig:hmo1}.  The peak of the log posterior is near $(600, .05)$, very far from $(\sshat)$.  The posterior peak is due to the $\IG(1.1,0.1)$ prior for $\sigssq$, which has a mean of 1, an infinite variance, and a peak at 0.04761905.  The region near $(\sshat)$, though having a lower posterior density, is a nearly flat plateau covering a large area, and has significant posterior mass, as shown by the MCMC draws in \cite{henn&hodges:2014} Figure~2c.  Usual analyses of the posterior density are carried out either by MCMC, in which case one hopes that one's Markov chain happens to sample all regions of high enough posterior density to matter, or by evaluating the posterior on a grid --- in which case one hopes one's grid is fine enough.  With our analysis there is no need to hope; the algorithm is certain to find all regions of high density.
+The Bayesian analysis in Figure~\ref{fig:hmoBayes} can be compared to the $\logRLorig$ analysis in Figure~\ref{fig:hmo1}.  The peak of the log posterior is near $(600, .05)$, very far from the peak of the $\logRLorig$ around $(500,100)$.  The posterior peak is due to the $\IG(1.1,0.1)$ prior for $\sigssq$, which has a mean of 1, an infinite variance, and a peak at 0.048.  The region near $(500,100)$, though having a lower posterior density, is part of a nearly flat plateau covering a large area.  The MCMC draws depicted in \cite{henn&hodges:2014} Figure~2c show that the plateau has significant posterior mass.
+%Usual analyses of the posterior density are carried out either by MCMC, in which case one hopes that one's Markov chain happens to sample all regions of high enough posterior density to matter, or by evaluating the posterior on a grid --- in which case one hopes one's grid is fine enough.  With our analysis there is no need to hope; the algorithm is certain to find all regions of high density.
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
