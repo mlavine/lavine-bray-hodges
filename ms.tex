@@ -126,7 +126,7 @@ the log posterior
     - \frac{1}{2} \sum_{j=1}^{s_z} \left[ \log(\ass) + \frac{\hat v_j^2}{\ass}\right].
   \end{split}
 \end{equation}
-Equations~\eqref{eq:reexpress} and~\eqref{eq:logpost} can both be written as a sum of multiples of logs and inverses of linear combinations $\abss$, as in \eqref{eq:sum}, where the summands with $j=s_z+1$ and $j=s_z+2$ are for the terms involving only $\sigesq$ and $\sigssq$, respectively and where we have dropped the irrelevant constant $B$.
+Equations~\eqref{eq:reexpress} and~\eqref{eq:logpost} can both be written as a sum of multiples of logs and inverses of linear combinations $\abss$, as in \eqref{eq:sum}, where the summands with $j=s_z+1$ and $j=s_z+2$ are for the terms involving only $\sigesq$ and $\sigssq$, respectively and where we have dropped the irrelevant constant $B$.  I.e.,
 \begin{equation}
 \label{eq:sum}
   \logRLss = -\frac{1}{2} \sum_{j=1}^{s_z+2}\left[ c_j \log(\abss) + \frac{d_j}{\abss}\right]
@@ -220,7 +220,6 @@ and
 We work with one term in (\ref{eq:partials})'s summations at a time; that is, one $j$ at a time.  For $j=1, \dots, s_z$, the $j$'th terms in (\ref{eq:partials}) differ  by a multiplicative constant $a_j/b_j = a_j$; they have the same sign as each other and the same sign as $(a_jc_j\sigssq + b_jc_j\sigesq  - d_j) = (a_j\sigssq + \sigesq  - d_j)$, which determines a line $\sigssq = d_j/a_j - \sigesq/a_j$ --- call it the $j$'th line --- in the first quadrant of the $(\sigssq,\sigesq)$ plane.  The $j$'th line has positive intercept $ d_j/a_j$ and negative slope $-1/a_j$.  For $j=s_z+1$, $a_j=0$, so $\eqref{eq:drlds} = 0$ and \eqref{eq:partials} determines a vertical line at $\sigesq = \sigma_e^{2*} \equiv d_{s_z+1} / c_{s_z+1}$.  For $j=s_z+2$,  $b_j=0$, so $\eqref{eq:drlde} = 0$ and, if the target function is \eqref{eq:logpost}, \eqref{eq:partials} determines a horizontal line at $\sigssq = \sigma_s^{2*} \equiv d_{s_z+2} / c_{s_z+2}$, while if the target function is \eqref{eq:reexpress}, $c_{s_z+2} = d_{s_z+2} = 0$; the term for $j=s_z+2$ effectively vanishes; and there is no horizontal line.
 
 For all $j$, both partial derivatives of the $j$'th term are nonnegative below or to the left of the $j$'th line, 0 on the line, and nonpositive above or to the right of the line, as indicated in Figure~\ref{fig:oneline}.  The $j$'th term is constant on the $j$'th line and attains its maximum there.
-%Both \eqref{eq:reexpress} and \eqref{eq:logpost} contain a term, call it the $v$'th (for vertical) term,  with $a_j=0$.  The $v$'th term in (\ref{eq:partials}) is negative to the right of the $v$'th line, positive to the left, and 0 on the line; hence the $v$'th term in \eqref{eq:logpost} is maximized on the $v$'th line.  \eqref{eq:logpost} also contains a term, call it the $h$'th (for horizontal) term, with $b_j=0$.  The corresponding line is horizontal at $\sigssq = \sigma_e^{2h} \equiv d_h / a_h c_h$.  The $h$'th term in \eqref{eq:logpost} is maximized on the $h$'th line.
 
 \begin{figure}[h]
 	\centering
@@ -231,69 +230,6 @@ For all $j$, both partial derivatives of the $j$'th term are nonnegative below o
 	              where indicated by ``\textbf{+}" and ``\textbf{-}".}
 	\label{fig:oneline}
 \end{figure}
-
-%\subsection{Lines Determine a Bounding Box}
-%\label{sec:boundingbox}
-%
-%Figure~(\ref{fig:bigboundingbox}) shows five lines --- realistic data sets may have more --- labelled $j=1, 2, 3, s_z+1, s_z+2$.  The largest intercept of those lines on the $\sigssq$ axis and the largest intercept on the $\sigesq$ axis determine a rectangle $B_1$ whose outline is marked in bold.  At any point above $B_1$, e.g., $p_1$, the partial derivatives \eqref{eq:partials} are either negative or, for $j=s_z+1$, the partial derivative \eqref{eq:drlds} is zero.  Therefore, $\logRL(\widetilde{p_1}) \ge \logRL(p_1)$.  Similarly, $\logRL(\widetilde{p_2}) \ge \logRL(p_2)$ and $\logRL(\widetilde{p_3}) \ge \logRL(p_3)$.  That is, for points above and/or to the right of $B_1$, $\logRLss$ can be increased by moving down and/or to the left as far as $B_1$'s boundary.  Therefore \mrle\ must lie on or inside $B_1$ and there can be no maxima of $\logRLss$ in $B_1^c$.  $B_1$ could be passed to an optimizer such as \R's \textsf{optim} or \textsf{nlminb} with potentially better results than using those functions without bounds.  However, even with known bounds, general purpose optimizers may still miss \mrle\ and regions of high $\logRL$.  This paper presents a computational method guaranteed not to miss \mrle\ and which evaluates $\logRLss$ everywhere to within a specified tolerance inside a box $B$ satisfying desideratum \textbf{D1}.  First, though, we pause to note that the region outlined in bold in Figure~(\ref{fig:smallboundingbox}) is a subset of $B_1$ that must also contain \mrle\ for the reasons given above.  But it is not rectangular, hence less convenient than $B_1$, so we don't pursue it further.
-%
-%\begin{figure}[h]
-%  \begin{subfigure}{.5\textwidth}
-%	\centering
-%	\includegraphics[width=.8\linewidth]{figs/boundingbox.pdf}
-%	\caption{A rectangular region $B_1$ containing all maxima.}
-%	\label{fig:bigboundingbox}
-%  \end{subfigure}
-%  \begin{subfigure}{.5\textwidth}
-%	\centering
-%	\includegraphics[width=.8\linewidth]{figs/smallboundingregion.pdf}
-%	\caption{A smaller region containing all maxima.}
-%	\label{fig:smallboundingbox}
-%  \end{subfigure}
-%  \caption{all local and global maxima lie in the regions bounded by the solid
-%                dark line.
-%               }
-%  \label{fig:boundingbox}
-%\end{figure}
-%
-%To find $B$, choose an arbitrary constant $M>0$ and an arbitrary point inside $B_1$, say $p$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$.  We will find a box $B\supset B_1$, as shown in Figure~(\ref{fig:boundingbox2}), outside of which $\logRLss \le L-M$, thus satisfying \textbf{D1}.
-%
-%$B$ is determined by its intercepts $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ on the $\sigesq$ and $\sigssq$ axes respectively.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$ be the intercept of $B$ and the $\sigssq$ axis and let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$. Points such as $q_1$ which satisfy $\sigesq \le \sigma_e^{2*}$ and $\sigssq \ge \widetilde{\sigma_s^2}$ --- above $B$ and to the left of the $s_z+1$ line --- are in a region where the partial derivatives (\ref{eq:drlds}, \ref{eq:drlde}) are negative for $j \in \{1, \dots, s_z, s_z+2\}$ but nonnegative for $j=s_z+1$.  Let $\logRL_j(\cdot)$ denote the $j$'th term of \eqref{eq:sum} evaluated at $(\cdot)$.  
-%\begin{equation}
-%	\logRL(\sshat) - \logRL(q_1) \ge L - \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1}) - \logRL_{s_z+1}(\widetilde{q_2}),
-%\end{equation}
-%which is larger than $M$ if
-%\begin{equation}
-%\label{eq:q1}
-%  \begin{split}
-%    \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1})
-%      &< L - M - \logRL_{s_z+1}(\widetilde{q_2})\\
-%      &= L - M + \frac{1}{2} \left[ c_{s_z+1}\log\sigma_e^{2*} + \frac{d_{s_z+1}}{\sigma_e^{2*}}\right].
-%  \end{split}
-%\end{equation}
-%Examination of (\ref{eq:sum}) shows that for any fixed $\sigesq$, in particular for $\sigesq=0$, and for $j \ne s_z+1$,\\ $\lim_{\sigssq \rightarrow \infty} \logRL_j(\sigesq,\sigssq) = -\infty$.  Thus $\widetilde{\sigma_s^2}$ can be chosen large enough so that the summation on the l.h.s.~of \eqref{eq:q1} is less than the r.h.s.~of \eqref{eq:q1}, and  \textbf{D1} is satisfied.
-%
-%Points such as $q_2$ which satisfy $\sigesq \ge \sigma_e^{2*}$ and $\sigssq \ge \widetilde{\sigma_s^2}$ are in a region where the partial derivatives (\ref{eq:drlds}, \ref{eq:drlde}) are nonpositive for $j \in \{1, \dots, s_z+2\}$ and therefore, $\logRL(\sshat) - \logRL(q_2) \ge L - \logRL(\widetilde{q_2})$.  The latter expression is greater than $M$ iff $\logRL(\widetilde{q_2}) < L-M$.  But examination of (\ref{eq:sum}) shows that for any fixed $\sigesq$, $\lim_{\sigssq \rightarrow \infty} \logRLss = -\infty$ and therefore $\widetilde{\sigma_s^2}$ can be chosen large enough so that \textbf{D1} is satisfied.
-%
-%Let $\widetilde{q_3} = (\widetilde{\sigma_e^2}, \sigma_s^{2*})$.  Points such as $q_3$ which satisfy $\sigesq \ge \widetilde{\sigma_e^2}$ and $\sigssq \ge \sigma_s^{2*}$ are in a region where the partial derivatives (\ref{eq:drlds}, \ref{eq:drlde}) are nonpositive for $j \in \{1, \dots, s_{z+2}\}$ and therefore, $\logRL(\sshat) - \logRL(q_3) \ge L - \logRL(\widetilde{q_3})$.  The latter expression is greater than $M$ iff $\logRL(\widetilde{q_3}) < L-M$.  But examination of (\ref{eq:sum}) shows that for any fixed $\sigssq$, $\lim_{\sigesq \rightarrow \infty} \logRLss = -\infty$ and therefore $\widetilde{\sigma_e^2}$ can be chosen large enough so that \textbf{D1} is satisfied.
-%
-%Let $\widetilde{q_4} = (\widetilde{\sigma_e^2},0)$.  For any point $q_4$ having $\sigssq \le \sigma_s^{2*}$ and $\sigesq \ge \widetilde{q_4}$, the partial derivatives (\ref{eq:drlds}, \ref{eq:drlde}) are nonpositive for $j \in \{1, \dots, s_z+1\}$  but nonnegative for $j=s_z+2$.  Therefore,
-%\begin{equation*}
-%	\logRL(\sshat) - \logRL(q_4) \ge L - \sum_{j \ne s_z+2} \logRL_j(\widetilde{q_4}) - \logRL_{s_z+2}(\widetilde{q_3})
-%\end{equation*}
-%which is larger than $M$ if
-%\begin{equation}
-%\label{eq:q4}
-%  \begin{split}
-%    \sum_{j \ne s_z+2} \logRL_j(\widetilde{q_4})
-%      &< L - M - \logRL_{s_z+2}(\widetilde{q_3})\\
-%      &= L - M + \frac{1}{2} \left[ c_{s_z+2}\log\sigma_s^{2*} + \frac{d_{s_z+2}}{\sigma_s^{2*}}\right].
-%  \end{split}
-%\end{equation}
-%Examination of (\ref{eq:sum}) shows that for any fixed $\sigssq$, in particular for $\sigssq=0$, and for $j \ne s_z+2$,\\ $\lim_{\sigesq \rightarrow \infty} \logRL_j(\sigesq,\sigssq) = -\infty$.  Thus $\widetilde{\sigma_e^2}$ can be chosen large enough so that the summation on the l.h.s.~of \eqref{eq:q4} is less than the r.h.s.~of \eqref{eq:q4}, and  \textbf{D1} is satisfied.
-%
-%Combining the requirements for points like $q_1$, $q_2$, $q_3$, and $q_4$, desideratum \textbf{D1} is satisfied for all points in $B^c$ by choosing $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ sufficiently large. 
-%%enough to satisfy $\logRL(q_1^*) < L-M$ and choosing $\sigma_s^*$ large enough to satisfy $\logRL(q_2^*) < L-M$ and $\sum_{1}^{s_z} \logRL_j(q_3^*) < L - M + n_e(\log(\sigma_e^{2v}) + 1)/2$.  In addition, because $\logRL$ has no maxima outside of $B_1$, it also has no maxima outside of $B$.  As already mentioned, if there is an $h$ line, then $q_1$ would have to be treated like $q_2$ and $q_3$.
 
 \begin{figure}[h]
 	\label{fig:boundingbox2}
@@ -382,7 +318,6 @@ which is larger than $M$ if
 Examination of (\ref{eq:sum}) shows that for any fixed $\sigssq$, in particular for $\sigssq=0$, and for $j \ne s_z+2$,\\ $\lim_{\sigesq \rightarrow \infty} \logRL_j(\sigesq,\sigssq) = -\infty$.  Thus $\widetilde{\sigma_e^2}$ can be chosen large enough so that the summation on the l.h.s.~of \eqref{eq:q4} is less than the r.h.s.~of \eqref{eq:q4}, and  \textbf{D1} is satisfied.
 
 Combining the requirements for points like $q_1$, $q_2$, $q_3$, and $q_4$, desideratum \textbf{D1} is satisfied for all points in $B^c$ by choosing $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ sufficiently large.  \textbf{QED}\\
-%enough to satisfy $\logRL(q_1^*) < L-M$ and choosing $\sigma_s^*$ large enough to satisfy $\logRL(q_2^*) < L-M$ and $\sum_{1}^{s_z} \logRL_j(q_3^*) < L - M + n_e(\log(\sigma_e^{2v}) + 1)/2$.  In addition, because $\logRL$ has no maxima outside of $B_1$, it also has no maxima outside of $B$.  As already mentioned, if there is an $h$ line, then $q_1$ would have to be treated like $q_2$ and $q_3$.
 
 \begin{figure}[h]
 	\centering
@@ -427,8 +362,8 @@ With \textbf{D1} and \textbf{D2} the \textcompute{R} function \textcompute{findf
 \begin{enumerate*}[label=(\alph*)]
 \item accept as input $\{a_j, b_j, c_j, d_j\}, B^0$ and some tuning constants;
 \item create a list of active boxes, initially consisting of just $B^0$;
-\item create a list of inactive boxes, initially empty;
-\item for each active box $B_j$, find $(L^b_j, U^b_j)$ and determine whether $B_j$ needs to be subdivided.
+\item create a list of inactive boxes, initially empty; and
+\item for each active box $B_j$, find $(L^{B_j}, U^{B_j})$ and determine whether $B_j$ needs to be subdivided.
 \end{enumerate*}
  These notes explain some parts of the function in more detail.
 \begin{enumerate}
@@ -455,7 +390,7 @@ With \textbf{D1} and \textbf{D2} the \textcompute{R} function \textcompute{findf
   Setting $\maxit = \infty$ and $\delta_e = \delta_s = 0$ implies that $B^0$ will be partitioned so that either
   $\logRL < \logRL(\sshat) - M$ or $\logRL$ is known to within $\epsilon$, for every $B^0_i$ in the partition.
   
-\item A \textcompute{box} is a list consisting of
+\item A \textcompute{box} $b$ is a list consisting of
 	 \begin{itemize}
 	 \item upper and lower limits on $\sigesq$,
 	 \item upper and lower limits on $\sigssq$,
@@ -681,7 +616,7 @@ Because the $\logRLorig$ analysis in Figure~\ref{fig:hmorll} shows low values fo
 	\maxit=\infty; \hspace{1cm} \epsilon=1; \hspace{1cm}
 	\delta_e=0; \hspace{1cm} \delta_s=0; \hspace{1cm} M=7.
 \end{equation*}
-The algorithm finished in 22 iterations and took a little under 3 hours.  Table~\ref{table:hmo_HH11Bayes} shows the output.
+The algorithm finished in 22 iterations and took a little under 3 hours.  Table~\ref{table:hmo_HH11Bayes} shows the output and Figure~\ref{fig:hmoBayes} shows the boxes.
 \begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|}
