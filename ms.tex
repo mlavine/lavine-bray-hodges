@@ -311,7 +311,114 @@ which is larger than $M$ if
 \end{equation}
 Examination of (\ref{eq:sum}) shows that for any fixed $\sigssq$, in particular for $\sigssq=0$, and for $j \ne s_z+2$,\\ $\lim_{\sigesq \rightarrow \infty} \logRL_j(\sigesq,\sigssq) = -\infty$.  Thus $\widetilde{\sigma_e^2}$ can be chosen large enough so that the summation on the l.h.s.~of \eqref{eq:q4} is less than the r.h.s.~of \eqref{eq:q4}, and  \textbf{D1} is satisfied.
 
-Combining the requirements for points like $q_1$, $q_2$, $q_3$, and $q_4$, desideratum \textbf{D1} is satisfied for all points in $B^c$ by choosing $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ sufficiently large.  \textbf{QED}\\
+\noindent\textbf{Alt Proof}
+Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$ be the intercept of $B$ and the $\sigssq$ axis; let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$; let $\widetilde{q_3} = (\widetilde{\sigma_e^2}, \sigma_s^{2*})$; let $\widetilde{q_4} = (\widetilde{\sigma_e^2},0)$; and let $\logRL_j$ denote the $j$'th term of \eqref{eq:sum}.  The proof considers in turn four regions $Q_1$, $Q_2$, $Q_3$, and $Q_4$ whose union is $B^c$ and shows that $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ can be chosen large enough so that \textbf{D1} is satisfied on each region.  
+\begin{itemize}
+\item $Q_1: \sigesq \le \sigesq{}^*$ and $\sigssq \ge \widetilde{\sigssq}$, as illustrated by $q_1$ in
+  Figure~\ref{fig:boundingbox2}.  In $Q_1$, by inspection of \eqref{eq:sum} and \eqref{eq:partials},
+  \begin{itemize}
+  \item for $j \ne s_z+1$,
+    \begin{equation*}
+      \frac{\partial\logRL_j}{\partial\sigesq} \le 0 \hspace{1cm} \text{and} \hspace{1cm}
+      \frac{\partial\logRL_j}{\partial\sigssq} \le 0
+    \end{equation*}
+    so for any $q \in Q_1$,
+    \begin{equation*}
+      \logRL_j(q) \le \logRL_j(\widetilde{q_1});
+    \end{equation*}
+  \item  for $j = s_z+1$,
+    \begin{equation*}
+      \frac{\partial\logRL_j}{\partial\sigesq} > 0 \hspace{1cm} \text{and} \hspace{1cm}
+      \frac{\partial\logRL_j}{\partial\sigssq} = 0
+    \end{equation*}
+    so for any $q \in Q_1$,
+    \begin{equation*}
+      \logRL_j(q) \le \logRL_j(\widetilde{q_2}).
+    \end{equation*}
+  \end{itemize}
+  Therefore, 
+  \begin{equation}
+	\logRL(\sshat) - \logRL(q) \ge L - \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1}) - \logRL_{s_z+1}(\widetilde{q_2}),
+  \end{equation}
+  which is larger than $M$ if
+  \begin{equation}
+    \label{eq:q1}
+    \begin{split}
+      \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1})
+        &< L - M - \logRL_{s_z+1}(\widetilde{q_2})\\
+        &= L - M + \frac{1}{2} \left[ c_{s_z+1}\log\sigma_e^{2*} + \frac{d_{s_z+1}}{\sigma_e^{2*}}\right].
+    \end{split}
+  \end{equation}
+  Examination of (\ref{eq:sum}) shows that for any fixed $\sigesq$, in particular for $\sigesq=0$,
+  and for $j \ne s_z+1$,\\ $\lim_{\sigssq \rightarrow \infty} \logRL_j(\sigesq,\sigssq) = -\infty$.
+  Thus $\widetilde{\sigma_s^2}$ can be chosen large enough so that the summation on the
+  l.h.s.~of \eqref{eq:q1} is less than the r.h.s.~of \eqref{eq:q1}, and  \textbf{D1} is satisfied.
+\item $Q_2: \sigesq \ge \sigesq{}^*$ and $\sigssq \ge \widetilde{\sigssq}$, as illustrated by $q_2$ and $q_3$
+  in Figure~\ref{fig:boundingbox2}.  In $Q_2$, for all $j$,
+  \begin{equation*}
+    \frac{\partial\logRL_j}{\partial\sigesq} \le 0 \hspace{1cm} \text{and} \hspace{1cm}
+    \frac{\partial\logRL_j}{\partial\sigssq} \le 0
+  \end{equation*}
+  so for any $q \in Q_2$,
+  \begin{equation*}
+    \logRL_j(q) \le \logRL_j(\widetilde{q_2}).
+  \end{equation*}
+  Therefore, $\logRL(\sshat) - \logRL(q) \ge L - \logRL(\widetilde{q_2})$.  The latter expression is greater than
+  $M$ iff $\logRL(\widetilde{q_2}) < L-M$.  But (\ref{eq:sum}) shows that for any fixed
+  $\sigesq$, $\lim_{\sigssq \rightarrow \infty} \logRLss = -\infty$ and therefore $\widetilde{\sigma_s^2}$
+  can be chosen large enough so that \textbf{D1} is satisfied.
+\item $Q_3: \sigesq \ge \widetilde{\sigesq}$ and $\sigssq \ge \sigssq{}^*$, as illustrated by $q_3$.  In $Q_3$,
+  for all $j$,
+  \begin{equation*}
+    \frac{\partial\logRL_j}{\partial\sigesq} \le 0 \hspace{1cm} \text{and} \hspace{1cm}
+    \frac{\partial\logRL_j}{\partial\sigssq} \le 0
+  \end{equation*}
+  so for any $q \in Q_3$,
+  \begin{equation*}
+    \logRL_j(q) \le \logRL_j(\widetilde{q_3}).
+  \end{equation*}
+  Therefore, $\logRL(\sshat) - \logRL(q) \ge L - \logRL(\widetilde{q_3})$.  The latter expression is greater than
+  $M$ iff $\logRL(\widetilde{q}) < L-M$.  But for any fixed $\sigssq$,
+  $\lim_{\sigesq \rightarrow \infty} \logRLss = -\infty$ and therefore $\widetilde{\sigma_e^2}$
+  can be chosen large enough so that \textbf{D1} is satisfied.
+\item $Q_4: \sigesq \ge \widetilde{\sigesq}$ and $\sigssq \le \sigssq{}^*$, as illustrated by $q_4$.  In $Q_4$,
+  \begin{itemize}
+  \item for $j \ne s_z+2$,
+    \begin{equation*}
+      \frac{\partial\logRL_j}{\partial\sigesq} \le 0 \hspace{1cm} \text{and} \hspace{1cm}
+      \frac{\partial\logRL_j}{\partial\sigssq} < 0
+    \end{equation*}
+    so for any $q \in Q_4$,
+    \begin{equation*}
+      \logRL_j(q) \le \logRL_j(\widetilde{q_4});
+    \end{equation*}
+  \item  for $j = s_z+2$,
+    \begin{equation*}
+      \frac{\partial\logRL_j}{\partial\sigesq} = 0 \hspace{1cm} \text{and} \hspace{1cm}
+      \frac{\partial\logRL_j}{\partial\sigssq} \ge 0
+    \end{equation*}
+    so for any $q \in Q_4$,
+    \begin{equation*}
+      \logRL_j(q) \le \logRL_j(\widetilde{q_3}).
+    \end{equation*}
+  \end{itemize}
+  Therefore,
+  \begin{equation*}
+	\logRL(\sshat) - \logRL(q) \ge L - \sum_{j \ne s_z+2} \logRL_j(\widetilde{q_4}) - \logRL_{s_z+2}(\widetilde{q_3})
+  \end{equation*}
+  which is larger than $M$ if
+  \begin{equation}
+  \label{eq:q4}
+    \begin{split}
+      \sum_{j \ne s_z+2} \logRL_j(\widetilde{q_4})
+        &< L - M - \logRL_{s_z+2}(\widetilde{q_3})\\
+        &= L - M + \frac{1}{2} \left[ c_{s_z+2}\log\sigma_s^{2*} + \frac{d_{s_z+2}}{\sigma_s^{2*}}\right].
+    \end{split}
+  \end{equation}
+  For any fixed $\sigssq$, in particular for $\sigssq=0$, and for $j \ne s_z+2$,\\ $\lim_{\sigesq \rightarrow \infty}
+  \logRL_j(\sigesq,\sigssq) = -\infty$.  Thus $\widetilde{\sigma_e^2}$ can be chosen large enough so that the
+  summation on the l.h.s.~of \eqref{eq:q4} is less than the r.h.s.~of \eqref{eq:q4}, and  \textbf{D1} is satisfied.\end{itemize}  
+\textbf{QED}\\
 
 \begin{figure}[h]
 	\centering
@@ -319,7 +426,6 @@ Combining the requirements for points like $q_1$, $q_2$, $q_3$, and $q_4$, desid
 	\caption{Box $B$ satisfies (\ref{eq:boundingbox})}
 	\label{fig:boundingbox2}
 \end{figure}
-
 
 \subsection{Lines Determine Bounds within Boxes}
 \label{sec:boundsinboxes}
