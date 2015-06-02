@@ -273,11 +273,11 @@ We will next find a box $B \supset B_1$ satisfying desideratum \textbf{D1}.  Fir
 
 \noindent\textbf{Claim} \emph{For any positive number $M$, there exist positive numbers $\widetilde{\sigma_e^2} > \sigesq{}^M$ and $\widetilde{\sigma_s^2} > \sigssq{}^M$ that determine a box $B \supset B_1$ whose lower-left and upper-right corners are $(0,0)$ and $(\widetilde{\sigma_e^2}, \widetilde{\sigma_s^2})$, respectively, such that
 \begin{equation*}
-  \sup_{B_1^c} \logRLss \le \logRL(\sshat) - M.
+  \sup_{B^c} \logRLss \le \logRL(\sshat) - M.
 \end{equation*}}
 I.e., \textbf{D1} is satisfied.\\
 \noindent\textbf{Proof}
-Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  The proof considers several regions outside $B_1$ in turn, as exemplified by the points $q_1$, $q_2$, $q_3$, and $q_4$ in Figure~\ref{fig:boundingbox2}.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$ be the intercept of $B$ and the $\sigssq$ axis and let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$.  Let $q_1 = (\sigesq{}_1, \sigssq{}_1)$ be a point satisfying $\sigesq{}_1 \le \sigma_e^{2*}$ and $\sigssq{}_1 \ge \widetilde{\sigma_s^2}$ --- above $B$ and to the left of the $s_z+1$ line.  The partial derivatives (\ref{eq:drlds}), between $q_1$ and $\widetilde{q_1}$ are negative for $j \in \{1, \dots, s_z, s_z+2\}$ but zero for $j=s_z+1$.  The partial derivatives (\ref{eq:drlde}), betweem $q_1$ and $\widetilde{q_2}$ are negative for $j \in \{1, \dots, s_z, s_z+1\}$ but nonnegative for $j=s_z+2$.  Let $\logRL_j(\cdot)$ denote the $j$'th term of \eqref{eq:sum} evaluated at $(\cdot)$.  
+Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  The proof considers several regions outside $B$ in turn, as exemplified by the points $q_1$, $q_2$, $q_3$, and $q_4$ in Figure~\ref{fig:boundingbox2}.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$ be the intercept of $B$ and the $\sigssq$ axis and let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$.  Let $q_1 = (\sigesq{}_1, \sigssq{}_1)$ be a point satisfying $\sigesq{}_1 \le \sigma_e^{2*}$ and $\sigssq{}_1 \ge \widetilde{\sigma_s^2}$ --- above $B$ and to the left of the $s_z+1$ line.  The partial derivatives (\ref{eq:drlds}), between $q_1$ and $\widetilde{q_1}$ are negative for $j \in \{1, \dots, s_z, s_z+2\}$ but zero for $j=s_z+1$.  The partial derivatives (\ref{eq:drlde}), betweem $q_1$ and $\widetilde{q_2}$ are negative for $j \in \{1, \dots, s_z, s_z+1\}$ but nonnegative for $j=s_z+2$.  Let $\logRL_j(\cdot)$ denote the $j$'th term of \eqref{eq:sum} evaluated at $(\cdot)$.  
 \begin{equation}
 	\logRL(\sshat) - \logRL(q_1) \ge L - \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1}) - \logRL_{s_z+1}(\widetilde{q_2}),
 \end{equation}
@@ -312,7 +312,7 @@ which is larger than $M$ if
 Examination of (\ref{eq:sum}) shows that for any fixed $\sigssq$, in particular for $\sigssq=0$, and for $j \ne s_z+2$,\\ $\lim_{\sigesq \rightarrow \infty} \logRL_j(\sigesq,\sigssq) = -\infty$.  Thus $\widetilde{\sigma_e^2}$ can be chosen large enough so that the summation on the l.h.s.~of \eqref{eq:q4} is less than the r.h.s.~of \eqref{eq:q4}, and  \textbf{D1} is satisfied.
 
 \noindent\textbf{Alt Proof}
-Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$ be the intercept of $B$ and the $\sigssq$ axis; let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$; let $\widetilde{q_3} = (\widetilde{\sigma_e^2}, \sigma_s^{2*})$; let $\widetilde{q_4} = (\widetilde{\sigma_e^2},0)$; and let $\logRL_j$ denote the $j$'th term of \eqref{eq:sum}.  The proof considers in turn four regions $Q_1$, $Q_2$, $Q_3$, and $Q_4$ whose union is $B^c$ and shows that $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ can be chosen large enough so that \textbf{D1} is satisfied on each region.  
+Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$, the intercept of $B$ and the $\sigssq$ axis; let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$; let $\widetilde{q_3} = (\widetilde{\sigma_e^2}, \sigma_s^{2*})$; let $\widetilde{q_4} = (\widetilde{\sigma_e^2},0)$, the intercept of $B$ and the $\sigssq$ axis; and let $\logRL_j$ denote the $j$'th term of \eqref{eq:sum}.  The proof considers in turn four regions $Q_1$, $Q_2$, $Q_3$, and $Q_4$ whose union is $B^c$.  Implicitly, $B$ and $B^c$ are functions of $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$.  The proof shows that $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ can be chosen large enough so that \textbf{D1} is satisfied on each region.  
 \begin{itemize}
 \item $Q_1: \sigesq \le \sigesq{}^*$ and $\sigssq \ge \widetilde{\sigssq}$, as illustrated by $q_1$ in
   Figure~\ref{fig:boundingbox2}.  In $Q_1$, by inspection of \eqref{eq:sum} and \eqref{eq:partials},
@@ -338,9 +338,9 @@ Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:b
   \end{itemize}
   Therefore, 
   \begin{equation}
-	\logRL(\sshat) - \logRL(q) \ge L - \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1}) - \logRL_{s_z+1}(\widetilde{q_2}),
+	\logRL(\sshat) - \logRL(q) \ge L - \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1}) - \logRL_{s_z+1}(\widetilde{q_2}).
   \end{equation}
-  which is larger than $M$ if
+  The r.h.s.~is larger than $M$ if
   \begin{equation}
     \label{eq:q1}
     \begin{split}
@@ -378,15 +378,15 @@ Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:b
     \logRL_j(q) \le \logRL_j(\widetilde{q_3}).
   \end{equation*}
   Therefore, $\logRL(\sshat) - \logRL(q) \ge L - \logRL(\widetilde{q_3})$.  The latter expression is greater than
-  $M$ iff $\logRL(\widetilde{q}) < L-M$.  But for any fixed $\sigssq$,
+  $M$ iff $\logRL(\widetilde{q_3}) < L-M$.  But for any fixed $\sigssq$,
   $\lim_{\sigesq \rightarrow \infty} \logRLss = -\infty$ and therefore $\widetilde{\sigma_e^2}$
   can be chosen large enough so that \textbf{D1} is satisfied.
 \item $Q_4: \sigesq \ge \widetilde{\sigesq}$ and $\sigssq \le \sigssq{}^*$, as illustrated by $q_4$.  In $Q_4$,
   \begin{itemize}
   \item for $j \ne s_z+2$,
     \begin{equation*}
-      \frac{\partial\logRL_j}{\partial\sigesq} \le 0 \hspace{1cm} \text{and} \hspace{1cm}
-      \frac{\partial\logRL_j}{\partial\sigssq} < 0
+      \frac{\partial\logRL_j}{\partial\sigesq} < 0 \hspace{1cm} \text{and} \hspace{1cm}
+      \frac{\partial\logRL_j}{\partial\sigssq} \le 0
     \end{equation*}
     so for any $q \in Q_4$,
     \begin{equation*}
@@ -751,7 +751,6 @@ Iteration & $n$ active boxes & $n$ inactive boxes & $L$\\
 \label{table:hmo_HH11Bayes}
 \end{table}
 The Bayesian analysis in Figure~\ref{fig:hmoBayes} can be compared to the $\logRLorig$ analysis in Figure~\ref{fig:hmo1}.  The peak of the log posterior is near $(600, .05)$, very far from the peak of the $\logRLorig$ around $(500,100)$.  The posterior peak is due to the $\IG(1.1,0.1)$ prior for $\sigssq$, which has a mean of 1, an infinite variance, and a peak at 0.048.  The region near $(500,100)$, though having a lower posterior density, is part of a nearly flat plateau covering a large area.  The MCMC draws depicted in \cite{henn&hodges:2014} Figure~2c show that the plateau has significant posterior mass.
-%Usual analyses of the posterior density are carried out either by MCMC, in which case one hopes that one's Markov chain happens to sample all regions of high enough posterior density to matter, or by evaluating the posterior on a grid --- in which case one hopes one's grid is fine enough.  With our analysis there is no need to hope; the algorithm is certain to find all regions of high density.
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
@@ -884,29 +883,8 @@ Iteration & $n$ active boxes & $n$ inactive boxes & $L$\\
 \end{figure}
 The figure shows that the algorithm needed to divide boxes near the axes more finely than boxes away from the axes and that high $\logRLorig$ is found near $(200, 1000)$.  The figure agrees with Figure~15.3 in \cite{hodges:2013}.
 
-%\begin{figure}
-%  \begin{subfigure}{.5\textwidth}
-%    \centering
-%    \includegraphics[width=.8\linewidth]{figs/gmst-boxes2.jpg}
-%    \caption{Locations of boxes}
-%    \label{fig:gmst-boxes2}
-%  \end{subfigure}
-%  \begin{subfigure}{.5\textwidth}
-%    \centering
-%    \includegraphics[width=.8\linewidth]{figs/gmst-rll2.jpg}
-%    \caption{Grayscale shows $L^b$ in each box.
-%                  Red dot shows $b^* \equiv\argmax L^b$.
-%	          Boxes outlined in blue have $U^b \ge L^{b^*}$.
-%	          Axes are logarithmic.}
-%    \label{fig:gmstrll2}
-%  \end{subfigure}
-%  \caption{The 3,605,095 boxes from the second analysis of global
-%                mean surface temperature.}
-%\label{fig:gmst2}
-%\end{figure}
-
 \section{Discussion}
-This paper explains and illustrates an algorithm for linear mixed models with two variances, to find all regions where either the restricted likelihood function or the joint posterior density of the variances is high, and to evaluate the function there to arbitrary accuracy.  A natural question to ask is \emph{What about linear mixed models with more than two variances?}  A partial answer is given by \cite{hodges:2013} who shows that some models with more than two variances can be re-expressed similarly to \eqref{eq:reexpress} but others can't.  More complex models that can be re-expressed this way include, but are probably not limited to, models displaying general balance that are also orthogonal designs \citep[all balanced ANOVAs plus other models;][]{houtman_speed:1983}, models that are separable in a specific sense \citep[Section 17.1.5]{hodges:2013}, and miscellaneous other models \citep[Section 17.1.5]{hodges:2013}, e.g., a spatial model including random effects for heterogeneity and spatial clustering (an improper conditional autoregressive effect). We have not explored whether the re-expressible models can be analyzed by our algorithm; that's one direction for future work.  
+This paper explains and illustrates an algorithm that facilitates computation for linear mixed models with two variances. The algorithm finds all regions where either the restricted likelihood function or the joint posterior density of the variances is high and can evaluate the function there to arbitrary accuracy.  A natural question to ask is \emph{What about linear mixed models with more than two variances?}  A partial answer is given by \cite{hodges:2013} who shows that some models with more than two variances can be re-expressed similarly to \eqref{eq:reexpress} but others can't.  More complex models that can be re-expressed this way include, but are probably not limited to, models displaying general balance that are also orthogonal designs \citep[all balanced ANOVAs plus other models;][]{houtman_speed:1983}, models that are separable in a specific sense \citep[Section 17.1.5]{hodges:2013}, and miscellaneous other models \citep[Section 17.1.5]{hodges:2013}, e.g., a spatial model including random effects for heterogeneity and spatial clustering (an improper conditional autoregressive effect). We have not explored whether the re-expressible models can be analyzed by our algorithm; that's one direction for future work.  
 
 Another is to see whether the algorithm can be used to advantage even in non-re-expressible models.  If a model has, say, three variances and is now analyzed by, say, MCMC, we can create an MCMC chain that alternates between draws of $(\sigesq,\sigssq)$ and draws of the other variance.  With the aid of our algorithm we may be able to draw more accurately from $[\sigesq,\sigssq\g \sigma^2_\text{other}]$.  More generally, the conditional distribution of $(\sigesq,\sigssq)$ given other parameters can now be analyzed more accurately than in the past.  We have yet to explore how to exploit that accuracy.  A third direction is the posterior $\pi(\sigesq,\sigssq\g y)$.  We can identify a region $B^c$ where the posterior density is low relative to its maximum and it would be of at least mild interest to find an upper bound for the posterior mass of $B^c$.
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  2 JUN 2015 12:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  2 JUN 2015 15:31
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -381,17 +381,17 @@ Package pdftex.def Info: figs/hmolines_HH11_Bayes.pdf used on input line 710.
 File: figs/hmo_HH11Bayes_boxes.jpg Graphic file (type jpg)
 
 <use figs/hmo_HH11Bayes_boxes.jpg>
-Package pdftex.def Info: figs/hmo_HH11Bayes_boxes.jpg used on input line 759.
+Package pdftex.def Info: figs/hmo_HH11Bayes_boxes.jpg used on input line 758.
 (pdftex.def)             Requested size: 187.90271pt x 187.90123pt.
 
 <figs/hmo_HH11Bayes_rll.jpg, id=149, 481.8pt x 481.8pt>
 File: figs/hmo_HH11Bayes_rll.jpg Graphic file (type jpg)
 
 <use figs/hmo_HH11Bayes_rll.jpg>
-Package pdftex.def Info: figs/hmo_HH11Bayes_rll.jpg used on input line 765.
+Package pdftex.def Info: figs/hmo_HH11Bayes_rll.jpg used on input line 764.
 (pdftex.def)             Requested size: 187.90271pt x 187.90123pt.
 
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 757--770
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 756--769
 []$[]$ $[]$ 
  []
 
@@ -399,30 +399,30 @@ Overfull \hbox (2.2222pt too wide) in paragraph at lines 757--770
 File: figs/gmst-scatter.pdf Graphic file (type pdf)
 
 <use figs/gmst-scatter.pdf>
-Package pdftex.def Info: figs/gmst-scatter.pdf used on input line 778.
+Package pdftex.def Info: figs/gmst-scatter.pdf used on input line 777.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
  [16] [17 <./figs/hmo_HH11Bayes_boxes.jpg> <./figs/hmo_HH11Bayes_rll.jpg> <./fi
 gs/gmst-scatter.pdf>]
 <figs/gmst-lines.pdf, id=164, 505.89pt x 505.89pt>
 File: figs/gmst-lines.pdf Graphic file (type pdf)
  <use figs/gmst-lines.pdf>
-Package pdftex.def Info: figs/gmst-lines.pdf used on input line 818.
+Package pdftex.def Info: figs/gmst-lines.pdf used on input line 817.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
 
 [18] <figs/gmst-boxes1.jpg, id=168, 481.8pt x 481.8pt>
 File: figs/gmst-boxes1.jpg Graphic file (type jpg)
 
 <use figs/gmst-boxes1.jpg>
-Package pdftex.def Info: figs/gmst-boxes1.jpg used on input line 869.
+Package pdftex.def Info: figs/gmst-boxes1.jpg used on input line 868.
 (pdftex.def)             Requested size: 187.90271pt x 187.90123pt.
  <figs/gmst-rll1.jpg, id=169, 481.8pt x 481.8pt>
 File: figs/gmst-rll1.jpg Graphic file (type jpg)
 
 <use figs/gmst-rll1.jpg>
-Package pdftex.def Info: figs/gmst-rll1.jpg used on input line 875.
+Package pdftex.def Info: figs/gmst-rll1.jpg used on input line 874.
 (pdftex.def)             Requested size: 187.90271pt x 187.90123pt.
 
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 867--882
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 866--881
 []$[]$ $[]$ 
  []
 
@@ -441,7 +441,7 @@ Here is how much of TeX's memory you used:
  7729 multiletter control sequences out of 15000+600000
  16312 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,21n,38p,1229b,484s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,21n,38p,1270b,484s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -467,7 +467,7 @@ ts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
 ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ms.pdf (25 pages, 634905 bytes).
+Output written on ms.pdf (25 pages, 634947 bytes).
 PDF statistics:
  272 PDF objects out of 1000 (max. 8388607)
  191 compressed objects within 2 object streams
