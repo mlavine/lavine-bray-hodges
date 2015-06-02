@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  1 JUN 2015 09:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  2 JUN 2015 06:43
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -183,11 +183,7 @@ Package: subdepth 2007/09/02 v0.1 Unify subscript depths
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
-) (./ms.aux
-
-LaTeX Warning: Label `fig:boundingbox2' multiply defined.
-
-)
+) (./ms.aux)
 \openout1 = `ms.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
@@ -202,7 +198,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
 LaTeX Font Info:    ... okay on input line 51.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
 LaTeX Font Info:    ... okay on input line 51.
- (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+
+(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count110
 \scratchdimen=\dimen122
@@ -284,116 +281,106 @@ File: figs/oneline.pdf Graphic file (type pdf)
  <use figs/oneline.pdf>
 Package pdftex.def Info: figs/oneline.pdf used on input line 226.
 (pdftex.def)             Requested size: 234.8775pt x 234.88023pt.
-
-<figs/boundingbox2.pdf, id=35, 505.89pt x 505.89pt>
-File: figs/boundingbox2.pdf Graphic file (type pdf)
-
-<use figs/boundingbox2.pdf>
-Package pdftex.def Info: figs/boundingbox2.pdf used on input line 237.
-(pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[4 <./figs/oneline.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 254--258
+ [4 <./figs/oneline.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 246--250
 
  []
 
-<figs/boundingbox.pdf, id=45, 505.89pt x 505.89pt>
+<figs/boundingbox.pdf, id=44, 505.89pt x 505.89pt>
 File: figs/boundingbox.pdf Graphic file (type pdf)
  <use figs/boundingbox.pdf>
-Package pdftex.def Info: figs/boundingbox.pdf used on input line 264.
+Package pdftex.def Info: figs/boundingbox.pdf used on input line 256.
 (pdftex.def)             Requested size: 187.90271pt x 187.90196pt.
 
-<figs/smallboundingregion.pdf, id=46, 505.89pt x 505.89pt>
+<figs/smallboundingregion.pdf, id=45, 505.89pt x 505.89pt>
 File: figs/smallboundingregion.pdf Graphic file (type pdf)
 
 <use figs/smallboundingregion.pdf>
-Package pdftex.def Info: figs/smallboundingregion.pdf used on input line 270.
+Package pdftex.def Info: figs/smallboundingregion.pdf used on input line 262.
 (pdftex.def)             Requested size: 187.90271pt x 187.90196pt.
 
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 262--276
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 254--268
 []$[]$ $[]$ 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[5 <./figs/boundingbox2.pdf>] [6 <./figs/boundingbox.pdf> <./figs/smallbounding
-region.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 320--321
+[5 <./figs/boundingbox.pdf> <./figs/smallboundingregion.pdf>] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 312--313
 
  []
 
+<figs/boundingbox2.pdf, id=69, 505.89pt x 505.89pt>
 File: figs/boundingbox2.pdf Graphic file (type pdf)
+
 <use figs/boundingbox2.pdf>
-Package pdftex.def Info: figs/boundingbox2.pdf used on input line 324.
+Package pdftex.def Info: figs/boundingbox2.pdf used on input line 316.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
- <figs/boxb.pdf, id=77, 505.89pt x 505.89pt>
+ <figs/boxb.pdf, id=70, 505.89pt x 505.89pt>
 File: figs/boxb.pdf Graphic file (type pdf)
 
 <use figs/boxb.pdf>
-Package pdftex.def Info: figs/boxb.pdf used on input line 334.
+Package pdftex.def Info: figs/boxb.pdf used on input line 326.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
- [7] [8 <./figs/boxb.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 395.
+ [7 <./figs/boundingbox2.pdf>] [8 <./figs/boxb.pdf>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 387.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 395.
- [9] [10] [11]
-<figs/hmo_HH11_lines.pdf, id=102, 505.89pt x 505.89pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 387.
+ [9] [10]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figs/hmo_HH11_lines.pdf, id=98, 505.89pt x 505.89pt>
 File: figs/hmo_HH11_lines.pdf Graphic file (type pdf)
 
 <use figs/hmo_HH11_lines.pdf>
-Package pdftex.def Info: figs/hmo_HH11_lines.pdf used on input line 564.
+Package pdftex.def Info: figs/hmo_HH11_lines.pdf used on input line 556.
 (pdftex.def)             Requested size: 211.38832pt x 211.39165pt.
 
-<figs/hmo_HH11_boxes.pdf, id=103, 505.89pt x 505.89pt>
+<figs/hmo_HH11_boxes.pdf, id=99, 505.89pt x 505.89pt>
 File: figs/hmo_HH11_boxes.pdf Graphic file (type pdf)
 
 <use figs/hmo_HH11_boxes.pdf>
-Package pdftex.def Info: figs/hmo_HH11_boxes.pdf used on input line 573.
+Package pdftex.def Info: figs/hmo_HH11_boxes.pdf used on input line 565.
 (pdftex.def)             Requested size: 187.90271pt x 187.90196pt.
 
-<figs/hmo_HH11_rll.pdf, id=104, 505.89pt x 505.89pt>
+<figs/hmo_HH11_rll.pdf, id=100, 505.89pt x 505.89pt>
 File: figs/hmo_HH11_rll.pdf Graphic file (type pdf)
 
 <use figs/hmo_HH11_rll.pdf>
-Package pdftex.def Info: figs/hmo_HH11_rll.pdf used on input line 579.
+Package pdftex.def Info: figs/hmo_HH11_rll.pdf used on input line 571.
 (pdftex.def)             Requested size: 187.90271pt x 187.90196pt.
 
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 571--586
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 563--578
 []$[]$ $[]$ 
  []
 
-<figs/hmolines_HH11_Bayes.pdf, id=105, 505.89pt x 505.89pt>
+[11] [12 <./figs/hmo_HH11_lines.pdf> <./figs/hmo_HH11_boxes.pdf> <./figs/hmo_HH
+11_rll.pdf>] <figs/hmolines_HH11_Bayes.pdf, id=132, 505.89pt x 505.89pt>
 File: figs/hmolines_HH11_Bayes.pdf Graphic file (type pdf)
 
 <use figs/hmolines_HH11_Bayes.pdf>
-Package pdftex.def Info: figs/hmolines_HH11_Bayes.pdf used on input line 609.
+Package pdftex.def Info: figs/hmolines_HH11_Bayes.pdf used on input line 601.
 (pdftex.def)             Requested size: 211.38832pt x 211.39165pt.
- [12] [13 <./figs/hmo_HH11_lines.pdf> <./figs/hmo_HH11_boxes.pdf> <./figs/hmo_H
-H11_rll.pdf>] [14 <./figs/hmolines_HH11_Bayes.pdf>] <figs/hmo_HH11Bayes_boxes.j
-pg, id=145, 481.8pt x 481.8pt>
+ [13] [14 <./figs/hmolines_HH11_Bayes.pdf>]
+<figs/hmo_HH11Bayes_boxes.jpg, id=145, 481.8pt x 481.8pt>
 File: figs/hmo_HH11Bayes_boxes.jpg Graphic file (type jpg)
 
 <use figs/hmo_HH11Bayes_boxes.jpg>
-Package pdftex.def Info: figs/hmo_HH11Bayes_boxes.jpg used on input line 658.
+Package pdftex.def Info: figs/hmo_HH11Bayes_boxes.jpg used on input line 650.
 (pdftex.def)             Requested size: 187.90271pt x 187.90123pt.
 
 <figs/hmo_HH11Bayes_rll.jpg, id=146, 481.8pt x 481.8pt>
 File: figs/hmo_HH11Bayes_rll.jpg Graphic file (type jpg)
 
 <use figs/hmo_HH11Bayes_rll.jpg>
-Package pdftex.def Info: figs/hmo_HH11Bayes_rll.jpg used on input line 664.
+Package pdftex.def Info: figs/hmo_HH11Bayes_rll.jpg used on input line 656.
 (pdftex.def)             Requested size: 187.90271pt x 187.90123pt.
 
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 656--669
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 648--661
 []$[]$ $[]$ 
  []
 
@@ -401,74 +388,70 @@ Overfull \hbox (2.2222pt too wide) in paragraph at lines 656--669
 File: figs/gmst-scatter.pdf Graphic file (type pdf)
 
 <use figs/gmst-scatter.pdf>
-Package pdftex.def Info: figs/gmst-scatter.pdf used on input line 677.
+Package pdftex.def Info: figs/gmst-scatter.pdf used on input line 669.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
  [15 <./figs/hmo_HH11Bayes_boxes.jpg> <./figs/hmo_HH11Bayes_rll.jpg>] <figs/gms
 t-lines.pdf, id=151, 505.89pt x 505.89pt>
 File: figs/gmst-lines.pdf Graphic file (type pdf)
 
 <use figs/gmst-lines.pdf>
-Package pdftex.def Info: figs/gmst-lines.pdf used on input line 717.
+Package pdftex.def Info: figs/gmst-lines.pdf used on input line 709.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
  [16 <./figs/gmst-scatter.pdf>]
 <figs/gmst-boxes1.jpg, id=161, 481.8pt x 481.8pt>
 File: figs/gmst-boxes1.jpg Graphic file (type jpg)
  <use figs/gmst-boxes1.jpg>
-Package pdftex.def Info: figs/gmst-boxes1.jpg used on input line 768.
+Package pdftex.def Info: figs/gmst-boxes1.jpg used on input line 760.
 (pdftex.def)             Requested size: 187.90271pt x 187.90123pt.
 
 <figs/gmst-rll1.jpg, id=162, 481.8pt x 481.8pt>
 File: figs/gmst-rll1.jpg Graphic file (type jpg)
  <use figs/gmst-rll1.jpg>
-Package pdftex.def Info: figs/gmst-rll1.jpg used on input line 774.
+Package pdftex.def Info: figs/gmst-rll1.jpg used on input line 766.
 (pdftex.def)             Requested size: 187.90271pt x 187.90123pt.
 
-Overfull \hbox (2.2222pt too wide) in paragraph at lines 766--781
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 758--773
 []$[]$ $[]$ 
  []
 
 [17 <./figs/gmst-lines.pdf>] [18 <./figs/gmst-boxes1.jpg> <./figs/gmst-rll1.jpg
 >] [19] (./ms.bbl [20]) [21
 
-] (./ms.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+] (./ms.aux) ) 
 Here is how much of TeX's memory you used:
- 4354 strings out of 493117
- 65790 string characters out of 6135433
- 146059 words of memory out of 5000000
- 7724 multiletter control sequences out of 15000+600000
+ 4357 strings out of 493117
+ 65841 string characters out of 6135433
+ 140047 words of memory out of 5000000
+ 7727 multiletter control sequences out of 15000+600000
  16312 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,21n,38p,1229b,484s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></us
-r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/
-local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/lo
-cal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/loca
-l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/
-texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/te
-xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texl
-ive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive
-/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/20
-14/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2014/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2014/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2014/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2014/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
-ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ms.pdf (23 pages, 628524 bytes).
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+6.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.
+pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pf
+b></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
+usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
+r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/l
+ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loca
+l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/t
+exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/
+2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
+014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/201
+4/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2014/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on ms.pdf (23 pages, 628650 bytes).
 PDF statistics:
  265 PDF objects out of 1000 (max. 8388607)
  186 compressed objects within 2 object streams

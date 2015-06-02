@@ -15,6 +15,10 @@ Henn, L. and Hodges, J.~S. (2014), \enquote{Multiple Local Maxima in Restricted
   Likelihoods and Posterior Distributions for Mixed Linear Models,}
   \emph{International Statistical Review}, 82, 90--105.
 
+\bibitem[Hill(1965)Hill]{hill:1965}
+Hill, B. (1965), \enquote{Inference about variance components in the one-way
+  model,} \emph{Journal of the American Statistical Association}, 60, 806--825.
+
 \bibitem[Hodges(1998)Hodges]{hodges:98}
 Hodges, J. (1998), \enquote{Some algebra and geometry for hierarchical models
   applied to diagnostics,} \emph{jrssb}, 60, 497--536.

@@ -72,7 +72,7 @@ Taken together these conditions imply that the $(\sigesq,\sigssq)$ plane can be 
 
 \section{Introduction}
 \label{sec:intro}
-Linear mixed models are an important class of statistical models.  Books are written about them (e.g.\ \citealt{bryk_raudenbush:1992, verbeke&molenberghs:2000, hodges:2013, west&welch&galecki:2014}),  courses are taught about them, and they have many applications.  Examples include random intercept models (including balanced and unbalanced one-way random effect models), additive models with one penalized spline, spatial models with one intrinsic conditional autoregression (ICAR) random effect, dynamic linear models with one system-level variance, and some multiple membership models (e.g.\ \citealt{browne_etal:2001, mccaffrey_etal:2004}).  Typical notation, which we adopt, is
+Linear mixed models are an important class of statistical models.  Books are written about them (e.g.\ \citealt{bryk_raudenbush:1992, verbeke&molenberghs:2000, hodges:2013, west&welch&galecki:2014}),  courses are taught about them, and they have many applications.  Typical notation, which we adopt, is
 \begin{equation}
 \label{eq:lmm}
 	y = X\beta + Zu + \epsilon
@@ -91,7 +91,7 @@ This manuscript deals with the special case in which we adopt the model
 \begin{equation*}
 	\epsilon \sim \N (0, \sigma_e^2 \Sigma_e) \qquad u \sim \N (0, \sigma_s^2 \Sigma_s)
 \end{equation*}
-where $\Sigma_e$ and $\Sigma_s$ are known matrices, often the identity, of the appropriate sizes and $\theta \equiv (\sigma_e^2, \sigma_s^2)$, two unknown variance parameters.  The key for this manuscript is that $\theta$ contains only those two unknown variances and no others.  \cite{hodges:2013} gives examples and explains the importance of this special case.
+where $\Sigma_e$ and $\Sigma_s$ are known matrices, often the identity, of the appropriate sizes and $\theta \equiv (\sigma_e^2, \sigma_s^2)$, two unknown variance parameters.  The key for this manuscript is that $\theta$ contains only those two unknown variances and no others.  Examples include random intercept models (including balanced and unbalanced one-way random effect models), additive models with one penalized spline, spatial models with one intrinsic conditional autoregression (ICAR) random effect, dynamic linear models with one system-level variance, and some multiple membership models (e.g.\ \citealt{browne_etal:2001, mccaffrey_etal:2004}).  \cite{hodges:2013} examines these and other examples and explains the importance of this special case.
 
 \cite{hodges:2013} also unifies and generalizes \cite{reich_hodges:2008} and \cite{welham_thompson:2009} to show that in our special case, and a few others, $\logRLssorig$ can be expressed as
 \begin{equation}
@@ -126,7 +126,7 @@ the log posterior
     - \frac{1}{2} \sum_{j=1}^{s_z} \left[ \log(\ass) + \frac{\hat v_j^2}{\ass}\right].
   \end{split}
 \end{equation}
-Equations~\eqref{eq:reexpress} and~\eqref{eq:logpost} can both be written as a sum of multiples of logs and inverses of linear combinations $\abss$, as in \eqref{eq:sum}, where the summands with $j=s_z+1$ and $j=s_z+2$ are for the terms involving only $\sigesq$ and $\sigssq$, respectively and where we have dropped the irrelevant constant $B$.  I.e.,
+Equations~\eqref{eq:reexpress} and~\eqref{eq:logpost} can both be written as a sum of multiples of logs and inverses of linear combinations $\abss$, as in \eqref{eq:sum}, where the summands with $j=s_z+1$ and $j=s_z+2$ are for the terms involving only $\sigesq$ and $\sigssq$, respectively, and where we have dropped the irrelevant constant $B$.  I.e.,
 \begin{equation}
 \label{eq:sum}
   \logRLss = -\frac{1}{2} \sum_{j=1}^{s_z+2}\left[ c_j \log(\abss) + \frac{d_j}{\abss}\right]
@@ -138,7 +138,7 @@ where
     a_j &> 0\ \text{and is derived in the Appendix}\\
     b_j &=1\\
     c_j &=1\\
-    d_j &= \hat v_j^2\ \text{and is derived in the Appendix}
+    d_j &= \hat v_j^2\ \text{is a known function of $y$ derived in the Appendix}
   \end{align*}
 \item for $j = s_z +1$,
   \begin{align*}
@@ -175,7 +175,7 @@ though the incidence of multiple maxima is unknown.  Multi-modal posterior distr
 
 As for numerical optimizers, it is known that existing general purpose algorithms for linear mixed models may fail to find all of the local maxima of $\logRLss$, as shown by examples in \cite{hodges:2013}, \cite{henn&hodges:2014}, and elsewhere.  \cite{mullen:2014} examines 18 optimization functions available in \R, tests them on 48 objective functions (admittedly more complicated than $\logRLss$) and finds that even the best of them fail in over 10\% of the cases.  \cite{henn&hodges:2014} examine conditions under which multiple maxima occur in posterior densities and conclude ``\dots second maxima in posterior distributions therefore may be more common than reports in the literature would suggest."  Thus, failure to find local and global maxima may be common, though with available tools it is extremely laborious to determine whether multiple maxima are present and where they are.
 
-Our point of view is that it is important to find regions where $f$ or $\log f$ is large relative to its maximum regardless of whether those regions contain local maxima.  Points with large $\logRLss$ are those that describe the data, and possibly also prior information, well, at least compared to points with low $\logRLss$.  If $f$ or $\log f$ is relatively flat and large over a region, it matters little whether the region contains small bumps that are, technically, local maxima.  A good analysis should strive to find all  points with large $\logRL$.  Therefore, the purpose of this paper is to introduce an algorithm that will, in finite time, divide the $(\sigesq,\sigssq)$ plane into two parts: one where we know $\logRL$ is small relative to its maximum and another where we know $\logRL$ to within a pre-specified $\epsilon$ (hence the term ``approximately exact'').  The algorithm can also be used to find $(\sshat) \equiv \argsup_{\sigesq, \sigssq}\logRLss$  (typically either the maximum restricted log likelihood estimate or the maximum \textit{a posteriori} estimate), to within a pre-specified tolerance without fear of missing regions of high $f$ or $\logRL$.
+Our view is that it is important to find regions where $f$ or $\log f$ is large relative to its maximum regardless of whether those regions contain local maxima.  Points with large $\logRLss$ are those that describe the data, or possibly  prior information, well, at least compared to points with low $\logRLss$.  If $f$ or $\log f$ is relatively flat and large over a region, it matters little whether the region contains small bumps that are, technically, local maxima.  A good analysis should strive to find all  points with large $\logRL$.  Therefore, the purpose of this paper is to introduce an algorithm that will, in finite time, divide the $(\sigesq,\sigssq)$ plane into two parts: one where we know $\logRL$ is small relative to its maximum and another where we know $\logRL$ to within a pre-specified $\epsilon$ (hence the term ``approximately exact'').  The algorithm can also be used to find $(\sshat) \equiv \argsup_{\sigesq, \sigssq}\logRLss$  (typically either the maximum restricted log likelihood estimate or the maximum \textit{a posteriori} estimate), to within a pre-specified tolerance without fear of missing regions of high $f$ or $\logRL$.
 
 The technique relies on the partial derivatives of $\logRLss$.  Analysis of the partial derivatives allows us to satisfy two desiderata.
 \begin{description}
@@ -184,7 +184,7 @@ The technique relies on the partial derivatives of $\logRLss$.  Analysis of the 
 \label{eq:boundingbox}
 	\text{all local maxima are in $B$} \qquad \text{and} \qquad \sup_{(\sigesq, \sigssq) \in B^c} \logRLss \le \logRL(\sshat) - M.
 \end{equation}
-In practice we will take $M$ to be large enough to interpret (\ref{eq:boundingbox}) as meaning that we can restrict attention to $B$ because values of $(\sigesq, \sigssq) \in B^c$ have $\logRLss$ too low to be of further interest.
+In practice we will take $M$ large enough to interpret (\ref{eq:boundingbox}) as meaning that we can restrict attention to $B$ because values of $(\sigesq, \sigssq) \in B^c$ have $\logRLss$ too low to be of further interest.
 
 \item[D2] For any box $b$ with sides parallel to the axes we can quickly compute lower and upper bounds $(L^b,U^b)$ satisfying
 \begin{equation*}
@@ -193,7 +193,7 @@ In practice we will take $M$ to be large enough to interpret (\ref{eq:boundingbo
 \end{equation*}
 and such that $U^b-L^b \rightarrow 0$ as $b$ shrinks.  Therefore, partitioning the box $B$ from \textbf{D1} allows us to know $\logRLss$ everywhere in $B$ to within a pre-specified tolerance and also to locate $\argsup\logRL$ to within a pre-specified tolerance without fear of missing regions of high $\logRL$.
 \end{description}
-\textbf{D1} and \textbf{D2} allow us to divide the $(\sigesq,\sigssq)$ plane into two parts: one where $\logRL$ is at least $M$ below its maximum and another where we know $\logRL$ to within a pre-specified $\epsilon$.  The next section shows how the partial derivatives are used to satisfy \textbf{D1} and \textbf{D2}.
+\textbf{D1} and \textbf{D2} allow us to divide the $(\sigesq,\sigssq)$ plane into two parts: one where $\logRL$ is at least $M$ below its maximum and another where we know $\logRL$ to within a pre-specified $\epsilon$.  The next section shows how the partial derivatives are used to satisfy \textbf{D1} and \textbf{D2}: the partial derivatives determine lines in the $(\sigesq,\sigssq)$ plane; those lines determine a box $B_1$ containing all local maxima and a larger box $B \supset B_1$ satisfying \textbf{D1}; and those lines also determine upper and lower bounds on $\logRL$ within any box $b$.
 
 \section{Satisfying the Desiderata}
 \subsection{Partial Derivatives Determine Lines}
@@ -217,7 +217,7 @@ and
 \end{equation}
 \end{subequations}
 
-We work with one term in (\ref{eq:partials})'s summations at a time; that is, one $j$ at a time.  For $j=1, \dots, s_z$, the $j$'th terms in (\ref{eq:partials}) differ  by a multiplicative constant $a_j/b_j = a_j$; they have the same sign as each other and the same sign as $(a_jc_j\sigssq + b_jc_j\sigesq  - d_j) = (a_j\sigssq + \sigesq  - d_j)$, which determines a line $\sigssq = d_j/a_j - \sigesq/a_j$ --- call it the $j$'th line --- in the first quadrant of the $(\sigssq,\sigesq)$ plane.  The $j$'th line has positive intercept $ d_j/a_j$ and negative slope $-1/a_j$.  For $j=s_z+1$, $a_j=0$, so $\eqref{eq:drlds} = 0$ and \eqref{eq:partials} determines a vertical line at $\sigesq = \sigma_e^{2*} \equiv d_{s_z+1} / c_{s_z+1}$.  For $j=s_z+2$,  $b_j=0$, so $\eqref{eq:drlde} = 0$ and, if the target function is \eqref{eq:logpost}, \eqref{eq:partials} determines a horizontal line at $\sigssq = \sigma_s^{2*} \equiv d_{s_z+2} / c_{s_z+2}$, while if the target function is \eqref{eq:reexpress}, $c_{s_z+2} = d_{s_z+2} = 0$; the term for $j=s_z+2$ effectively vanishes; and there is no horizontal line.
+We work with one term in (\ref{eq:partials})'s summations at a time; that is, one $j$ at a time.  For $j=1, \dots, s_z$, the $j$'th terms in (\ref{eq:partials}) differ  by a multiplicative constant $a_j/b_j = a_j$; they have the same sign as each other and the same sign as $(a_jc_j\sigssq + b_jc_j\sigesq  - d_j) = (a_j\sigssq + \sigesq  - d_j)$, which determines a line $\sigssq = d_j/a_j - \sigesq/a_j$ --- call it the $j$'th line --- in the first quadrant of the $(\sigssq,\sigesq)$ plane.  The $j$'th line has positive intercept $ d_j/a_j$ and negative slope $-1/a_j$.  For $j=s_z+1$, $a_j=0$, so $\eqref{eq:drlds} = 0$ and \eqref{eq:partials} determines a vertical line at $\sigesq = \sigma_e^{2*} \equiv d_{s_z+1} / c_{s_z+1}$.  For $j=s_z+2$,  $b_j=0$, so $\eqref{eq:drlde} = 0$ and, if the target function is \eqref{eq:logpost}, \eqref{eq:partials} determines a horizontal line at $\sigssq = \sigma_s^{2*} \equiv d_{s_z+2} / c_{s_z+2}$, while if the target function is \eqref{eq:reexpress}, $c_{s_z+2} = d_{s_z+2} = 0$; the term for $j=s_z+2$ effectively vanishes, and there is no horizontal line.
 
 For all $j$, both partial derivatives of the $j$'th term are nonnegative below or to the left of the $j$'th line, 0 on the line, and nonpositive above or to the right of the line, as indicated in Figure~\ref{fig:oneline}.  The $j$'th term is constant on the $j$'th line and attains its maximum there.
 
@@ -230,14 +230,6 @@ For all $j$, both partial derivatives of the $j$'th term are nonnegative below o
 	              where indicated by ``\textbf{+}" and ``\textbf{-}".}
 	\label{fig:oneline}
 \end{figure}
-
-\begin{figure}[h]
-	\label{fig:boundingbox2}
-	\centering
-	\includegraphics[width=.5\linewidth]{figs/boundingbox2.pdf}
-	\caption{Box $B$ satisfies (\ref{eq:boundingbox})}
-\end{figure}
-
 
 \subsection{Lines Determine a Bounding Box}
 \label{sec:boundingbox}
@@ -254,9 +246,9 @@ Let $\sigesq{}^M$ and $\sigssq{}^M$ be the largest intercepts of the $s_z+2$ lin
 \end{align*}
 Let $B_1$ be the box whose lower-left and upper-right corners are $(0,0)$ and $(\sigesq{}^M,\sigssq{}^M)$, respectively.  Figure~(\ref{fig:bigboundingbox}) illustrates with five lines --- realistic data sets may have more --- labelled $j=1, 2, 3, s_z+1, s_z+2$.\\
 \textbf{Claim} \emph{All local maxima of $\logRL$ lie within $B_1$.}\\
-\textbf{Proof} Let $p_1 = (\sigesq{}_1, \sigssq{}_1)$ be a point such that $\sigssq{}_1 > \sigssq{}^M$ and let $\widetilde{p_1} = (\sigesq{}_1, \sigssq{}^M)$, as illustrated in Figure~(\ref{fig:bigboundingbox}).  For $j=1, \dots, s_z, s_z+2$, the partial derivatives \eqref{eq:drlde} are negative; for $j=s_z+1$, the partial derivative is zero.  Therefore, $\logRL(\widetilde{p_1}) \ge \logRL(p_1)$ and there can be no local maxima of $\logRL$ above the line $\sigssq = \sigssq{}^M$.  Let $p_2 = (\sigesq{}_2, \sigssq{}_2)$ be a point such that $\sigesq{}_2 > \sigesq{}^M$ and let $\widetilde{p_2} = (\sigesq{}^M, \sigssq{}_2)$.  For $j=1, \dots, s_z, s_z+1$, the partial derivatives \eqref{eq:drlds} are negative; for $j=s_z+2$, the partial derivative is zero.   Therefore, $\logRL(\widetilde{p_2}) \ge \logRL(p_2)$ and there can be no local maxima of $\logRL$ to the right of the line $\sigesq = \sigesq{}^M$.  \textbf{QED}\\
+\textbf{Proof} Let $p_1 = (\sigesq{}_1, \sigssq{}_1)$ be a point such that $\sigssq{}_1 > \sigssq{}^M$ and let $\widetilde{p_1} = (\sigesq{}_1, \sigssq{}^M)$, as illustrated in Figure~(\ref{fig:bigboundingbox}).  For $j=1, \dots, s_z, s_z+2$, the partial derivatives \eqref{eq:drlde} are negative everywhere between $p_1$ and $\widetilde{p_1}$; for $j=s_z+1$, the partial derivative is zero.  Therefore, $\logRL(\widetilde{p_1}) \ge \logRL(p_1)$ and there can be no local maxima of $\logRL$ above the line $\sigssq = \sigssq{}^M$.  Let $p_2 = (\sigesq{}_2, \sigssq{}_2)$ be a point such that $\sigesq{}_2 > \sigesq{}^M$ and let $\widetilde{p_2} = (\sigesq{}^M, \sigssq{}_2)$.  For $j=1, \dots, s_z, s_z+1$, the partial derivatives \eqref{eq:drlds} are negative everywhere between $p_2$ and $\widetilde{p_2}$; for $j=s_z+2$, the partial derivative is zero.   Therefore, $\logRL(\widetilde{p_2}) \ge \logRL(p_2)$ and there can be no local maxima of $\logRL$ to the right of the line $\sigesq = \sigesq{}^M$.  \textbf{QED}\\
 
-By the claim, \mrle\ must lie on or inside $B_1$, so $B_1$ could be passed to an optimizer such as \R's \textsf{optim} or \textsf{nlminb} with potentially better results than using those functions without bounds.  However, even with known bounds, general purpose optimizers may still miss \mrle\ and regions of high $\logRL$.  We will next find a box $B \supset B_1$ satisfying desideratum \textbf{D1}.  First, though, we pause to note that the region outlined in bold in Figure~(\ref{fig:smallboundingbox}) is a subset of $B_1$ that must also contain \mrle\ by the same reasoning used to prove the previous claim.  But it is not rectangular, hence less convenient than $B_1$, so we don't pursue it further.
+By the claim, \mrle\ must lie on or inside $B_1$, so $B_1$ could be passed to an optimizer such as \R's \textsf{optim} or \textsf{nlminb} with potentially better results than using those functions without bounds.  However, even with known bounds, general purpose optimizers may still miss \mrle\ and regions of high $\logRL$ and they emphasize single points of highest local $\logRL$ while possibly ignoring large adjacent regions where $\logRL$ is nearly as large \citep{hill:1965, hodges:2013}.  We will next find a box $B \supset B_1$ satisfying desideratum \textbf{D1}.  First, though, we pause to note that the region outlined in bold in Figure~(\ref{fig:smallboundingbox}) is a subset of $B_1$ that must also contain \mrle\ by the same reasoning used to prove the previous claim.  But it is not rectangular, hence less convenient than $B_1$, so we don't pursue it further.
 
 \begin{figure}[h]
   \begin{subfigure}{.5\textwidth}
@@ -283,7 +275,7 @@ By the claim, \mrle\ must lie on or inside $B_1$, so $B_1$ could be passed to an
 \end{equation*}}
 I.e., \textbf{D1} is satisfied.\\
 \noindent\textbf{Proof}
-Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  The proof considers several regions outside $B_1$ in turn, as exemplified by the points $q_1$, $q_2$, $q_3$, and $q_4$ in Figure~\ref{fig:boundingbox2}.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$ be the intercept of $B$ and the $\sigssq$ axis and let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$.  Let $q_1 = (\sigesq{}_1, \sigssq{}_1)$ be a point satisfying $\sigesq{}_1 \le \sigma_e^{2*}$ and $\sigssq{}_1 \ge \widetilde{\sigma_s^2}$ --- above $B$ and to the left of the $s_z+1$ line.  The partial derivatives (\ref{eq:drlds}), evaluated at $q_1$ are negative for $j \in \{1, \dots, s_z, s_z+2\}$ but zero for $j=s_z+1$.  The partial derivatives (\ref{eq:drlde}), evaluated at $q_1$ are negative for $j \in \{1, \dots, s_z, s_z+1\}$ but nonnegative for $j=s_z+2$.  Let $\logRL_j(\cdot)$ denote the $j$'th term of \eqref{eq:sum} evaluated at $(\cdot)$.  
+Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  The proof considers several regions outside $B_1$ in turn, as exemplified by the points $q_1$, $q_2$, $q_3$, and $q_4$ in Figure~\ref{fig:boundingbox2}.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$ be the intercept of $B$ and the $\sigssq$ axis and let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$.  Let $q_1 = (\sigesq{}_1, \sigssq{}_1)$ be a point satisfying $\sigesq{}_1 \le \sigma_e^{2*}$ and $\sigssq{}_1 \ge \widetilde{\sigma_s^2}$ --- above $B$ and to the left of the $s_z+1$ line.  The partial derivatives (\ref{eq:drlds}), between $q_1$ and $\widetilde{q_1}$ are negative for $j \in \{1, \dots, s_z, s_z+2\}$ but zero for $j=s_z+1$.  The partial derivatives (\ref{eq:drlde}), betweem $q_1$ and $\widetilde{q_2}$ are negative for $j \in \{1, \dots, s_z, s_z+1\}$ but nonnegative for $j=s_z+2$.  Let $\logRL_j(\cdot)$ denote the $j$'th term of \eqref{eq:sum} evaluated at $(\cdot)$.  
 \begin{equation}
 	\logRL(\sshat) - \logRL(q_1) \ge L - \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1}) - \logRL_{s_z+1}(\widetilde{q_2}),
 \end{equation}

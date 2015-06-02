@@ -163,12 +163,11 @@ p + annotate ( "line", x=x1, y=y1, lty=3 ) +
   annotate ( "text", x=xhann, y=yhann, size=4, parse=TRUE, label="j==s[Z]+2" ) +
   geom_path ( data=B1, size=.7 ) +
   annotate ( "text", x=B1annx, y=B1anny, size=4, parse=TRUE, label="B[1]") +
-  annotate ( "point", x=c(.5,.5, 1.05, 1, 1.05, 1), y=c(1.2,1,.5,.5,1.1,1) ) +
-  annotate ( "text", x=c(.55,.55,1.1,.95,1.05,1.05),
-                     y=c(1.2,1.05,.5,.5,1.15,1), parse=TRUE,
+  annotate ( "point", x=c(.5,.5, 1.05, 1), y=c(1.2,1,.5,.5) ) +
+  annotate ( "text", x=c(.55,.55,1.1,.95),
+                     y=c(1.2,1.05,.5,.5), parse=TRUE,
              label = c ( "p[1]", "widetilde(p[1])",
-                         "p[2]", "widetilde(p[2])",
-                         "p[3]", "widetilde(p[3])" )
+                         "p[2]", "widetilde(p[2])" )
            )
 dev.off()
 
