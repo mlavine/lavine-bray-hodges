@@ -16,6 +16,7 @@
 %\usepackage{setspace}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{hyperref}
 
 \renewcommand\thesection{\arabic{section}}
 \usepackage{xspace}
@@ -522,7 +523,7 @@ where the fixed effects in $\alpha_i$ include an intercept, jurisdiction-average
 
 \upshape
 \end{quote}
-I.e., $X$ is a $341 \times 3$ matrix with columns for the intercept and two fixed effects and $Z$ is a $341 \times 45$ matrix whose columns are indicators of the 45 jurisdictions.  Because the span of $Z$'s columns contains the span of $X$'s, $s_z = 42$.  
+I.e., $X$ is a $341 \times 3$ matrix with columns for the intercept and two fixed effects and $Z$ is a $341 \times 45$ matrix whose columns are indicators of the 45 jurisdictions.  The data are available at \url{http://www.biostat.umn.edu/~hodges/RPLMBook/Datasets/09_HMO_premiums/Ex9.html}.  Because the span of $Z$'s columns contains the span of $X$'s, $s_z = 42$.  
 
 \subsubsection{A log RL Analysis}
 For a $\logRLssorig$ analysis there are 43 lines, as shown in Figure~\ref{fig:hmolines}.
@@ -682,25 +683,25 @@ We reanalyze a data set in \cite{hodges:2013}, global mean surface temperatures 
 	\label{fig:gmst-scatter}
 \end{figure}
 As shown in \cite{ruppert_etal:2003}, many splines can be written as linear mixed models.  \cite{hodges:2013} fit a piecewise quadratic spline to the GMST data, though a piecewise cubic spline would look similar.  Both splines can be formulated as linear mixed models.  We follow his lead in fitting a quadratic spline with knots at 1880, 1884, 1888, \dots, 2004.  $X$ has three columns: $\textcompute{1}, \textcompute{year}, \textcompute{year}^2$.  $Z$ is $125 \times 30$: one row for each year; one column for each knot.
-\begin{equation*}
-Z =	\begin{bmatrix}
-		0 & 0 & \dots & 0\\
-		0 & 0 & \dots & 0\\
-		0 & 0 & \dots & 0\\
-		0 & 0 & \dots & 0\\
-		1 & 0 & \dots & 0\\
-		4 & 0 & \dots & 0\\
-		9 & 0 & \dots & 0\\
-		16 & 0 & \dots & 0\\
-		25 & 1 & \dots & 0\\
-		\vdots & \vdots & \vdots & \vdots\\
-		13924 & 12996 & \dots & 4\\
-		14161 & 13225 & \dots & 9\\
-		14400 & 13456 & \dots & 16\\
-		14641 & 13689 & \dots & 25\\
-	\end{bmatrix}; \hspace{.5cm} \Sigma_e = \mathbf{1}_{125}; \hspace{.5cm}
-		\Sigma_s = \mathbf{1}_{30}
-\end{equation*}
+%\begin{equation*}
+%Z =	\begin{bmatrix}
+%		0 & 0 & \dots & 0\\
+%		0 & 0 & \dots & 0\\
+%		0 & 0 & \dots & 0\\
+%		0 & 0 & \dots & 0\\
+%		1 & 0 & \dots & 0\\
+%		4 & 0 & \dots & 0\\
+%		9 & 0 & \dots & 0\\
+%		16 & 0 & \dots & 0\\
+%		25 & 1 & \dots & 0\\
+%		\vdots & \vdots & \vdots & \vdots\\
+%		13924 & 12996 & \dots & 4\\
+%		14161 & 13225 & \dots & 9\\
+%		14400 & 13456 & \dots & 16\\
+%		14641 & 13689 & \dots & 25\\
+%	\end{bmatrix}; \hspace{.5cm} \Sigma_e = \mathbf{1}_{125}; \hspace{.5cm}
+%		\Sigma_s = \mathbf{1}_{30}
+%\end{equation*}
 Because we fit a quadratic spline, the entries in $Z$ are squares.  $\Sigma_e$ and $\Sigma_s$ are identity matrices of the appropriate dimension; see \cite{hodges:2013} for details.  Following Hodges, we center and scale the \textcompute{year} column of X, then compute the $\textcompute{year}^2$ column of $X$ and all the columns of Z from the transformed \textcompute{year}, so Z becomes
 \begin{equation*}
 Z =	\begin{bmatrix} 
