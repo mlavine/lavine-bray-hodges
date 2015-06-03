@@ -14,6 +14,8 @@
 \usepackage{subdepth}
 %\usepackage{appendix}
 %\usepackage{setspace}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
 \renewcommand\thesection{\arabic{section}}
 \usepackage{xspace}
@@ -45,6 +47,8 @@
 \newcommand{\maxit}{\textcompute{maxit}}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
 \newcommand{\argsup}{\operatornamewithlimits{argsup}}
+\newcommand*\DNA{\textsc{dna}}
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
 \renewcommand{\bibname}{References}
 
 
@@ -52,11 +56,11 @@
 
 \title{Approximately Exact Calculations for Linear Mixed Models}
 \author[1]{Michael Lavine}
-\author[1,2]{Andrew Bray}
+\author[2]{Andrew Bray}
 \author[3]{James Hodges}
 \affil[1]{Department of Mathematics and Statistics, University of Massachusetts, Amherst, MA 01003 USA}
-\affil[2]{Mount Holyoke College}
-\affil[3]{Division of Biostatistics, University of Minnesota, Minneapolis, MN 55455 USA}
+\affil[2]{Reed College, Portland, OR, 97202 USA}
+\affil[3]{Division of Biostatistics, University of Minnesota, Minneapolis, MN, 55455 USA}
 
 \maketitle
 
@@ -246,7 +250,8 @@ Let $\sigesq{}^M$ and $\sigssq{}^M$ be the largest intercepts of the $s_z+2$ lin
 \end{align*}
 Let $B_1$ be the box whose lower-left and upper-right corners are $(0,0)$ and $(\sigesq{}^M,\sigssq{}^M)$, respectively.  Figure~(\ref{fig:bigboundingbox}) shows $B_1$ and five lines --- realistic data sets may have more --- labelled $j=1, 2, 3, s_z+1, s_z+2$.\\[5pt]
 \textbf{Claim} \emph{All local maxima of $\logRL$ lie within $B_1$.}\\
-\textbf{Proof} Let $p_1 = (\sigesq{}_1, \sigssq{}_1)$ be a point such that $\sigssq{}_1 > \sigssq{}^M$ and let $\widetilde{p_1} = (\sigesq{}_1, \sigssq{}^M)$, as illustrated in Figure~(\ref{fig:bigboundingbox}).  For $j=1, \dots, s_z, s_z+2$, the partial derivatives \eqref{eq:drlde} are negative everywhere between $p_1$ and $\widetilde{p_1}$; for $j=s_z+1$, the partial derivative is zero.  Therefore, $\logRL(\widetilde{p_1}) \ge \logRL(p_1)$ and there can be no local maxima of $\logRL$ above the line $\sigssq = \sigssq{}^M$.  Let $p_2 = (\sigesq{}_2, \sigssq{}_2)$ be a point such that $\sigesq{}_2 > \sigesq{}^M$ and let $\widetilde{p_2} = (\sigesq{}^M, \sigssq{}_2)$.  For $j=1, \dots, s_z, s_z+1$, the partial derivatives \eqref{eq:drlds} are negative everywhere between $p_2$ and $\widetilde{p_2}$; for $j=s_z+2$, the partial derivative is zero.   Therefore, $\logRL(\widetilde{p_2}) \ge \logRL(p_2)$ and there can be no local maxima of $\logRL$ to the right of the line $\sigesq = \sigesq{}^M$.  \textbf{QED}\\
+\textbf{Proof} Let $p_1 = (\sigesq{}_1, \sigssq{}_1)$ be a point such that $\sigssq{}_1 > \sigssq{}^M$ and let $\widetilde{p_1} = (\sigesq{}_1, \sigssq{}^M)$, as illustrated in Figure~(\ref{fig:bigboundingbox}).  For $j=1, \dots, s_z, s_z+2$, the partial derivatives \eqref{eq:drlde} are negative everywhere between $p_1$ and $\widetilde{p_1}$; for $j=s_z+1$, the partial derivative is zero.  Therefore, $\logRL(\widetilde{p_1}) \ge \logRL(p_1)$ and there can be no local maxima of $\logRL$ above the line $\sigssq = \sigssq{}^M$.  Let $p_2 = (\sigesq{}_2, \sigssq{}_2)$ be a point such that $\sigesq{}_2 > \sigesq{}^M$ and let $\widetilde{p_2} = (\sigesq{}^M, \sigssq{}_2)$.  For $j=1, \dots, s_z, s_z+1$, the partial derivatives \eqref{eq:drlds} are negative everywhere between $p_2$ and $\widetilde{p_2}$; for $j=s_z+2$, the partial derivative is zero.   Therefore, $\logRL(\widetilde{p_2}) \ge \logRL(p_2)$ and there can be no local maxima of $\logRL$ to the right of the line $\sigesq = \sigesq{}^M$.\\
+\textbf{QED}\\
 
 \begin{figure}[h]
   \begin{subfigure}{.5\textwidth}
@@ -451,162 +456,50 @@ Because $\logRL$ is continuous, $U^b - L^b \rightarrow 0$ as $b$ shrinks in both
 
 \section{An Algorithm}
 \label{sec:algorithm}
-Section~\ref{sec:boundingbox} shows how to determine a box $B_1$ containing all local maxima of $\logRLss$; and it shows that we can find a bigger box $B\supseteq B_1$ satisfying \textbf{D1}.  We are about to present an algorithm that uses Section~\ref{sec:boundsinboxes} to show that any bounded box $B^0$ can be partitioned into finitely many smaller boxes $B^0_1, \dots B^0_p$  such that, for each $B^0_i$ in the partition, we know for pre-specified constants $M, \epsilon >0$, either
+Section~\ref{sec:boundingbox} shows how to determine a box $B_1$ containing all local maxima of $\logRLss$ and   that we can find a bigger box $B\supseteq B_1$ satisfying \textbf{D1}.  We are about to present an algorithm that uses Section~\ref{sec:boundsinboxes} to show that any bounded box $B^0$ can be partitioned into finitely many smaller boxes $B^0_1, \dots B^0_p$  such that, for each $B^0_i$ in the partition, we know for pre-specified constants $M, \epsilon >0$, either
 \begin{enumerate*}[label=(\alph*)]
 \item $\sup_{B^0_i} \logRL < \sup_{B^0} \logRL -M$ or
 \item $\sup_{B^0_i} \logRL - \inf_{B^0_i} \logRL < \epsilon$.
 \end{enumerate*}
 If $B^0$ satisfies \textbf{D1} and $B^0\supseteq B_1$ then we have accomplished our goal of dividing the plane into one region where we know $\logRL$ to be low and another where we know $\logRL$ to within $\epsilon$.  One strategy would be to find $B$ as outlined in Section~\ref{sec:boundingbox} and set $B^0 \equiv B$.  However, we have found that $B_1$ satisfies \textbf{D1} in all the examples we have tried and we therefore follow a different strategy.  We set $B^0 \equiv B_1$ and run the following algorithm, during which we learn whether $B_1$ satisfies \textbf{D1}.  If it does, we're done.  If it doesn't, then we would expand $B_1$ by a factor of 2 in both dimensions; set $B^0$ to be the expanded box; rerun the algorithm; and continue to expand and rerun until we find a $B^0$ that does satisfy \textbf{D1}.  Section~\ref{sec:boundingbox} shows that such a bounded $B^0$ exists, and thus we are sure to find it in finite time.
 
-With \textbf{D1} and \textbf{D2} the \textcompute{R} function \textcompute{findf}, sketched below, will evaluate, within a box $B^0$, $\logRL$ to arbitrary accuracy everywhere $\logRL$ is large by performing the following tasks:
-\begin{enumerate*}[label=(\alph*)]
-\item accept as input $\{a_j, b_j, c_j, d_j\}, B^0$ and some tuning constants;
-\item create a list of active boxes, initially consisting of just $B^0$;
-\item create a list of inactive boxes, initially empty; and
-\item for each active box $B_j$, find $(L^{B_j}, U^{B_j})$ and determine whether $B_j$ needs to be subdivided.
-\end{enumerate*}
- These notes explain some parts of the function in more detail.
-\begin{enumerate}
-\item A dataframe \textcompute{lines} is an input to \textcompute{findf}.  \textcompute{lines} contains the
-  $\{a_j, b_j, c_j, d_j \}$ from Section~\ref{subsec:lines}.
-  Details for computing them from $y$, $X$, $Z$, $\Sigma_e$, and $\Sigma_s$ are in the Appendix.
-\item \textcompute{startbox}, or $B^0$, is an input to \textcompute{findf}.  As explained at the beginning of
-  Section~\ref{sec:algorithm}, \textcompute{startbox} could be $B_1$, $B$, or any other box the user chooses.
-\item Constants \maxit, $M$, $\epsilon$, $\delta_e$, and $\delta_s$ are inputs to \textcompute{findf}.
-	\begin{enumerate}[label=(\alph*)]
-	\item \maxit\ is the maximum number (could be $\infty$) of iterations of
-		\textcompute{findf}'s loop.
-	\item We will not further analyze regions of the plane where
-		$\logRLss < \logRL(\sshat) - M$.  ($M$ could be $\infty$.)
-	\item We will evaluate $\logRL$ to within an accuracy of $\epsilon$ (could be 0) inside $B^0$
-	         unless evaluation is stopped by one of the other criteria.
-	\item We will not distinguish values of $\sigesq$ separated by less
-		than $\delta_e$ (could be 0) nor values of $\sigssq$ separated by
-		less than $\delta_s$ (could be 0).  Separation may be specified
-		in either absolute or relative terms. (I.e.\ we look at either the difference
-		in $\sigesq$ or $\log\sigesq$ (or $\sigssq$ or $\log\sigssq$) from one
-		side of the box to the other.)
-	\end{enumerate}
-  Setting $\maxit = \infty$ and $\delta_e = \delta_s = 0$ implies that $B^0$ will be partitioned so that either
-  $\logRL < \logRL(\sshat) - M$ or $\logRL$ is known to within $\epsilon$, for every $B^0_i$ in the partition.
-  
-\item A \textcompute{box} $b$ is a list consisting of
-	 \begin{itemize}
-	 \item upper and lower limits on $\sigesq$,
-	 \item upper and lower limits on $\sigssq$,
-	 \item upper and lower bounds on $\logRL$, $U^b$ and $L^b$ from \eqref{eq:bounds},
-	 \item indicators for whether this box lies above (or to the right of), below (or to the left of),
-	   or straddles each of the $s_z+2$ lines.
-	 \end{itemize}
-\item \textcompute{killfunc} is a function, shown below \textcompute{findf}, that determines whether
-	a box $b$ should be divided more finely.
-\item \textcompute{splitbox} is a function that takes a box $b =
-	[\sigesq{}_\text{low}, \sigesq{}_\text{high}] \times [\sigssq{}_\text{low}, \sigssq{}_\text{high}]$ as input 
-	and returns the four boxes created by dividing each side of $b$ at its midpoint.
-%\item With $y$, $X$, $Z$, $\Sigma_e$, and $\Sigma_s$ --- see \eqref{eq:lmm}
-%	and \eqref{eq:rll} for definitions and the Appendix for details --- compute $\{a_j, b_j, c_j, d_j\}$ for $j=1,
-%	\dots, s_z+2$.
-%\item Create two lists of boxes: active and inactive.  Both lists are initially empty.
-%\item Specify a box $B$ as the sole entry of the active list.  $B$ could be,
-%	but doesn't have to be, a box satisfying desideratum \textbf{D1}.
-%\item Either set $L = -\infty$ or evaluate $\logRL(p_i)$ at a few points
-%	$p_1, \dots p_k$ and set $L = \max_i\logRL(p_i)$.  $L$ is our current
-%	lower bound on $\logRL(\sshat)$.
-%\item While the active list is not empty or we have not reached \maxit\
-%	iterations
-%	\begin{enumerate}
-%	\item For each active box $b$:
-%		\begin{enumerate}
-%		\item if $U^b < L-M$ move $b$ to the inactive list.
-%		\item if $U^b - L^b < \epsilon$ move $b$ to the inactive list
-%		\item if the horizontal extent of $b$ is less than $\delta_e$,
-%			move $b$ to the inactive list
-%		\item if the vertical extent of $b$ is less than $\delta_s$,
-%			move $b$ to the inactive list
-%		\item otherwise, $b$ is still active.  Divide $b$ into four subboxes.
-%			Remove $b$ and add the subboxes to the active list.
-%		\end{enumerate}
-%	\item Set $L = \max ( L, \max_{b\in \text{active list}}L^b )$.  $L$ is our new
-%		lower bound on $\logRL(\sshat)$.
-%	\end{enumerate}
-%\item Return the active and inactive lists.
-\end{enumerate}
-\begin{verbatim}
-findf <- function(lines, startbox, eps = 0, delE = 0, delS = 0, M = Inf, maxit = 10,
-                  ratio = FALSE, lognote = "summary") {
+\begin{algorithm}
+  \caption{Learn areas in $B$ where log $f$ is high to within $\epsilon$
+    \label{alg:findf}}
+  \begin{algorithmic}[1]
+    \Function{findf}{$B, \epsilon, M$}
+      \Let{$active$}{list containing only $B$}
+      \Let{$inactive$}{empty list}
+      \Let{$L$}{$-\infty$}
+      \While{length of $active > 0$}
+        \For{each element $b$ in $active$}
+          \Let{$L^b, U^b$}{get bounds on log $f$ in $b$ \Comment{see section \ref{sec:boundsinboxes}}}
+        \EndFor
+          \Let{tmp}{max($L^b$)}
+         \Let{$L$}{max($L$, tmp)}
+        \For{each element $b$ in $active$}
+          \If{$U^b - L^b < \epsilon \enspace \textrm{or} \enspace L^b < L - M$}
+            \State move $b$ from $active$ to $inactive$
+          \Else
+            \Let{$b_1, b_2, b_3, b_4$}{split $b$ into 4 smaller boxes}
+            \State remove $b$ from $active$
+            \State add $b_1, b_2, b_3, b_4$ to $active$
+          \EndIf
+        \EndFor
+      \EndWhile
+      \State \Return $inactive$ 
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
 
-
-    inactive <- list()  # a list of inactive boxes
-    ninact <- 0  # the number of inactive boxes
-    
-    active <- list(startbox)  # a list of active boxes
-    nact <- 0  # the number of active boxes
-
-    lowbound <- -Inf  # lowerbound on max(log(f))
-    iter <- 0  # iteration number
-
-    while (nact > 0 && iter < maxit) {
-        # Find the lower bound of each box and the maximum of the lower bounds.  For
-        # each active box, either make it inactive or divide it.
-        low.act <- max(vapply(X = active, FUN = function(box) {
-            box$bounds[1]
-        }, FUN.VALUE = 0.1))
-        lowbound <- max(lowbound, low.act)
-        kill <- vapply(X = active, FUN = killfunc, FUN.VALUE = TRUE, lb = lowbound,
-            M = M, eps = eps, delE - delE, delS = delS, ratio = ratio)
-            # which boxes become inactive?
-        nkill <- sum(kill)
-        if (nkill > 0) {
-            inactive[(ninact + 1):(ninact + nkill)] <- active[kill] 
-            # add those boxes to the inactive list
-        }
-        ninact <- length(inactive)
-        kids <- list()  # subdivisions of active boxes
-        nkids <- 0
-        for (i in which(!kill)) {  # split active boxes into 4 parts
-            kids[(nkids + 1):(nkids + 4)] <- splitbox(active[[i]], lines)
-            nkids <- nkids + 4
-        }
-        active <- kids
-        nact <- length(active)
-
-        iter <- iter + 1
-        write(c("iteration", iter, "nact", nact, "ninact", ninact, "lowbound",
-            lowbound), file = "log.out", ncolumns = 8, append = TRUE)
-    }
-
-
-    tmp <- t(vapply(X = c(active, inactive), FUN = function(box) {
-        c(box$lims.sigsqs, box$lims.sigsqe, box$bounds)
-    }, FUN.VALUE = c(sigsqs.lo = 0.1, sigsqs.hi = 0.1, sigsqe.lo = 0.1, sigsqe.hi = 0.1,
-        rll.lower = 0.1, rll.upper = 0.1)))
-    end_time <- Sys.time()
-    write(paste(lognote, "runtime: ", round(end_time - start_time, digits = 3)),
-          file = "log.out", ncolumns = 1, append = TRUE)
-    return(data.frame(tmp))
-}
-
-# conditions under which a box becomes inactive
-killfunc <- function(box, lb, M, eps, delE, delS, ratio) {
-    # lb is a global (within startbox) lower bound on max(log(f));
-    #      it changes at each iteration.
-    #  M, eps, delE, delS stay constant throughout the iterations.
-    cond.low <- box$bounds[2] < lb - M
-    cond.eps <- diff(box$bounds) < eps
-    cond.E <- ifelse(ratio, diff(log(box$lims.sigsqe)) < delE,
-                            diff(box$lims.sigsqe) < delE)
-    cond.S <- ifelse(ratio, diff(log(box$lims.sigsqs)) < delS,
-                            diff(box$lims.sigsqs) < delS)
-    return(cond.low || cond.eps || cond.E || cond.S)  # stop dividing this box?
-}
-\end{verbatim}
-
-Before giving examples, we mention some considerations in setting the tuning constants $M$ and $\epsilon$, which have to do with the interpretation of likelihood ratios.  We imagine a reference experiment in which a coin is chosen, either fair or two-headed, and tossed.  If the coin is tossed twice and lands Heads both times, it produces a likelihood ratio of 4 in favor of the two-headed coin.  That's only weak evidence, so we don't see the need to resolve likelihood functions much beyond a factor of four, or loglikelihood functions much beyond a factor of $\log(4) \approx 1.4$.  In practice, we use $\epsilon = 1$ as a convenient default.  If the coin were tossed 10 times and yielded 10 Heads, the likelihood ratio would be $2^{10} = 1024$.  That's strong evidence, so we don't see the need to resolve $\logRL$ where it is less than .001 times its maximum.  $\log(1000) \approx 7$, so we use $M = 7$ as a convenient default.
+Algorithm~\ref{alg:findf} sketches the basic procedure; details are in an appendix.  Before giving examples, we mention some considerations in setting the tuning constants $M$ and $\epsilon$, which have to do with the interpretation of likelihood ratios.  We imagine a reference experiment in which a coin is chosen, either fair or two-headed, and tossed.  If the coin is tossed twice and lands Heads both times, it produces a likelihood ratio of 4 in favor of the two-headed coin.  That's only weak evidence, so we don't see the need to resolve likelihood functions much beyond a factor of four, or loglikelihood functions much beyond a factor of $\log(4) \approx 1.4$.  In practice, we use $\epsilon = 1$ as a convenient default.  If the coin were tossed 10 times and yielded 10 Heads, the likelihood ratio would be $2^{10} = 1024$.  That's strong evidence, so we don't see the need to resolve $\logRL$ where it is less than .001 times its maximum.  $\log(1000) \approx 7$, so we use $M = 7$ as a convenient default.
 
 
 \section{Examples}
 \label{sec:examp}
-Throughout Section~\ref{sec:examp} we use $\epsilon = 1$, $M = 7$, $\delta_e = \delta_s = 0$ and $\maxit = 25$.  We used a finite value of $\maxit$ for practicality but, because each example took 25 or fewer iterations to adequately resolve $\log f$, $\maxit = 25$ yields the same results as $\maxit = \infty$.  Computations were performed on an iMac that was new in 2011, having a 2.7 GHz Intel Core i5 processor and 4GB of memory.
+Section~\ref{sec:examp}'s examples use $\epsilon = 1$ and $M = 7$.
+%, $\delta_e = \delta_s = 0$ and $\maxit = 25$.  We used a finite value of $\maxit$ for practicality but, because each example took 25 or fewer iterations to adequately resolve $\log f$, $\maxit = 25$ yields the same results as $\maxit = \infty$.
+Computations were performed on an iMac that was new in 2011, having a 2.7 GHz Intel Core i5 processor and 4GB of memory.
 \subsection{HMO premiums}
 \subsubsection{Introduction to the Data}
 Our first example is a traditional linear mixed model previously analyzed in \cite{hodges:98}, \cite{hodges:2013}, and \cite{henn&hodges:2014} who reported a bimodal log posterior density for $(\sigesq,\sigssq)$.  Quoting from \cite{henn&hodges:2014},
@@ -627,11 +520,12 @@ I.e., $X$ is a $341 \times 3$ matrix with columns for the intercept and two fixe
 
 \subsubsection{A log RL Analysis}
 For a $\logRLssorig$ analysis there are 43 lines, as shown in Figure~\ref{fig:hmolines}.
-Running the algorithm on the box $B_1$ determined by the lines' maximum intercepts on the $\sigesq$ and $\sigssq$ axes with the settings
-\begin{equation*}
-	\maxit=\infty; \hspace{1cm} \epsilon=1; \hspace{1cm}
-	\delta_e=0; \hspace{1cm} \delta_s=0; \hspace{1cm} M=7
-\end{equation*}
+Running the algorithm on the box $B_1$ determined by the lines' maximum intercepts on the $\sigesq$ and $\sigssq$ axes
+%with the settings
+%\begin{equation*}
+%	\maxit=\infty; \hspace{1cm} \epsilon=1; \hspace{1cm}
+%	\delta_e=0; \hspace{1cm} \delta_s=0; \hspace{1cm} M=7
+%\end{equation*}
 results in the the output displayed in Table~\ref{table:hmo_HH11_run}, which shows the state of the algorithm after iterations 1 through 15: the numbers of active and inactive boxes and the current value of the lower bound $L$ on $\max\log f$. The run finished in less than 10 seconds.  We see that boxes are steadily transferred from the active to the inactive list and that $L$ increases monotonically.  After 15 iterations there is a total of 9490 boxes, which are displayed in Figure~\ref{fig:hmo1}.
 
 \begin{table}[h]
@@ -712,11 +606,12 @@ For a Bayesian analysis there are 44 lines, as shown in Figure~\ref{fig:hmoBayes
 	              Lines 43 and 44 are dashed.}
 	\label{fig:hmoBayeslines}
 \end{figure}
-Because the $\logRLorig$ analysis in Figure~\ref{fig:hmorll} shows low values for $\sigesq, \sigssq > 1000$, we run the Bayesian analysis on the box $B^0 = (0,1000) \times (0,1000)$, again with control parameters
-\begin{equation*}
-	\maxit=\infty; \hspace{1cm} \epsilon=1; \hspace{1cm}
-	\delta_e=0; \hspace{1cm} \delta_s=0; \hspace{1cm} M=7.
-\end{equation*}
+Because the $\logRLorig$ analysis in Figure~\ref{fig:hmorll} shows low values for $\sigesq, \sigssq > 1000$, we run the Bayesian analysis on the box $B^0 = (0,1000) \times (0,1000)$.
+%, again with control parameters
+%\begin{equation*}
+%	\maxit=\infty; \hspace{1cm} \epsilon=1; \hspace{1cm}
+%	\delta_e=0; \hspace{1cm} \delta_s=0; \hspace{1cm} M=7.
+%\end{equation*}
 The algorithm finished in 22 iterations and took a little under 3 hours.  Table~\ref{table:hmo_HH11Bayes} shows the output and Figure~\ref{fig:hmoBayes} shows the boxes.
 \begin{table}[H]
 \centering
@@ -780,7 +675,7 @@ We reanalyze a data set in \cite{hodges:2013}, global mean surface temperatures 
 		.01 degrees C.}
 	\label{fig:gmst-scatter}
 \end{figure}
-As shown in \cite{ruppert_etal:2003}, many splines can be written as as linear mixed models.  \cite{hodges:2013} fit a piecewise quadratic spline to the GMST data, though a piecewise cubic spline would look similar.  Both splines can be formulated as linear mixed models.  We follow his lead in fitting a quadratic spline with knots at 1880, 1884, 1888, \dots, 2004.  $X$ has three columns: $\textcompute{1}, \textcompute{year}, \textcompute{year}^2$.  $Z$ is $125 \times 30$: one row for each year; one column for each knot.
+As shown in \cite{ruppert_etal:2003}, many splines can be written as linear mixed models.  \cite{hodges:2013} fit a piecewise quadratic spline to the GMST data, though a piecewise cubic spline would look similar.  Both splines can be formulated as linear mixed models.  We follow his lead in fitting a quadratic spline with knots at 1880, 1884, 1888, \dots, 2004.  $X$ has three columns: $\textcompute{1}, \textcompute{year}, \textcompute{year}^2$.  $Z$ is $125 \times 30$: one row for each year; one column for each knot.
 \begin{equation*}
 Z =	\begin{bmatrix}
 		0 & 0 & \dots & 0\\
@@ -819,11 +714,12 @@ The column space of $Z$ shares no dimensions with the column space of $X$ so $s_
 	              global mean surface temperatures.}
 	\label{fig:gmst-lines}
 \end{figure}
-As usual, we use $B^0 = B_1$, the box determined by the largest intercepts of the 31 lines on the $\sigesq$ and $\sigssq$ axes and the control constants 
-\begin{equation*}
-	\maxit=\infty; \hspace{1cm} \epsilon=1; \hspace{1cm}
-	\delta_e= \delta_s=0; \hspace{1cm} M=7.
-\end{equation*}
+As usual, we use $B^0 = B_1$, the box determined by the largest intercepts of the 31 lines on the $\sigesq$ and $\sigssq$ axes.
+%and the control constants 
+%\begin{equation*}
+%	\maxit=\infty; \hspace{1cm} \epsilon=1; \hspace{1cm}
+%	\delta_e= \delta_s=0; \hspace{1cm} M=7.
+%\end{equation*}
 After 25 iterations and about 35 minutes of computing time, all boxes became inactive.  Output is in Table~\ref{table:gmst_output}; boxes are displayed in Figure~\ref{fig:gmst1}.
 \begin{table}[H]
 \centering
@@ -889,19 +785,20 @@ This paper explains and illustrates an algorithm that facilitates computation fo
 Another is to see whether the algorithm can be used to advantage even in non-re-expressible models.  If a model has, say, three variances and is now analyzed by, say, MCMC, we can create an MCMC chain that alternates between draws of $(\sigesq,\sigssq)$ and draws of the other variance.  With the aid of our algorithm we may be able to draw more accurately from $[\sigesq,\sigssq\g \sigma^2_\text{other}]$.  More generally, the conditional distribution of $(\sigesq,\sigssq)$ given other parameters can now be analyzed more accurately than in the past.  We have yet to explore how to exploit that accuracy.  A third direction is the posterior $\pi(\sigesq,\sigssq\g y)$.  We can identify a region $B^c$ where the posterior density is low relative to its maximum and it would be of at least mild interest to find an upper bound for the posterior mass of $B^c$.
 
 As written, our algorithm moves a box $b$ to the inactive list if
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate*}[label=(\alph*)]
 \item $U^b < L-M$ or
-\item $U^b - L^b < \epsilon$ or
-\item either the vertical or horizontal extent of $b$ is sufficiently small.
-\end{enumerate}
-But one could construct more elaborate rules.  One appealing example is to apply criteria (a) and (c) if $U^b \le L-\epsilon_2$ and apply criterion (b) if $U^b > L-\epsilon_2$.  Other rules are possible, too.  We don't elaborate here in order to concentrate on the main ideas.
+\item $U^b - L^b < \epsilon$.
+% \item either the vertical or horizontal extent of $b$ is sufficiently small.
+\end{enumerate*}
+But one could construct more elaborate rules.  One appealing example is to apply criterion (a) if $U^b \le L-\epsilon_2$ and apply criterion (b) if $U^b > L-\epsilon_2$.  Other rules are possible, too.  We don't elaborate here in order to concentrate on the main ideas.
 
 More generally, our algorithm differs from typical optimization algorithms in that it has a different goal: learning $\logRL$ to specified accuracy wherever $\logRL$ is high.  The algorithm works by exploiting a re-expression of $\logRL$ as a sum of simpler, easily analyzed functions.  But there may be many other statistically interesting functions that can be so re-expressed.  For example, many likelihood functions are products of terms from conditionally independent parts of the data.  Posterior densities have the same terms, plus a term from the prior.  We have not yet explored whether our algorithm, and more generally the idea of learning $\logRL$ to specified accuracy, is useful outside the family of linear mixed models; that's another direction for future work.
 
 In this paper we have taken the point of view that it is important to find all regions where $\log f$ is large without necessarily identifying all local maxima or even the global maximum, even though that point of view is at odds with common statistical estimators that maximize the likelihood, the restricted likelihood, or the posterior density.  If two local maxima are close in height it hardly matters which is slightly higher than the other.  And, as we said earlier, if there is a high plateau it hardly matters whether there are little bumps on that plateau.
 
-\section{Appendix}
-\paragraph{Derivation of $\{a_j\}$ and $\{\hat v_j\}$ in \eqref{eq:reexpress}, \eqref{eq:logpost}, and \eqref{eq:sum}}  Our derivation follows \cite{hodges:2013},
+\appendix
+\section{Appendix: Derivation of $\{a_j\}$ and $\{\hat v_j\}$ in \eqref{eq:reexpress}, \eqref{eq:logpost}, and \eqref{eq:sum}}
+Our derivation follows \cite{hodges:2013},
 which contains more details.  There are three steps.
 \begin{enumerate}
   \item \textbf{Make the covariance matrices proportional to the identity.}  If $\Sigma_e$ is not the identity matrix,
@@ -938,6 +835,125 @@ which contains more details.  There are three steps.
     $\Gamma_X$ and $\Gamma_Z P$ are orthogonal to each other.
 \end{enumerate}
 Finally, the $\{a_j\}$ in \eqref{eq:reexpress} are the diagonal elements of $A$, all of which are strictly positive, and the $\{\hat v_j\}$ in \eqref{eq:reexpress} are given by $\hat v = (\hat v_1, \dots, \hat v_{s_Z})^t = P^t \Gamma_Z^t y$.
+
+\section{Appendix: Details of the algorithm}
+With \textbf{D1} and \textbf{D2} the \textcompute{R} function \textcompute{findf}, sketched below, will evaluate, within a box $B^0$, $\logRL$ to arbitrary accuracy everywhere $\logRL$ is large by performing the following tasks:
+\begin{enumerate*}[label=(\alph*)]
+\item accept as input $\{a_j, b_j, c_j, d_j\}, B^0$ and some tuning constants;
+\item create a list of active boxes, initially consisting of just $B^0$;
+\item create a list of inactive boxes, initially empty; and
+\item for each active box $B_j$, find $(L^{B_j}, U^{B_j})$ and determine whether $B_j$ needs to be subdivided.
+\end{enumerate*}
+ These notes explain some parts of the function in more detail.
+\begin{enumerate}
+\item A dataframe \textcompute{lines} is an input to \textcompute{findf}.  \textcompute{lines} contains the
+  $\{a_j, b_j, c_j, d_j \}$ from Section~\ref{subsec:lines}.
+  Details for computing them from $y$, $X$, $Z$, $\Sigma_e$, and $\Sigma_s$ are in the Appendix.
+\item \textcompute{startbox}, or $B^0$, is an input to \textcompute{findf}.  As explained at the beginning of
+  Section~\ref{sec:algorithm}, \textcompute{startbox} could be $B_1$, $B$, or any other box the user chooses.
+\item Constants \maxit, $M$, $\epsilon$, $\delta_e$, and $\delta_s$ are inputs to \textcompute{findf}.
+	\begin{enumerate}[label=(\alph*)]
+	\item Though not mentioned in the main text, \maxit\ is the maximum number (could be $\infty$) of iterations of
+		\textcompute{findf}'s loop.
+	\item We will not further analyze regions of the plane where
+		$\logRLss < \logRL(\sshat) - M$.  ($M$ could be $\infty$.)
+	\item We will evaluate $\logRL$ to within an accuracy of $\epsilon$ (could be 0) inside $B^0$
+	         unless evaluation is stopped by one of the other criteria.
+	\item Though not mentioned in the main text, the algorithm can be told not
+		to distinguish values of $\sigesq$ separated by less
+		than $\delta_e$ (could be 0) nor values of $\sigssq$ separated by
+		less than $\delta_s$ (could be 0).  Separation may be specified
+		in either absolute or relative terms. (I.e.\ we look at either the difference
+		in $\sigesq$ or $\log\sigesq$ (or $\sigssq$ or $\log\sigssq$) from one
+		side of the box to the other.)
+	\end{enumerate}
+  Setting $\maxit = \infty$ and $\delta_e = \delta_s = 0$, as we have done in the examples, implies
+  that $B^0$ will be partitioned so that either
+  $\logRL < \logRL(\sshat) - M$ or $\logRL$ is known to within $\epsilon$, for every $B^0_i$ in the partition.
+  
+\item A \textcompute{box} $b$ is a list consisting of
+	 \begin{itemize}
+	 \item upper and lower limits on $\sigesq$,
+	 \item upper and lower limits on $\sigssq$,
+	 \item upper and lower bounds on $\logRL$, $U^b$ and $L^b$ from \eqref{eq:bounds},
+	 \item indicators for whether this box lies above (or to the right of), below (or to the left of),
+	   or straddles each of the $s_z+2$ lines.
+	 \end{itemize}
+\item \textcompute{killfunc} is a function, shown below \textcompute{findf}, that determines whether
+	a box $b$ should be divided more finely.
+\item \textcompute{splitbox} is a function that takes a box $b =
+	[\sigesq{}_\text{low}, \sigesq{}_\text{high}] \times [\sigssq{}_\text{low}, \sigssq{}_\text{high}]$ as input 
+	and returns the four boxes created by dividing each side of $b$ at its midpoint.
+\end{enumerate}
+\begin{verbatim}
+findf <- function(lines, startbox, eps = 0, delE = 0, delS = 0, M = Inf, maxit = 10,
+                  ratio = FALSE, lognote = "summary") {
+
+
+    inactive <- list()  # a list of inactive boxes
+    ninact <- 0  # the number of inactive boxes
+    
+    active <- list(startbox)  # a list of active boxes
+    nact <- 0  # the number of active boxes
+
+    lowbound <- -Inf  # lowerbound on max(log(f))
+    iter <- 0  # iteration number
+
+    while (nact > 0 && iter < maxit) {
+        # Find the lower bound of each box and the maximum of the lower bounds.  For
+        # each active box, either make it inactive or divide it.
+        low.act <- max(vapply(X = active, FUN = function(box) {
+            box$bounds[1]
+        }, FUN.VALUE = 0.1))
+        lowbound <- max(lowbound, low.act)
+        kill <- vapply(X = active, FUN = killfunc, FUN.VALUE = TRUE, lb = lowbound,
+            M = M, eps = eps, delE - delE, delS = delS, ratio = ratio)
+            # which boxes become inactive?
+        nkill <- sum(kill)
+        if (nkill > 0) {
+            inactive[(ninact + 1):(ninact + nkill)] <- active[kill] 
+            # add those boxes to the inactive list
+        }
+        ninact <- length(inactive)
+        kids <- list()  # subdivisions of active boxes
+        nkids <- 0
+        for (i in which(!kill)) {  # split active boxes into 4 parts
+            kids[(nkids + 1):(nkids + 4)] <- splitbox(active[[i]], lines)
+            nkids <- nkids + 4
+        }
+        active <- kids
+        nact <- length(active)
+
+        iter <- iter + 1
+        write(c("iteration", iter, "nact", nact, "ninact", ninact, "lowbound",
+            lowbound), file = "log.out", ncolumns = 8, append = TRUE)
+    }
+
+
+    tmp <- t(vapply(X = c(active, inactive), FUN = function(box) {
+        c(box$lims.sigsqs, box$lims.sigsqe, box$bounds)
+    }, FUN.VALUE = c(sigsqs.lo = 0.1, sigsqs.hi = 0.1, sigsqe.lo = 0.1, sigsqe.hi = 0.1,
+        rll.lower = 0.1, rll.upper = 0.1)))
+    end_time <- Sys.time()
+    write(paste(lognote, "runtime: ", round(end_time - start_time, digits = 3)),
+          file = "log.out", ncolumns = 1, append = TRUE)
+    return(data.frame(tmp))
+}
+
+# conditions under which a box becomes inactive
+killfunc <- function(box, lb, M, eps, delE, delS, ratio) {
+    # lb is a global (within startbox) lower bound on max(log(f));
+    #      it changes at each iteration.
+    #  M, eps, delE, delS stay constant throughout the iterations.
+    cond.low <- box$bounds[2] < lb - M
+    cond.eps <- diff(box$bounds) < eps
+    cond.E <- ifelse(ratio, diff(log(box$lims.sigsqe)) < delE,
+                            diff(box$lims.sigsqe) < delE)
+    cond.S <- ifelse(ratio, diff(log(box$lims.sigsqs)) < delS,
+                            diff(box$lims.sigsqs) < delS)
+    return(cond.low || cond.eps || cond.E || cond.S)  # stop dividing this box?
+}
+\end{verbatim}
 
 \bibliographystyle{jasa}
 \bibliography{paper}
