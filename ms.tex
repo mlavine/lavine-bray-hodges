@@ -272,7 +272,13 @@ Let $B_1$ be the box whose lower-left and upper-right corners are $(0,0)$ and $(
   \label{fig:boundingbox}
 \end{figure}
 
-By the claim, \mrle\ must lie on or inside $B_1$, so $B_1$ could be passed to an optimizer such as \R's \textsf{optim} or \textsf{nlminb} with potentially better results than using those functions without bounds.  However, even with known bounds, general purpose optimizers may still miss \mrle\ and regions of high $\logRL$ and they emphasize single points of highest local $\logRL$ while possibly ignoring large adjacent regions where $\logRL$ is nearly as large \citep{hill:1965, hodges:2013}.
+By the claim, \mrle\ must lie on or inside $B_1$, so $B_1$ could be passed to an optimizer such as \R's \textsf{optim} or \textsf{nlminb} with potentially better results than using those functions without bounds.  However, even with known bounds, general purpose optimizers may still miss \mrle\ and
+%regions of high $\logRL$ and
+they emphasize single points of highest local $\logRL$ while possibly ignoring large
+%adjacent
+regions where $\logRL$ is nearly as
+high %large
+\citep{hill:1965, hodges:2013}.
 
 We will next find a box $B \supset B_1$ satisfying desideratum \textbf{D1}.  First, though, we pause to note that the region outlined in bold in Figure~(\ref{fig:smallboundingbox}) is a subset of $B_1$ that must also contain \mrle\ by the same reasoning used to prove the previous claim.  But it is not rectangular, hence less convenient than $B_1$, so we don't pursue it further.\\[5pt]
 
@@ -478,7 +484,7 @@ If $B^0$ satisfies \textbf{D1} and $B^0\supseteq B_1$ then we have accomplished 
           \Let{tmp}{max($L^b$)}
          \Let{$L$}{max($L$, tmp)}
         \For{each element $b$ in $active$}
-          \If{$U^b - L^b < \epsilon \enspace \textrm{or} \enspace L^b < L - M$}
+          \If{$U^b - L^b < \epsilon \enspace \textrm{or} \enspace U^b < L - M$}
             \State move $b$ from $active$ to $inactive$
           \Else
             \Let{$b_1, b_2, b_3, b_4$}{split $b$ into 4 smaller boxes}
@@ -591,7 +597,7 @@ Figure~\ref{fig:hmoboxes} shows the outlines of the 9490 boxes.  The algorithm d
 %Table~\ref{table:hmo_HH11_run2} shows the output.  The algorithm needed 12 iterations to move all boxes to the inactive list.  The resulting 37,516 boxes are shown in Figure~\ref{fig:hmo2}.
 For comparison, the standard REML analysis using \R's \textcompute{lme} function yields $\sshat \approx (495, 99)$ with 95\% confidence intervals of $(421, 582)$ and $(39, 248)$.
 
-Figure~\ref{fig:hmorll} depicts the same $\logRLorig$ as \cite{henn&hodges:2014}'s Figures~2a (MCMC draws) and~2b ($\logRLorig$ contours), but their Figure~2a was produced by MCMC whereas our Figure~\ref{fig:hmorll} was produced by direct calculation.  Their Figure~2a shows that the MCMC sampler did not sample any values of $\sigssq$ less than about 10, whereas our Figure~\ref{fig:hmorll} and their Figure~2b shows a region of high $\logRLorig$ extending down to $\sigssq=0$.  In fact, $\logRLorig(500,0) \approx -1241.5$, only about 6 log units below $\logRLorig(\sshat) \approx -1235.7$.  Further, about their Figure~2a, Henn and Hodges say, ``No change in contour shape indicative of a local maximum could be found in the \dots region of $(500, 600) \times (10^{-3}, 1)$, regardless of contour resolution."  I.e., they cannot be sure there are no undiscovered points with large $\logRLorig$.  In contrast, our algorithm guarantees there are no undiscovered points where $\logRLorig$ is more than $\epsilon$ above $L$.
+Figure~\ref{fig:hmorll} depicts the same $\logRLorig$ as \cite{henn&hodges:2014}'s Figures~2a (MCMC draws) and~2b ($\logRLorig$ contours), but their Figure~2a was produced by MCMC whereas our Figure~\ref{fig:hmorll} was produced by direct calculation.  Their Figure~2a shows that the MCMC sampler did not sample any values of $\sigssq$ less than about 10, whereas our Figure~\ref{fig:hmorll} and their Figure~2b show a region of high $\logRLorig$ extending down to $\sigssq=0$.  In fact, $\logRLorig(500,0) \approx -1241.5$, only about 6 log units below $\logRLorig(\sshat) \approx -1235.7$.  Further, about their Figure~2a, Henn and Hodges say, ``No change in contour shape indicative of a local maximum could be found in the \dots region of $(500, 600) \times (10^{-3}, 1)$, regardless of contour resolution."  I.e., they cannot be sure there are no undiscovered points with large $\logRLorig$.  In contrast, our algorithm guarantees there are no undiscovered points where $\logRLorig$ is more than $\epsilon$ above $L$.
 
 %The HMO $\logRLorig$ analysis illustrates a typical workflow: start with a crudely determined box and coarse settings of the control parameters, then refine the box and the settings as suggested by the output of the first run.  Repeat as needed.
 
