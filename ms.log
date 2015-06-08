@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  8 JUN 2015 09:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  8 JUN 2015 09:51
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -482,26 +482,23 @@ Package pdftex.def Info: figs/boxb.pdf used on input line 440.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
  [7] [8 <./figs/boundingbox2.pdf>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 469.
- [9 <./figs/boxb.pdf>]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figs/hmo_HH11_lines.pdf, id=404, 505.89pt x 505.89pt>
+put line 471.
+ [9 <./figs/boxb.pdf>] [10]
+<figs/hmo_HH11_lines.pdf, id=411, 505.89pt x 505.89pt>
 File: figs/hmo_HH11_lines.pdf Graphic file (type pdf)
 
 <use figs/hmo_HH11_lines.pdf>
 Package pdftex.def Info: figs/hmo_HH11_lines.pdf used on input line 553.
 (pdftex.def)             Requested size: 211.38832pt x 211.39165pt.
 
-<figs/hmo_HH11_boxes.pdf, id=405, 505.89pt x 505.89pt>
+<figs/hmo_HH11_boxes.pdf, id=412, 505.89pt x 505.89pt>
 File: figs/hmo_HH11_boxes.pdf Graphic file (type pdf)
 
 <use figs/hmo_HH11_boxes.pdf>
 Package pdftex.def Info: figs/hmo_HH11_boxes.pdf used on input line 562.
 (pdftex.def)             Requested size: 187.90271pt x 187.90196pt.
 
-<figs/hmo_HH11_rll.pdf, id=406, 505.89pt x 505.89pt>
+<figs/hmo_HH11_rll.pdf, id=413, 505.89pt x 505.89pt>
 File: figs/hmo_HH11_rll.pdf Graphic file (type pdf)
 
 <use figs/hmo_HH11_rll.pdf>
@@ -512,15 +509,15 @@ Overfull \hbox (2.2222pt too wide) in paragraph at lines 560--575
 []$[]$ $[]$ 
  []
 
-[10] [11 <./figs/hmo_HH11_lines.pdf> <./figs/hmo_HH11_boxes.pdf> <./figs/hmo_HH
-11_rll.pdf>] <figs/hmolines_HH11_Bayes.pdf, id=467, 505.89pt x 505.89pt>
+<figs/hmolines_HH11_Bayes.pdf, id=434, 505.89pt x 505.89pt>
 File: figs/hmolines_HH11_Bayes.pdf Graphic file (type pdf)
 
 <use figs/hmolines_HH11_Bayes.pdf>
 Package pdftex.def Info: figs/hmolines_HH11_Bayes.pdf used on input line 590.
 (pdftex.def)             Requested size: 211.38832pt x 211.39165pt.
- [12] [13 <./figs/hmolines_HH11_Bayes.pdf>]
-<figs/hmo_HH11Bayes_boxes.jpg, id=494, 481.8pt x 481.8pt>
+ [11] [12 <./figs/hmo_HH11_lines.pdf> <./figs/hmo_HH11_boxes.pdf> <./figs/hmo_H
+H11_rll.pdf>] [13 <./figs/hmolines_HH11_Bayes.pdf>] <figs/hmo_HH11Bayes_boxes.j
+pg, id=494, 481.8pt x 481.8pt>
 File: figs/hmo_HH11Bayes_boxes.jpg Graphic file (type jpg)
 
 <use figs/hmo_HH11Bayes_boxes.jpg>
@@ -552,13 +549,13 @@ Package pdftex.def Info: figs/gmst-lines.pdf used on input line 693.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
  [14 <./figs/hmo_HH11Bayes_boxes.jpg> <./figs/hmo_HH11Bayes_rll.jpg>] [15 <./fi
 gs/gmst-scatter.pdf> <./figs/gmst-lines.pdf>]
-<figs/gmst-boxes1.jpg, id=535, 481.8pt x 481.8pt>
+<figs/gmst-boxes1.jpg, id=533, 481.8pt x 481.8pt>
 File: figs/gmst-boxes1.jpg Graphic file (type jpg)
  <use figs/gmst-boxes1.jpg>
 Package pdftex.def Info: figs/gmst-boxes1.jpg used on input line 745.
 (pdftex.def)             Requested size: 187.90271pt x 187.90123pt.
 
-<figs/gmst-rll1.jpg, id=536, 481.8pt x 481.8pt>
+<figs/gmst-rll1.jpg, id=534, 481.8pt x 481.8pt>
 File: figs/gmst-rll1.jpg Graphic file (type jpg)
  <use figs/gmst-rll1.jpg>
 Package pdftex.def Info: figs/gmst-rll1.jpg used on input line 751.
@@ -568,7 +565,7 @@ Overfull \hbox (2.2222pt too wide) in paragraph at lines 743--758
 []$[]$ $[]$ 
  []
 
-[16 <./figs/gmst-boxes1.jpg> <./figs/gmst-rll1.jpg>]
+[16]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 781.
@@ -653,7 +650,8 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\@@italiccorr' on input line 781.
 
-[17] [18] [19] (./ms.bbl [20])
+[17 <./figs/gmst-boxes1.jpg> <./figs/gmst-rll1.jpg>] [18] [19] (./ms.bbl
+[20])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 942.
  [21
 
@@ -664,16 +662,20 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 942.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 942.
 Package rerunfilecheck Info: File `ms.out' has not changed.
 (rerunfilecheck)             Checksum: 1D184A46FD9439735B5967630D4E15AF;854.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 942.
  ) 
 Here is how much of TeX's memory you used:
  8553 strings out of 493117
  129005 string characters out of 6135433
- 233118 words of memory out of 5000000
+ 237119 words of memory out of 5000000
  11778 multiletter control sequences out of 15000+600000
  16621 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,21n,38p,1270b,584s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,21n,38p,1270b,582s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
@@ -701,7 +703,7 @@ s/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2014/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/ty
 pe1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ms.pdf (23 pages, 663282 bytes).
+Output written on ms.pdf (23 pages, 663202 bytes).
 PDF statistics:
  719 PDF objects out of 1000 (max. 8388607)
  554 compressed objects within 6 object streams

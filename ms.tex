@@ -464,7 +464,9 @@ Section~\ref{sec:boundingbox} shows how to determine a box $B_1$ containing all 
 \end{enumerate*}
 If $B^0$ satisfies \textbf{D1} and $B^0\supseteq B_1$ then we have accomplished our goal of dividing the plane into one region where we know $\logRL$ to be low and another where we know $\logRL$ to within $\epsilon$.  One strategy would be to find $B$ as outlined in Section~\ref{sec:boundingbox} and set $B^0 \equiv B$.  However, we have found that $B_1$ satisfies \textbf{D1} in all the examples we have tried and we therefore follow a different strategy.  We set $B^0 \equiv B_1$ and run the following algorithm, during which we learn whether $B_1$ satisfies \textbf{D1}.  If it does, we're done.  If it doesn't, then we would expand $B_1$ by a factor of 2 in both dimensions; set $B^0$ to be the expanded box; rerun the algorithm; and continue to expand and rerun until we find a $B^0$ that does satisfy \textbf{D1}.  Section~\ref{sec:boundingbox} shows that such a bounded $B^0$ exists, and thus we are sure to find it in finite time.
 
-\begin{algorithm}
+Algorithm~\ref{alg:findf} sketches the basic procedure; details are in an appendix.  Before giving examples, we mention some considerations in setting the tuning constants $M$ and $\epsilon$, which have to do with the interpretation of likelihood ratios.  We imagine a reference experiment in which a coin is chosen, either fair or two-headed, and tossed.  If the coin is tossed twice and lands Heads both times, it produces a likelihood ratio of 4 in favor of the two-headed coin.  That's only weak evidence, so we don't see the need to resolve likelihood functions much beyond a factor of four, or loglikelihood functions much beyond a factor of $\log(4) \approx 1.4$.  In practice, we use $\epsilon = 1$ as a convenient default.  If the coin were tossed 10 times and yielded 10 Heads, the likelihood ratio would be $2^{10} = 1024$.  That's strong evidence, so we don't see the need to resolve $\logRL$ where it is less than .001 times its maximum.  $\log(1000) \approx 7$, so we use $M = 7$ as a convenient default.
+
+\begin{algorithm}[H]
   \caption{Learn areas in $B$ where log $f$ is high to within $\epsilon$
     \label{alg:findf}}
   \begin{algorithmic}[1]
@@ -492,8 +494,6 @@ If $B^0$ satisfies \textbf{D1} and $B^0\supseteq B_1$ then we have accomplished 
     \EndFunction
   \end{algorithmic}
 \end{algorithm}
-
-Algorithm~\ref{alg:findf} sketches the basic procedure; details are in an appendix.  Before giving examples, we mention some considerations in setting the tuning constants $M$ and $\epsilon$, which have to do with the interpretation of likelihood ratios.  We imagine a reference experiment in which a coin is chosen, either fair or two-headed, and tossed.  If the coin is tossed twice and lands Heads both times, it produces a likelihood ratio of 4 in favor of the two-headed coin.  That's only weak evidence, so we don't see the need to resolve likelihood functions much beyond a factor of four, or loglikelihood functions much beyond a factor of $\log(4) \approx 1.4$.  In practice, we use $\epsilon = 1$ as a convenient default.  If the coin were tossed 10 times and yielded 10 Heads, the likelihood ratio would be $2^{10} = 1024$.  That's strong evidence, so we don't see the need to resolve $\logRL$ where it is less than .001 times its maximum.  $\log(1000) \approx 7$, so we use $M = 7$ as a convenient default.
 
 
 \section{Examples}
