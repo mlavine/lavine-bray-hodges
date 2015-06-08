@@ -808,7 +808,7 @@ which contains more details.  There are three steps.
       \begin{split}
         y &= \begin{bmatrix} X | Z \end{bmatrix} \begin{bmatrix} \beta \\ u \end{bmatrix} + \epsilon\\
         &= \begin{bmatrix} \Gamma_X | \Gamma_Z \end{bmatrix} M \begin{bmatrix} \beta \\ u \end{bmatrix} + \epsilon\\
-        &= \begin{bmatrix} \Gamma_X | \Gamma_Z | P \end{bmatrix} \begin{bmatrix} \beta^* \\ v \end{bmatrix} + \epsilon
+        &= \begin{bmatrix} \Gamma_X | \Gamma_Z P \end{bmatrix} \begin{bmatrix} \beta^* \\ v \end{bmatrix} + \epsilon
       \end{split}
     \end{equation*}
     where $\beta^* = M_{XX}\beta + M_{XZ}u$ and $v = A^{.5}L^t u$.  $\beta^*$ contains the re-parametrized
