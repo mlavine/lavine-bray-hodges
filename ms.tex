@@ -284,7 +284,7 @@ We will next find a box $B \supset B_1$ satisfying desideratum \textbf{D1}.  Fir
 \end{equation*}}
 I.e., \textbf{D1} is satisfied.\\[5pt]
 \noindent\textbf{Proof}
-Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$, the intercept of $B$ and the $\sigssq$ axis; let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$; let $\widetilde{q_3} = (\widetilde{\sigma_e^2}, \sigma_s^{2*})$; let $\widetilde{q_4} = (\widetilde{\sigma_e^2},0)$, the intercept of $B$ and the $\sigssq$ axis; and let $\logRL_j$ denote the $j$'th term of \eqref{eq:sum}.  The proof considers in turn four regions $Q_1$, $Q_2$, $Q_3$, and $Q_4$ whose union is $B^c$.  Implicitly, $B$ and $B^c$ are functions of $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$.  The proof shows that $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ can be chosen large enough so that \textbf{D1} is satisfied on each region.  
+Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$, the intercept of $B$ and the $\sigssq$ axis; let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$; let $\widetilde{q_3} = (\widetilde{\sigma_e^2}, \sigma_s^{2*})$; let $\widetilde{q_4} = (\widetilde{\sigma_e^2},0)$, the intercept of $B$ and the $\sigesq$ axis; and let $\logRL_j$ denote the $j$'th term of \eqref{eq:sum}.  The proof considers in turn four regions $Q_1$, $Q_2$, $Q_3$, and $Q_4$ whose union is $B^c$.  Implicitly, $B$ and $B^c$ are functions of $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$.  The proof shows that $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ can be chosen large enough so that \textbf{D1} is satisfied on each region.  
 \begin{itemize}
 \item $Q_1: \sigesq \le \sigesq{}^*$ and $\sigssq \ge \widetilde{\sigssq}$, as illustrated by $q_1$ in
   Figure~\ref{fig:boundingbox2}.  In $Q_1$, by inspection of \eqref{eq:sum} and \eqref{eq:partials},
@@ -833,6 +833,8 @@ With \textbf{D1} and \textbf{D2} the \textcompute{R} function \textcompute{findf
 	[\sigesq{}_\text{low}, \sigesq{}_\text{high}] \times [\sigssq{}_\text{low}, \sigssq{}_\text{high}]$ as input 
 	and returns the four boxes created by dividing each side of $b$ at its midpoint.
 \end{enumerate}
+
+\paragraph{\textcompute{findf}: The main function}
 \begin{verbatim}
 findf <- function(lines, startbox, eps = 0, delE = 0, delS = 0, M = Inf, maxit = 10,
                   ratio = FALSE, lognote = "summary") {
@@ -887,7 +889,10 @@ findf <- function(lines, startbox, eps = 0, delE = 0, delS = 0, M = Inf, maxit =
           file = "log.out", ncolumns = 1, append = TRUE)
     return(data.frame(tmp))
 }
+\end{verbatim}
 
+\paragraph{\textcompute{killfunc}: determine whether to make a box inactive}
+\begin{verbatim}
 # conditions under which a box becomes inactive
 killfunc <- function(box, lb, M, eps, delE, delS, ratio) {
     # lb is a global (within startbox) lower bound on max(log(f));
@@ -901,6 +906,31 @@ killfunc <- function(box, lb, M, eps, delE, delS, ratio) {
                             diff(box$lims.sigsqs) < delS)
     return(cond.low || cond.eps || cond.E || cond.S)  # stop dividing this box?
 }
+\end{verbatim}
+
+\paragraph{\textcompute{splitbox}: split a box into four children}
+\begin{verbatim}
+splitbox <- function(box, lines) {
+    # split a box into four children
+    NW <- with(box, makebox(lims.sigsqe = c(lims.sigsqe[1], mean(lims.sigsqe)),
+        lims.sigsqs = c(mean(lims.sigsqs), lims.sigsqs[2]), status = status,
+        lines = lines))
+
+    NE <- with(box, makebox(lims.sigsqe = c(mean(lims.sigsqe), lims.sigsqe[2]),
+        lims.sigsqs = c(mean(lims.sigsqs), lims.sigsqs[2]), status = status,
+        lines = lines))
+
+    SW <- with(box, makebox(lims.sigsqe = c(lims.sigsqe[1], mean(lims.sigsqe)),
+        lims.sigsqs = c(lims.sigsqs[1], mean(lims.sigsqs)), status = status,
+        lines = lines))
+
+    SE <- with(box, makebox(lims.sigsqe = c(mean(lims.sigsqe), lims.sigsqe[2]),
+        lims.sigsqs = c(lims.sigsqs[1], mean(lims.sigsqs)), status = status,
+        lines = lines))
+
+    return(list(NW, NE, SW, SE))
+}
+
 \end{verbatim}
 
 \bibliographystyle{jasa}
