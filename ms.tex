@@ -56,12 +56,12 @@
 \begin{document}
 
 \title{Approximately Exact Calculations for Linear Mixed Models}
-%\author[1]{Michael Lavine}
-%\author[2]{Andrew Bray}
-%\author[3]{James Hodges}
-%\affil[1]{Department of Mathematics and Statistics, University of Massachusetts, Amherst, MA 01003 USA}
-%\affil[2]{Reed College, Portland, OR, 97202 USA}
-%\affil[3]{Division of Biostatistics, University of Minnesota, Minneapolis, MN, 55455 USA}
+\author[1]{Michael Lavine}
+\author[2]{Andrew Bray}
+\author[3]{James Hodges}
+\affil[1]{Department of Mathematics and Statistics, University of Massachusetts, Amherst, MA 01003 USA}
+\affil[2]{Reed College, Portland, OR, 97202 USA}
+\affil[3]{Division of Biostatistics, University of Minnesota, Minneapolis, MN, 55455 USA}
 
 \maketitle
 
@@ -176,7 +176,7 @@ Our derivation proceeds from \eqref{eq:sum}.  We use $f$ to denote the target fu
 
 It is known (e.g.\ \citealt{henn&hodges:2014}) that $\logRLss$
 can have multiple maxima,
-though the incidence of multiple maxima is unknown.  Multi-modal posterior distributions arise readily from conflict between the likelihood and prior;  \cite{Liu&Hodges:2003} explores an important such conflict in detail and \cite{wakefield:1998} gives a naturally-occurring example explored further in \cite{henn&hodges:2014}.  Multiple maxima in restricted likelihoods have received far less attention and any statement about their incidence would be speculation.  To our knowledge, two naturally-occurring cases have have been reported, in \cite{welham_thompson:2009} and \cite{reiss_etal:2014};  \cite{henn&hodges:2014} report an artificial case and give a recipe for manufacturing examples.  
+though the incidence of multiple maxima is unknown.  Multi-modal posterior distributions arise readily from conflict between the likelihood and prior;  \cite{Liu&Hodges:2003} explores an important such conflict in detail and \cite{wakefield:1998} gives a naturally-occurring example explored further in \cite{henn&hodges:2014}.  Multiple maxima in restricted likelihoods have received far less attention and any statement about their incidence would be speculation.  To our knowledge, two naturally-occurring cases have been reported, in \cite{welham_thompson:2009} and \cite{reiss_etal:2014};  \cite{henn&hodges:2014} report an artificial case and give a recipe for manufacturing examples.  
 
 As for numerical optimizers, it is known that existing general purpose algorithms for linear mixed models may fail to find all of the local maxima of $\logRLss$, as shown by examples in \cite{hodges:2013}, \cite{henn&hodges:2014}, and elsewhere.  \cite{mullen:2014} examines 18 optimization functions available in \R, tests them on 48 objective functions (admittedly more complicated than $\logRLss$) and finds that even the best of them fail in over 10\% of the cases.  \cite{henn&hodges:2014} examine conditions under which multiple maxima occur in posterior densities and conclude ``\dots second maxima in posterior distributions therefore may be more common than reports in the literature would suggest."  Thus, failure to find local and global maxima may be common, though with available tools it is extremely laborious to determine whether multiple maxima are present and where they are.
 
@@ -209,16 +209,17 @@ The partial derivatives of $\logRLss$ can be calculated from (\ref{eq:sum}):
 \begin{equation}
 \label{eq:drlds}
   \frac{\partial\logRLss}{\partial\sigssq}
-  = -\frac{1}{2} \sum_j
+  = -\frac{1}{2} \sum_{j=1}^{s_z+2}
         \left[ \frac{a_jc_j}{\abss} - \frac{a_j d_j}{(\abss)^2} \right]
-        = -\frac{1}{2} \sum_j
-           \frac{a_j \left( a_jc_j\sigssq + b_jc_j\sigesq  - d_j\right)}{(\abss)^2}\\
+        = -\frac{1}{2} \sum_{j=1}^{s_z+2}
+            \frac{a_j \left( a_jc_j\sigssq + b_jc_j\sigesq  - d_j\right)}{(\abss)^2}\\
 \end{equation}
 and
 \begin{equation}\label{eq:drlde}
   \frac{\partial\logRLss}{\partial\sigesq} =
-    -\frac{1}{2} \sum_j \left[ \frac{b_jc_j}{\abss} - \frac{b_j d_j}{(\abss)^2} \right]
-    = - \frac{1}{2} \sum_j \frac{b_j \left( a_jc_j\sigssq + b_jc_j\sigesq  - d_j\right)}{(\abss)^2}.
+    -\frac{1}{2} \sum_{j=1}^{s_z+2} \left[ \frac{b_jc_j}{\abss} - \frac{b_j d_j}{(\abss)^2} \right]
+    = - \frac{1}{2} \sum_{j=1}^{s_z+2}
+         \frac{b_j \left( a_jc_j\sigssq + b_jc_j\sigesq  - d_j\right)}{(\abss)^2}.
 \end{equation}
 \end{subequations}
 
@@ -282,41 +283,6 @@ We will next find a box $B \supset B_1$ satisfying desideratum \textbf{D1}.  Fir
   \sup_{B^c} \logRLss \le \logRL(\sshat) - M.
 \end{equation*}}
 I.e., \textbf{D1} is satisfied.\\[5pt]
-%\noindent\textbf{Proof}
-%Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  The proof considers several regions outside $B$ in turn, as exemplified by the points $q_1$, $q_2$, $q_3$, and $q_4$ in Figure~\ref{fig:boundingbox2}.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$ be the intercept of $B$ and the $\sigssq$ axis and let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$.  Let $q_1 = (\sigesq{}_1, \sigssq{}_1)$ be a point satisfying $\sigesq{}_1 \le \sigma_e^{2*}$ and $\sigssq{}_1 \ge \widetilde{\sigma_s^2}$ --- above $B$ and to the left of the $s_z+1$ line.  The partial derivatives (\ref{eq:drlds}), between $q_1$ and $\widetilde{q_1}$ are negative for $j \in \{1, \dots, s_z, s_z+2\}$ but zero for $j=s_z+1$.  The partial derivatives (\ref{eq:drlde}), betweem $q_1$ and $\widetilde{q_2}$ are negative for $j \in \{1, \dots, s_z, s_z+1\}$ but nonnegative for $j=s_z+2$.  Let $\logRL_j(\cdot)$ denote the $j$'th term of \eqref{eq:sum} evaluated at $(\cdot)$.  
-%\begin{equation}
-%	\logRL(\sshat) - \logRL(q_1) \ge L - \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1}) - \logRL_{s_z+1}(\widetilde{q_2}),
-%\end{equation}
-%which is larger than $M$ if
-%\begin{equation}
-%\label{eq:q1}
-%  \begin{split}
-%    \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1})
-%      &< L - M - \logRL_{s_z+1}(\widetilde{q_2})\\
-%      &= L - M + \frac{1}{2} \left[ c_{s_z+1}\log\sigma_e^{2*} + \frac{d_{s_z+1}}{\sigma_e^{2*}}\right].
-%  \end{split}
-%\end{equation}
-%Examination of (\ref{eq:sum}) shows that for any fixed $\sigesq$, in particular for $\sigesq=0$, and for $j \ne s_z+1$,\\ $\lim_{\sigssq \rightarrow \infty} \logRL_j(\sigesq,\sigssq) = -\infty$.  Thus $\widetilde{\sigma_s^2}$ can be chosen large enough so that the summation on the l.h.s.~of \eqref{eq:q1} is less than the r.h.s.~of \eqref{eq:q1}, and  \textbf{D1} is satisfied.
-%
-%Let $q_2 = (\sigesq{}_2, \sigssq{}_2)$ satisfy $\sigesq{}_2 \ge \sigma_e^{2*}$ and $\sigssq{}_2 \ge \widetilde{\sigma_s^2}$ --- above $B$ and to the right of the $s_z+1$ line.  (Points $q_2$ and $q_3$ in Figure~(\ref{fig:boundingbox2}) both satisfy these criteria.)  The partial derivatives (\ref{eq:drlds}, \ref{eq:drlde}) evaluated at $q_2$ are nonpositive for $j \in \{1, \dots, s_z+2\}$; therefore, $\logRL(\sshat) - \logRL(q_2) \ge L - \logRL(\widetilde{q_2})$.  The latter expression is greater than $M$ iff $\logRL(\widetilde{q_2}) < L-M$.  But examination of (\ref{eq:sum}) shows that for any fixed $\sigesq$, $\lim_{\sigssq \rightarrow \infty} \logRLss = -\infty$ and therefore $\widetilde{\sigma_s^2}$ can be chosen large enough so that \textbf{D1} is satisfied.
-%
-%Let $\widetilde{q_3} = (\widetilde{\sigma_e^2}, \sigma_s^{2*})$ and let $q_3 = (\sigesq{}_3, \sigssq{}_3)$ satisfy $\sigesq{}_3 \ge \widetilde{\sigma_e^2}$ and $\sigssq{}_3 \ge \sigma_s^{2*}$.  The partial derivatives (\ref{eq:drlds}, \ref{eq:drlde}) evaluated at $q_3$ are nonpositive for $j \in \{1, \dots, s_{z+2}\}$; therefore, $\logRL(\sshat) - \logRL(q_3) \ge L - \logRL(\widetilde{q_3})$.  The latter expression is greater than $M$ iff $\logRL(\widetilde{q_3}) < L-M$.  But examination of (\ref{eq:sum}) shows that for any fixed $\sigssq$, $\lim_{\sigesq \rightarrow \infty} \logRLss = -\infty$ and therefore $\widetilde{\sigma_e^2}$ can be chosen large enough so that \textbf{D1} is satisfied.
-%
-%Let $\widetilde{q_4} = (\widetilde{\sigma_e^2},0)$ and let $q_4 = (\sigesq{}_4, \sigssq{}_4)$ satisfy $\sigssq{}_4 \le \sigma_s^{2*}$ and $\sigesq{}_4 \ge \widetilde{q_4}$.  The partial derivatives \eqref{eq:drlds} evaluated at $q_4$ are nonpositive for $j \in \{1, \dots, s_z+1\}$  but nonnegative for $j=s_z+2$.  The partial derivatives \eqref{eq:drlde} evaluated at $q_4$ are nonpositive for $j \in \{1, \dots, s_z, s_z+2\}$  but nonnegative for $j=s_z+1$. Therefore,
-%\begin{equation*}
-%	\logRL(\sshat) - \logRL(q_4) \ge L - \sum_{j \ne s_z+2} \logRL_j(\widetilde{q_4}) - \logRL_{s_z+2}(\widetilde{q_3})
-%\end{equation*}
-%which is larger than $M$ if
-%\begin{equation}
-%\label{eq:q4}
-%  \begin{split}
-%    \sum_{j \ne s_z+2} \logRL_j(\widetilde{q_4})
-%      &< L - M - \logRL_{s_z+2}(\widetilde{q_3})\\
-%      &= L - M + \frac{1}{2} \left[ c_{s_z+2}\log\sigma_s^{2*} + \frac{d_{s_z+2}}{\sigma_s^{2*}}\right].
-%  \end{split}
-%\end{equation}
-%Examination of (\ref{eq:sum}) shows that for any fixed $\sigssq$, in particular for $\sigssq=0$, and for $j \ne s_z+2$,\\ $\lim_{\sigesq \rightarrow \infty} \logRL_j(\sigesq,\sigssq) = -\infty$.  Thus $\widetilde{\sigma_e^2}$ can be chosen large enough so that the summation on the l.h.s.~of \eqref{eq:q4} is less than the r.h.s.~of \eqref{eq:q4}, and  \textbf{D1} is satisfied.
-%
 \noindent\textbf{Proof}
 Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:boundingbox2}), and define $L \equiv \logRL(p)$; we use $L$ as a lower bound on $\logRL(\sshat)$.  Let $\widetilde{q_1} = (0,\widetilde{\sigma_s^2})$, the intercept of $B$ and the $\sigssq$ axis; let $\widetilde{q_2} = (\sigma_e^{2*},\widetilde{\sigma_s^2})$; let $\widetilde{q_3} = (\widetilde{\sigma_e^2}, \sigma_s^{2*})$; let $\widetilde{q_4} = (\widetilde{\sigma_e^2},0)$, the intercept of $B$ and the $\sigssq$ axis; and let $\logRL_j$ denote the $j$'th term of \eqref{eq:sum}.  The proof considers in turn four regions $Q_1$, $Q_2$, $Q_3$, and $Q_4$ whose union is $B^c$.  Implicitly, $B$ and $B^c$ are functions of $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$.  The proof shows that $\widetilde{\sigma_e^2}$ and $\widetilde{\sigma_s^2}$ can be chosen large enough so that \textbf{D1} is satisfied on each region.  
 \begin{itemize}
@@ -344,13 +310,14 @@ Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:b
   \end{itemize}
   Therefore, 
   \begin{equation}
-	\logRL(\sshat) - \logRL(q) \ge L - \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1}) - \logRL_{s_z+1}(\widetilde{q_2}).
+	\logRL(\sshat) - \logRL(q) \ge L -
+	  \sum_{\substack{j=1\\ j \ne s_z+1}}^{s_z+2} \logRL_j(\widetilde{q_1}) - \logRL_{s_z+1}(\widetilde{q_2}).
   \end{equation}
   The r.h.s.~is larger than $M$ if
   \begin{equation}
     \label{eq:q1}
     \begin{split}
-      \sum_{j \ne s_z+1} \logRL_j(\widetilde{q_1})
+      \sum_{\substack{j=1\\ j \ne s_z+1}}^{s_z+2} \logRL_j(\widetilde{q_1})
         &< L - M - \logRL_{s_z+1}(\widetilde{q_2})\\
         &= L - M + \frac{1}{2} \left[ c_{s_z+1}\log\sigma_e^{2*} + \frac{d_{s_z+1}}{\sigma_e^{2*}}\right].
     \end{split}
@@ -410,13 +377,13 @@ Let $p$ be an arbitrary point inside $B_1$, as illustrated in Figure~(\ref{fig:b
   \end{itemize}
   Therefore,
   \begin{equation*}
-	\logRL(\sshat) - \logRL(q) \ge L - \sum_{j \ne s_z+2} \logRL_j(\widetilde{q_4}) - \logRL_{s_z+2}(\widetilde{q_3})
+	\logRL(\sshat) - \logRL(q) \ge L - \sum_{j=1}^{s_z+1} \logRL_j(\widetilde{q_4}) - \logRL_{s_z+2}(\widetilde{q_3})
   \end{equation*}
   which is larger than $M$ if
   \begin{equation}
   \label{eq:q4}
     \begin{split}
-      \sum_{j \ne s_z+2} \logRL_j(\widetilde{q_4})
+      \sum_{j=1}^{s_z+1} \logRL_j(\widetilde{q_4})
         &< L - M - \logRL_{s_z+2}(\widetilde{q_3})\\
         &= L - M + \frac{1}{2} \left[ c_{s_z+2}\log\sigma_s^{2*} + \frac{d_{s_z+2}}{\sigma_s^{2*}}\right].
     \end{split}
@@ -450,8 +417,8 @@ For any box $b$ let $L^b_j = \inf_{p\in b} \logRL_j(p)$ and $U^b_j = \sup_{p\in 
 Armed with the $L^b_j$'s and $U^b_j$'s we can compute bounds on $\logRLss$ within $b$:
 \begin{equation}
 \label{eq:bounds}
-	L^b \equiv \sum_j L^b_j \le \inf_{(\sigssq,\sigesq)\in b} \logRLss \le
-	\sup_{(\sigssq,\sigesq)\in b} \logRLss \le \sum_j U^b_j \equiv U^b.
+	L^b \equiv \sum_{j=1}^{s_z+2} L^b \le \inf_{(\sigssq,\sigesq)\in b} \logRLss \le
+	\sup_{(\sigssq,\sigesq)\in b} \logRLss \le \sum_{j=1}^{s_z+2} U^b_j \equiv U^b.
 \end{equation}
 Because $\logRL$ is continuous, $U^b - L^b \rightarrow 0$ as $b$ shrinks in both directions, thus satisfying desideratum \textbf{D2}.
 
